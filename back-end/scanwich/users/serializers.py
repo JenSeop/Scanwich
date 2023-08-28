@@ -1,9 +1,32 @@
+#users/serializers.py
 from django.contrib.auth.models import User # User 모델
 from django.contrib.auth.password_validation import validate_password
 # Django의 기본 패스워드 검증 도구
+from django.contrib.auth import authenticate
+# Django의 기본 authenticte 함수,
+# 설정한 DefaultAuthBackend인 TokenAuth 방식 유저 인증
+
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token # Token 모델
 from rest_framework.validators import UniqueValidator # 이메일 중복 방지 검사 도구
+
+from django.core.mail import send_mail
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(required=True)
+    password = serializers.CharField(required=True, write_only=True)
+    # write_only=True 옵션을 통해 클라이언트 => 서버 방향의 역 직렬화는 가능
+    # 서버 => 클라이언트 방향의 직렬화는 불가능
+    
+    def validate(self, data):
+        user = authenticate(**data)
+        if not user.userprofile.email_verified:
+            raise serializers.ValidationError({"error": "Email is not verified."})
+        if user:
+            token = Token.objects.get_or_create(user=user) # get => get_or_create
+            return {"token": token} # tuple 형태로 토큰 반환
+        raise serializers.ValidationError(
+            {"error": "Unable to log in with provided credentials."})
 
 class RegisterSerializer(serializers.ModelSerializer): # 회원 가입 시리얼라이저
     email = serializers.EmailField(
@@ -42,4 +65,8 @@ class RegisterSerializer(serializers.ModelSerializer): # 회원 가입 시리얼
         user.set_password(validated_data['password'])
         user.save()
         token = Token.objects.create(user=user)
+        
+        email_subject = 'Email Verification'
+        email_body = 'Click the link to verify your email: http://127.0.0.1:8000/users/verify-email/' + str(user.userprofile.email_verification_token)
+        send_mail(email_subject, email_body, 'scanwich.official@gmail.com', [validated_data['email']])
         return user
