@@ -11,22 +11,32 @@ from rest_framework.authtoken.models import Token # Token 모델
 from rest_framework.validators import UniqueValidator # 이메일 중복 방지 검사 도구
 
 from django.core.mail import send_mail
+from .models import UserProfile
 
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField(required=True)
-    password = serializers.CharField(required=True, write_only=True)
-    # write_only=True 옵션을 통해 클라이언트 => 서버 방향의 역 직렬화는 가능
-    # 서버 => 클라이언트 방향의 직렬화는 불가능
-    
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
+    token = serializers.CharField(read_only=True)
+
     def validate(self, data):
-        user = authenticate(**data)
-        if not user.userprofile.email_verified:
-            raise serializers.ValidationError({"error": "Email is not verified."})
-        if user:
-            token = Token.objects.get_or_create(user=user) # get => get_or_create
-            return {"token": token} # tuple 형태로 토큰 반환
-        raise serializers.ValidationError(
-            {"error": "Unable to log in with provided credentials."})
+        user = authenticate(username=data['email'], password=data['password'])
+
+        if not user:
+            raise serializers.ValidationError("Incorrect email or password.")
+
+        # Check email verification status
+        try:
+            profile = UserProfile.objects.get(user=user)
+            if not profile.email_verified:
+                raise serializers.ValidationError("Email not verified. Please verify your email first.")
+        except UserProfile.DoesNotExist:
+            raise serializers.ValidationError("User profile does not exist.")
+
+        # Generate and return the token for the authenticated user
+        token, created = Token.objects.get_or_create(user=user)
+        data['token'] = token.key
+
+        return data
 
 class RegisterSerializer(serializers.ModelSerializer): # 회원 가입 시리얼라이저
     email = serializers.EmailField(
