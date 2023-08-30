@@ -21,7 +21,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# EMAIL 인증
+# EMAIL 인증 SMTP 서버
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_PORT = int(env("EMAIL_PORT"))
@@ -34,10 +34,16 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 AUTHENTICATION_BACKENDS = [
     'users.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
+    # Google Social Login
+    'allauth.account.authentication_backends.AuthenticationBackend',
 ]
 
-# Application definition
+# Google reCAPTCHA
+RECAPTCHA_PUBLIC_KEY = env("PUBLIC_KEY")  # Google에서 제공받은 Site Key
+RECAPTCHA_PRIVATE_KEY = env("PRIVATE_KEY")  # Google에서 제공받은 Secret Key
 
+
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,8 +51,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Google Social Login
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    # Import Liblaries
     'rest_framework',
     'rest_framework.authtoken',
+    'captcha',
+    # Back-end Module
     'users',
 ]
 
