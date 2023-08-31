@@ -34,8 +34,8 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 AUTHENTICATION_BACKENDS = [
     'users.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
-    # Google Social Login
-    'allauth.account.authentication_backends.AuthenticationBackend',
+    # Google/KAKAO Social Login
+    #'allauth.account.authentication_backends.AuthenticationBackend',
 ]
 
 # Google reCAPTCHA
@@ -51,11 +51,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Google Social Login
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    # Google/KAKAO Social Login
+    #'allauth',
+    #'allauth.account',
+    #'allauth.socialaccount',
+    #'allauth.socialaccount.providers.google',
     # Import Liblaries
     'rest_framework',
     'rest_framework.authtoken',
