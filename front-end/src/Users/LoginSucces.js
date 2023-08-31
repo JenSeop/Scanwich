@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Typography, Button, Container, Paper, makeStyles } from '@material-ui/core';
+import { Button, Container, Paper, Typography, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.primary,
         width: '320px',
-        height: '450px',
+        height: '200px',
     },
     content: {
         flex: 1,
@@ -25,28 +25,32 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-    }
+    },
 }));
 
-function RegisterStep3() {
+function LoginSuccess() {
     const classes = useStyles();
 
     return (
         <Container className={classes.root} maxWidth="md">
             <Paper className={classes.paper}>
-                <Typography variant="h4" className={classes.title}>회원 가입 완료</Typography>
+                <Typography variant="h4" className={classes.title}>로그인 성공!</Typography>
                 
                 <div className={classes.content}>
-                    <Typography variant="body1">이메일 주소로 인증 링크가 발송되었습니다.</Typography>
-                    <Typography variant="body1">인증 완료 후 로그인이 가능합니다.</Typography>
+                    <Typography variant="h6">환영합니다!</Typography>
                 </div>
 
-                <Link to="/">
-                    <Button fullWidth variant="outlined">메인 페이지 이동</Button>
+                <Link to="../">
+                  <Button 
+                      fullWidth 
+                      variant="outlined"
+                  >
+                      로그아웃
+                  </Button>
                 </Link>
             </Paper>
         </Container>
     );
 }
 
-export default RegisterStep3;
+export default LoginSuccess;

@@ -37,20 +37,20 @@ function RegisterStep2() {
     return (
         <Container className={classes.root} maxWidth="md">
             <Paper className={classes.paper}>
-                <Typography variant="h4" className={classes.title}>Register</Typography>
+                <Typography variant="h4" className={classes.title}>회원 정보 입력</Typography>
                 
                 <div className={classes.content}>
-                    <TextField 
-                        label="Email" 
-                        variant="outlined" 
-                        value={email} 
-                        onChange={e => setEmail(e.target.value)} 
-                    />
                     <TextField 
                         label="Name" 
                         variant="outlined" 
                         value={name} 
                         onChange={e => setName(e.target.value)} 
+                    />
+                    <TextField 
+                        label="Email" 
+                        variant="outlined" 
+                        value={email} 
+                        onChange={e => setEmail(e.target.value)} 
                     />
                     <TextField 
                         label="Password" 
@@ -61,7 +61,7 @@ function RegisterStep2() {
                 </div>
 
                 <Link to="/register/step3">
-                    <Button variant="outlined">Next</Button>
+                    <Button fullWidth variant="outlined">Next</Button>
                 </Link>
             </Paper>
         </Container>

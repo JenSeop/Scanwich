@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Typography, Button, TextField, Grid, Box, Container, Paper, makeStyles } from '@material-ui/core';
+import { Typography, Button, TextField, Grid, Container, Paper, makeStyles } from '@material-ui/core';
+import LoginSucces from './LoginSucces';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,7 +66,9 @@ function Home() {
                                 <TextField label="Password" type="password" variant="outlined" fullWidth />
                             </Grid>
                             <Grid item>
-                                <Button variant="contained" color="primary" fullWidth>로그인</Button>
+                                <Link to="/LoginSucces">
+                                    <Button variant="contained" color="primary" fullWidth>로그인</Button>
+                                </Link>
                             </Grid>
                             <Grid item>
                                 <Button variant="contained" fullWidth className={`${classes.socialButton} ${classes.kakaoButton}`}>KAKAO 로그인</Button>
