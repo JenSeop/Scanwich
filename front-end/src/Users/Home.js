@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, Button, TextField, Grid, Container, Paper, makeStyles } from '@material-ui/core';
-import LoginSucces from './LoginSucces';
+import LoginSuccess from './LoginSuccess';
 
 const useStyles = makeStyles((theme) => ({
     root: {

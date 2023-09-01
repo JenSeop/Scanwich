@@ -1,5 +1,5 @@
 #setting.py
-
+from django.urls import reverse_lazy
 from pathlib import Path
 import environ
 env = environ.Env()
@@ -35,8 +35,13 @@ AUTHENTICATION_BACKENDS = [
     'users.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
     # Google/KAKAO Social Login
-    #'allauth.account.authentication_backends.AuthenticationBackend',
+    'allauth.account.authentication_backends.AuthenticationBackend',
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'  # 로그인 후 리다이렉트 될 경로
+ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 # Google reCAPTCHA
 RECAPTCHA_PUBLIC_KEY = env("PUBLIC_KEY")  # Google에서 제공받은 Site Key
@@ -51,11 +56,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Front-Back 연동
+    'corsheaders',
     # Google/KAKAO Social Login
-    #'allauth',
-    #'allauth.account',
-    #'allauth.socialaccount',
-    #'allauth.socialaccount.providers.google',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
     # Import Liblaries
     'rest_framework',
     'rest_framework.authtoken',
@@ -72,6 +80,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Front-Back 연동
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'scanwich.urls'
