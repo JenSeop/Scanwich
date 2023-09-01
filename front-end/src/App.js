@@ -13,6 +13,9 @@ import FindPw2 from './pages/FindPw2';
 function App() {
   return (
     <div className="App">
+      <div className='navBar'>
+        <span className='navBar1'>Scanwich</span>
+      </div>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
