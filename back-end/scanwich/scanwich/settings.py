@@ -14,6 +14,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 SITE_ID = 1
+# for direct kakao login
+SOCIALACCOUNT_LOGIN_ON_GET = True
+# redirect path
+LOGIN_REDIRECT_URL = '/success'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'main_page'
+LOGOUT_REDIRECT_URL = '/'
+# set of logout
+ACCOUNT_LOGOUT_ON_GET = True 
 
 # EMAIL 인증 SMTP 서버
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -23,10 +31,29 @@ EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 
+# Kakao settings
+SOCIALACCOUNT_PROVIDERS = {
+    'kakao': {
+        'APP': {
+            'client_id': '4aaee3003f94fb4e62344330b11c9ff1',
+            'secret': 'EM8qVoh1sb1BvT89voi3vE0LcpC5ZeRQ',
+            'key': ''
+        },
+        'SCOPE': ['account_email', 'gender'],
+        'FIELDS': ['id', 'email', 'gender', 'verified_account'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'METHOD': 'oauth2',
+        'VERIFIED_EMAIL': True,
+        'VERIFIED_ACCOUNT': True,
+        'LOGIN_REDIRECT_URL': '/',
+    }
+}
+
 # 로그인 인증
 AUTHENTICATION_BACKENDS = [
     'users_origin.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 INSTALLED_APPS = [
@@ -39,9 +66,15 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     ## My App
     'users_origin',
+    'users_social',
     # DRF
     'rest_framework',
     'rest_framework.authtoken',
+    # for KAKAO LOGIN
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
 ]
 
 MIDDLEWARE = [

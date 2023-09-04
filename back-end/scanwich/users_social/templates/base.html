@@ -1,0 +1,23 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website</title>
+</head>
+<body>
+
+  <nav>
+    {% if user.is_authenticated %}
+      <a href="{% url 'kakao_profile' %}">프로필</a>
+      <a href="{% url 'logout' %}">로그아웃</a>
+    {% else %}
+      <a href="{% url 'kakao_login' %}">카카오로 로그인</a>
+    {% endif %}
+</nav>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

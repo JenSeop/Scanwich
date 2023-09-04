@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django DRF 카카오 로그인 테스트</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- 카카오 JavaScript SDK 추가 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        Kakao.init('4aaee3003f94fb4e62344330b11c9ff1');  // 여기에 카카오 앱의 JavaScript 키를 넣어주세요.
+
+        function kakaoLogin() {
+            Kakao.Auth.login({
+                success: function(response) {
+                    alert('카카오 로그인에 성공했습니다.');
+                    // 다음 단계로 넘어가는 코드를 여기에 추가할 수 있습니다.
+                },
+                fail: function(error) {
+                    alert('카카오 로그인에 실패했습니다. \n' + JSON.stringify(error));
+                }
+            });
+        }
+    </script>
+</head>
+
+<body class="text-center">
+
+    <div class="container mt-5">
+        <h2>카카오 로그인 테스트</h2>
+
+        {% load socialaccount %} <!-- allauth 태그를 로드 -->
+
+        <!-- 카카오 로그인 버튼 -->
+        <button type="button" onclick="kakaoLogin()"><img class="kakao" src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt=""></button>
+    </div>
+
+</body>
+
+</html>
