@@ -1,4 +1,4 @@
-#users/views.py
+#users_origin/views.py
 from django.contrib.auth.models import User
 from .serializers import RegisterSerializer, LoginSerializer
 from .models import UserProfile

@@ -1,4 +1,4 @@
-#users/serializers.py
+#users_origin/serializers.py
 from django.contrib.auth.models import User # User 모델
 from django.contrib.auth.password_validation import validate_password
 # Django의 기본 패스워드 검증 도구
@@ -77,6 +77,6 @@ class RegisterSerializer(serializers.ModelSerializer): # 회원 가입 시리얼
         token = Token.objects.create(user=user)
         
         email_subject = 'Email Verification'
-        email_body = 'Click the link to verify your email: http://127.0.0.1:8000/users/verify-email/' + str(user.userprofile.email_verification_token)
+        email_body = 'Click the link to verify your email: http://127.0.0.1:8000/users_origin/verify/' + str(user.userprofile.email_verification_token)
         send_mail(email_subject, email_body, 'scanwich.official@gmail.com', [validated_data['email']])
         return user

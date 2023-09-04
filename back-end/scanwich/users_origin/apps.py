@@ -1,9 +1,9 @@
-#users/apps.py
 from django.apps import AppConfig
 
-class UsersConfig(AppConfig):
+
+class UsersOriginConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'users'
+    name = 'users_origin'
     
     def ready(self):
-        import users.signals
+        import users_origin.signals
