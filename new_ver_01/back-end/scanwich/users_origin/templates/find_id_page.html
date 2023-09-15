@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>아이디 찾기</title>
+</head>
+<body>
+    <h2>아이디 찾기</h2>
+    <form method="post" action="{% url 'find_id_email' %}">
+        <label for="u_email">이메일 주소:</label>
+        <input type="email" name="u_email" id="u_email" required>
+        <button type="submit">아이디 찾기</button>
+    </form>
+</body>
+</html>
