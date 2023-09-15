@@ -12,6 +12,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from rest_framework.views import APIView
 
 User = get_user_model()
 
@@ -84,13 +85,13 @@ def resend_verification_email(request):
     
     return Response({"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST)
 
-## 1-3. 인증 성공 페이지
+## 1-3. 인증 성공 페이지 (Back-end 모듈 테스트용)
 def verification_success_page(request):
     return render(request, 'verification_success.html')
-## 1-4. 인증 에러 페이지
+## 1-4. 인증 에러 페이지 (Back-end 모듈 테스트용)
 def verification_failed_page(request):
     return render(request, 'verification_error.html')
-## 1-5. 인증 실패 페이지
+## 1-5. 인증 실패 페이지 (Back-end 모듈 테스트용)
 def token_not_found_page(request):
     return render(request, 'verification_failed.html')
 
@@ -110,7 +111,7 @@ class CustomLoginView(LoginView):
             messages.error(self.request, '이메일 인증을 먼저 완료해야 로그인이 가능합니다.')
             return self.form_invalid(form)
         
-# 2-1. 로그인 리다이렉션
+# 2-1. 로그인 리다이렉션 (Back-end 모듈 테스트용)
 def login_success(request):
     # 로그인 성공 후 이동할 페이지에 대한 로직을 추가
     return render(request, 'login_success.html')  # LOGIN_REDIRECT_URL에 설정한 URL의 이름을 사용
@@ -138,5 +139,30 @@ def find_id_email(request):
     
     return Response({"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST)
 
+## 3-2. ID 찾기 페이지 (Back-end 모듈 테스트용)
 def find_id_page(request):
     return render(request, 'find_id_page.html')
+
+## 3-3. PW 재설정
+class ResetPasswordAPIView(APIView):
+    permission_classes = [AllowAny]  # 인증 요구 해제
+    def post(self, request):
+        u_id = request.data.get('u_id')
+        u_email = request.data.get('u_email')
+        new_password = request.data.get('new_password')  # 사용자로부터 입력받은 새로운 비밀번호
+        
+        try:
+            user = CustomUser.objects.get(u_id=u_id, u_email=u_email)
+            
+            # 새로운 비밀번호로 업데이트하고 저장합니다.
+            user.set_password(new_password)
+            user.save()
+            
+            return Response({"message": "비밀번호가 초기화되었습니다."}, status=status.HTTP_200_OK)
+        
+        except CustomUser.DoesNotExist:
+            return Response({"error": "유저를 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+        
+## 3-4. PW 찾기 페이지 (Back-end 모듈 테스트용)
+def reset_pw_page(request):
+    return render(request, 'reset_pw_page.html')

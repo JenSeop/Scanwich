@@ -15,5 +15,11 @@
         {{ form.as_p }}
         <button type="submit">Login</button>
     </form>
+    
+    <!-- 아이디 찾기 버튼 -->
+    <p><a href="{% url 'find_id_page' %}">아이디 찾기</a></p>
+    
+    <!-- 비밀번호 찾기 버튼 -->
+    <p><a href="{% url 'reset_pw_page' %}">비밀번호 찾기</a></p>
 </body>
 </html>
