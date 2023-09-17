@@ -7,27 +7,26 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Button } from '@mui/material';
 
 
 const Register = () => {
   return (
-    
+    <div className='510792' style={style_510792}>
+        <Button><Link to="/register1">전체 동의하기</Link></Button>
     <div className="element-user-register">
       <Grid container justifyContent="center" alignItems="center" style={{ height: '100vh' }}>
       {/* 가운데로 정렬 -> Grid 안 */}
     
       <div className="div">
-        <div className="text-wrapper">Bakery 약관 동의</div>
-        <div className="text-wrapper-2">자세한 동의 내용 확인</div>
-        <Link to="/register1"><div className="group">
-          <div className="overlap-group">
-          <div className="text-wrapper-3">전체 동의하기</div>
-          </div>
-        </div></Link>
+        <div className="text-wrapper" style={{position: 'absolute', left:'0px'}}>Scanwich 약관 동의</div>
+        <div className="text-wrapper-2" style={{position: 'absolute', left:'100px'}}>자세한 동의 내용 확인</div>
         <div className="overlap-wrapper">
           <div className="overlap">
            
-            <Accordion transitionDuration="auto" className='scrolling'>
+            <Accordion transitionDuration="auto" className='scrolling' style={{
+              position: 'absolute', left:'-500px'
+            }}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -186,8 +185,20 @@ scanwich은(는) 정보주체의 개인정보 열람청구가 신속하게 처�
       </div>
       </Grid>
     </div>
-    
+    </div>
   );
 };
+
+const style_510792 = {
+  width: '420px',
+  height: '592px',
+  borderRadius: '40px',
+  border: '1px solid black',
+  margin: '0px auto',
+  padding: '55px 37px',
+  backgroundColor: 'White',
+  display: 'flex',
+  flexDirection: 'column'
+}
 
 export default Register;
