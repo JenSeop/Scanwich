@@ -1,0 +1,20 @@
+<!-- reset_pw_page.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>비밀번호 초기화</title>
+</head>
+<body>
+    <h2>비밀번호 초기화</h2>
+    {% csrf_token %}
+    <form method="post" action="{% url 'reset_pw' %}">
+        <label for="u_id">아이디:</label>
+        <input type="text" name="u_id" id="u_id" required><br>
+        <label for="u_email">이메일 주소:</label>
+        <input type="email" name="u_email" id="u_email" required><br>
+        <label for="new_password">새로운 비밀번호:</label>
+        <input type="password" name="new_password" id="new_password" required><br>
+        <button type="submit">비밀번호 초기화</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if user and not user.u_verif %}
+            <p style="color: red;">이메일 인증을 완료해야 로그인할 수 있습니다.</p>
+        {% endif %}
+        
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    
+    <!-- 아이디 찾기 버튼 -->
+    <p><a href="{% url 'find_id_page' %}">아이디 찾기</a></p>
+    
+    <!-- 비밀번호 찾기 버튼 -->
+    <p><a href="{% url 'reset_pw_page' %}">비밀번호 찾기</a></p>
+</body>
+</html>
