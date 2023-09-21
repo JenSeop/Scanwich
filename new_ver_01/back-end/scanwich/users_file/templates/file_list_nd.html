@@ -1,0 +1,23 @@
+<!-- templates/file_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>파일 목록</title>
+</head>
+<body>
+    <h1>업로드된 파일 목록</h1>
+    <ul>
+        {% for file in files %}
+        <li>
+            <a href="{{ file.f_path.url }}" target="_blank">{{ file.f_name }} ({{ file.f_type }})</a>
+            <a href="{% url 'file_change' file.f_id %}">[변경]</a>
+            <a href="{% url 'file_delete' file.f_id %}">[삭제]</a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <!-- 파일 업로드 페이지로 이동하는 버튼 -->
+    <a href="{% url 'file_upload' %}">파일 업로드</a>
+</body>
+</html>

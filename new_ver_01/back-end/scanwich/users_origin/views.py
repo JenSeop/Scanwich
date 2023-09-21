@@ -35,7 +35,7 @@ class UserRegisterView(generics.CreateAPIView):
 
             return Response({
                 "user": UserSerializer(user, context=self.get_serializer_context()).data,
-                "message": "User created successfully! Please check your email to confirm your registration."
+                "message": "201"
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -114,7 +114,7 @@ class CustomLoginView(LoginView):
 # 2-1. 로그인 리다이렉션 (Back-end 모듈 테스트용)
 def login_success(request):
     # 로그인 성공 후 이동할 페이지에 대한 로직을 추가
-    return render(request, 'login_success.html')  # LOGIN_REDIRECT_URL에 설정한 URL의 이름을 사용
+    return render(request, 'login_success.html')
 
 # 3. ID/PW 찾기
 
@@ -154,7 +154,7 @@ class ResetPasswordAPIView(APIView):
         try:
             user = CustomUser.objects.get(u_id=u_id, u_email=u_email)
             
-            # 새로운 비밀번호로 업데이트하고 저장합니다.
+            # 새로운 비밀번호로 업데이트하고 저장
             user.set_password(new_password)
             user.save()
             

@@ -1,19 +1,25 @@
 # scanwich/settings.py
 from pathlib import Path
-import datetime
+import os
+# env 라이브러리
 import environ
-
 env = environ.Env()
 environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Django APP Key
 SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# 파일 업로드
+## 파일 업로드를 위한 미디어 루트 및 URL 설정
+MEDIA_ROOT = os.path.join(BASE_DIR, '../../','files')
+
+# 이메일
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_PORT = int(env("EMAIL_PORT"))
@@ -25,6 +31,11 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 LOGIN_REDIRECT_URL = 'login_success'
 LOGOUT_REDIRECT_URL = 'login'
 
+# 소셜 로그인
+SITE_ID = 1
+ACCOUNT_EMAIL_REQUIRED = True # 이메일 필수
+ACCOUNT_EMAIL_VERIFICATION = 'none' # 이메일 검증 안함
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,9 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'django_extensions',
+    # DRF
+    'rest_framework',
+    # Scanwich Lib
     'users_origin',
+    'users_social',
+    'users_file',
 ]
 
 # 기본 유저 모델 설정
@@ -45,7 +60,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ), # login작업이외에 다른 views에서 토큰을 사용할 때 필요하다.
+    ), # login작업이외에 다른 views에서 토큰을 사용할 때 필요
 }
 
 AUTHENTICATION_BACKENDS = [
