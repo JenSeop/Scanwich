@@ -3,10 +3,24 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.conf import settings
 import uuid
+from django.utils import timezone
 
 # 추가: _ 함수를 임포트
 from django.utils.translation import gettext as _
 
+
+class TokenJWT(models.Model):
+    t_id = models.AutoField(primary_key=True)                                       # 토큰 아이디
+    u_id = models.CharField(max_length=150, unique=True)                            # 유저 아이디
+    t_key = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)       # UUID 토큰
+    t_date = models.DateTimeField(auto_now_add=True)                                # 토큰 생성시간
+    t_limit = models.DateTimeField(                                                 # 토큰 만료시간
+        default=timezone.now() + timezone.timedelta(hours=1))
+    
+    def is_token_expired(self):
+        # 토큰 만료 확인
+        return self.t_limit <= timezone.now()
+    
 # 이메일 인증 토큰 모델
 class EmailVerificationToken(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) # 관련 사용자

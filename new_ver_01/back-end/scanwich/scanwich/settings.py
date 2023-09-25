@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'users_origin',
     'users_social',
     'users_file',
+    'engine_analysis',
 ]
 
 # 기본 유저 모델 설정

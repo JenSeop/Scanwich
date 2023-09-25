@@ -4,7 +4,6 @@ import FindId from './pages/FindId';
 import Register from './pages/Register';
 import Register1 from './pages/Register1';
 import Register2 from './pages/Register2';
-import Register3 from './pages/Register3';
 import FindId1 from './pages/FindId1';
 import FindPw from './pages/FindPw';
 import FindPw1 from './pages/FindPw1';
@@ -21,7 +20,6 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/register1" element={<Register1 />} />
       <Route path="/register2" element={<Register2/>} />
-      <Route path="/register3" element={<Register3/>} />
       <Route path="/findid" element={<FindId />} />
       <Route path="/findid1" element={<FindId1 />} />
       <Route path="/findpw" element={<FindPw/>} />

@@ -8,11 +8,15 @@ from .utils import send_verification_email, send_find_id_email
 from .serializers import UserSerializer
 from rest_framework.permissions import AllowAny
 from .models import CustomUser, EmailVerificationToken
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from rest_framework.views import APIView
+from django.contrib.auth import login, logout
+from django.http import JsonResponse
+from uuid import uuid4
+from .models import TokenJWT
 
 User = get_user_model()
 
@@ -111,10 +115,48 @@ class CustomLoginView(LoginView):
             messages.error(self.request, '이메일 인증을 먼저 완료해야 로그인이 가능합니다.')
             return self.form_invalid(form)
         
-# 2-1. 로그인 리다이렉션 (Back-end 모듈 테스트용)
+## 2-1. 로그인 리다이렉션 (Back-end 모듈 테스트용)
 def login_success(request):
     # 로그인 성공 후 이동할 페이지에 대한 로직을 추가
     return render(request, 'login_success.html')
+
+## 2-2. JWT 로그인
+class JWTLogin(LoginView):
+    template_name = 'jwtlogin.html'
+    success_url = reverse_lazy('jwt_login_success')
+    
+    def form_valid(self, form):
+        user = form.get_user()
+        
+        if user.u_verif:  # 이메일 인증 여부 확인
+            login(self.request, user)
+            
+            # 토큰 생성 및 저장
+            token = str(uuid4())  # UUID 토큰 생성
+            user_token, created = TokenJWT.objects.get_or_create(u_id=user.u_id)
+            user_token.t_key = token
+            user_token.save()
+            
+            return JsonResponse({'token': token})
+        else:
+            messages.error(self.request, '이메일 인증을 먼저 완료해야 로그인이 가능합니다.')
+            return self.form_invalid(form)
+        
+## 2-3. JWT 로그아웃
+class JWTLogout(LogoutView):
+    def post(self, request):
+        if request.user.is_authenticated:
+            # 사용자 로그아웃 처리
+            logout(request)
+            
+            # 토큰 삭제
+            user_token = TokenJWT.objects.filter(u_id=request.user.u_id).first()
+            if user_token:
+                user_token.delete()
+            
+            return JsonResponse({'message': '로그아웃 성공'})
+        else:
+            return JsonResponse({'message': '로그인 상태가 아닙니다.'}, status=400)
 
 # 3. ID/PW 찾기
 

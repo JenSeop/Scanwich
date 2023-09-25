@@ -14,6 +14,8 @@ from .views import (
 # 로그인/로그아웃
     CustomLoginView,
     login_success,
+    JWTLogin,
+    JWTLogout,
 # 아이디/비밀번호 찾기
     find_id_email,
     find_id_page,
@@ -41,6 +43,12 @@ urlpatterns = [
     path('api/user/logout/', LogoutView.as_view(), name='logout'), # API
     ## 로그인 성공 페이지 (test)
     path('api/user/home', login_success, name='login_success'), # 단위 테스트용
+    ## JWT 로그인
+    path('api/user/jwtlogin/', JWTLogin.as_view(), name='jwtlogin'), # API
+    ## JWT 로그아웃
+    path('api/user/jwtlogout/', JWTLogout.as_view(), name='jwtlogout'), # API
+    ## 로그인 성공 페이지 (test)
+    path('api/user/jwt_home', login_success, name='jwt_login_success'), # 단위 테스트용
 # 아이디/비밀번호 찾기
     ## 아이디 찾기
     path('api/user/find_id/', find_id_email, name='find_id_email'), # API
