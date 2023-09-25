@@ -1,19 +1,41 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../index.css';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-
+import '../../index.css';
+import { Box, TextField, Button } from '@mui/material';
+import axios from 'axios'; 
 
 const Register1 = () => {
-
-  const [text, setText] = useState('');
+  
+  const [username, setUsername] = useState(''); // 아이디 상태 추가
+  const [password, setPassword] = useState(''); // 비밀번호 상태 추가
+  const [email, setEmail] = useState(''); // 이메일 상태 추가
   
   const handleTextChange = (event) => {
     const newValue = event.target.value;
     if (/^[A-Za-z0-9@.\-_]*$/.test(newValue) || newValue === '') {
-      setText(newValue);
+      setUsername(newValue); // 아이디 입력값 업데이트
+    }
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value); // 비밀번호 입력값 업데이트
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value); // 이메일 입력값 업데이트
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('http:/server.com/api/register/', {
+        u_id: username,
+        password: password,
+        u_email: email
+      });
+  
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -35,7 +57,13 @@ const Register1 = () => {
       noValidate
       autoComplete="off"
   >
-      <TextField id="outlined-basic" label="ID" variant="outlined" />
+      <TextField
+        id="u_id"
+        label="ID"
+        variant="outlined"
+        value={username}
+        onChange={handleTextChange}
+       />
   </Box>
 
 
@@ -49,7 +77,14 @@ const Register1 = () => {
       noValidate
       autoComplete="off"
   >
-      <TextField id="outlined-basic" label="PASS" variant="outlined" type="password"/>
+      <TextField 
+      id="password" 
+      label="PASS" 
+      variant="outlined" 
+      type="password"
+      value={password}
+      onChange={handlePasswordChange}
+      />
   </Box>
 
 
@@ -63,11 +98,16 @@ const Register1 = () => {
       noValidate
       autoComplete="off"
   >
-      <TextField id="outlined-basic" label="EMAIL" variant="outlined" value={text} onChange={handleTextChange}/>
+      <TextField 
+      id="email" 
+      label="EMAIL" 
+      variant="outlined"
+      value={email} 
+      onChange={handleEmailChange}/>
   </Box>
 
   
-  <Link to="/register2"><Button variant="outlined" style={{
+  <Link to="/register2"><Button onClick={handleSubmit} variant="outlined" style={{
     marginTop: '40px',
     width: '330px'
   }}>회원가입 완료</Button></Link>

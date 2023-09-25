@@ -1,17 +1,26 @@
 .navBar {
   width: 100%;
-  background-color: #727272;
-  height: 40px;
+  overflow: hidden;
+  background-color: #373531;
+  height: 80px;
+  padding-left: 80px;
+  padding-right: 80px;
+  position: fixed;
+  z-index: 100;
 }
 .navBar1 {
-  font-size: 30px;
-  background-color: #727272;
+  font-size: 32px;
+  color: #A9A49D;
   margin-left: 10px;
+  font-family: 'Roboto';
+  font-weight: 700;
+  position: absolute;
+  top: -25px;
 }
 
-
-
-
+.Rectangle45{
+  border: solid #373531; 
+}
 
 
 
