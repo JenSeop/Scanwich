@@ -9,15 +9,14 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-const FindPw = () => {
+const FindId = () => {
 
-  const [findPwtext, setText] = useState('');
-  const [findPwtext1, setText1] = useState('');
-  const [findPwtext2, setText2] = useState('');
+  const [text, setText] = useState('');
+  const [text1, setText1] = useState('');
   
   const handleTextChange = (event) => {
     const newValue = event.target.value;
-    if (/^[A-Za-z0-9@.\-_]*$/.test(newValue) || newValue === '') {
+    if (/^[0-9]*$/.test(newValue) || newValue === '') {
       setText(newValue);
     }
   };
@@ -29,18 +28,12 @@ const FindPw = () => {
     }
   };
 
-  const handleTextChange2 = (event) => {
-    const newValue = event.target.value;
-    if (/^[0-9]*$/.test(newValue) || newValue === '') {
-      setText1(newValue);
-    }
-  };
-
   const [open, setOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0); // 스크롤 위치 저장
-  const [isTimerActive1, setIsTimerActive1] = useState(false);
-  const [remainingTime1, setRemainingTime1] = useState(null);
-  const [timerId1, setTimerId1] = useState(null);
+  const [isTimerActive, setIsTimerActive] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(null);
+  const [timerId, setTimerId] = useState(null);
+
   const style = {
     position: 'absolute',
     top: '50%',
@@ -52,12 +45,13 @@ const FindPw = () => {
     boxShadow: 24,
     p: 4,
   };
+
   const handleOpen = () => {
     setScrollPosition(window.scrollY); // 모달 열릴 때 스크롤 위치 저장
     setOpen(true);
-    setIsTimerActive1(true);
+    setIsTimerActive(true);
     const newTimerId = startTimer();
-    setTimerId1(newTimerId);
+    setTimerId(newTimerId);
   };
 
   const handleClose = () => {
@@ -67,7 +61,7 @@ const FindPw = () => {
 
   const startTimer = () => {
     const newTimerId = setInterval(() => {
-      setRemainingTime1(prevTime => prevTime - 1);
+      setRemainingTime(prevTime => prevTime - 1);
     }, 1000);
 
     return newTimerId;
@@ -93,8 +87,8 @@ const FindPw = () => {
     let timerInterval;
   
     if (open && !timerInterval) {
-      setIsTimerActive1(true);
-      setRemainingTime1(180); // 3분으로 설정
+      setIsTimerActive(true);
+      setRemainingTime(180); // 3분으로 설정
     }
   
     return () => {
@@ -105,26 +99,25 @@ const FindPw = () => {
     };
   }, [open]);
 
-
-
   return (
-  
-    <div className="element-user-findpw">
-      <div className="div">
-        <input type='text' value={findPwtext} onChange={handleTextChange} className="rectangle" />
-        <input type='text' value={findPwtext1} onChange={handleTextChange1} className="rectangle-2" />
-        <div className="text-wrapper">휴대폰 번호 입력</div>
-        <input type='text' value={findPwtext2} onChange={handleTextChange2} className="rectangle-3" />
-        <div className="text-wrapper-2">ID 또는 이메일</div>
-        <div className="text-wrapper-3">인증번호 입력<span className='time_auth'>{formatTime(remainingTime1)}</span></div>
-        <Link to="/findpw1"><div className="overlap-group">
-          <div className="rectangle-4" />
-          <div className="text-wrapper-4">인증 확인</div>
-        </div></Link>
-        <Button onClick={handleOpen}><div className="overlap">
-          <div className="text-wrapper-5">인증번호 받기</div>
-        </div></Button>
-        <Modal
+    <div className="element-user-findid">
+    <div className="div">
+      <input className="rectangle" />
+      <input type='text' value={text} onChange={handleTextChange} className="rectangle-2" />
+      <div className="text-wrapper">이메일 입력</div>
+      <input type='text' value={text1} onChange={handleTextChange1} className="rectangle-3" />
+      <Button><div className="overlap">
+        <div className="rectangle-4" />
+        <Link to="/FindId1"><div className="text-wrapper-2">인증 확인</div></Link>
+      </div></Button>
+      <Button onClick={handleOpen}><div className="overlap-group">
+        <div className="text-wrapper-3">인증번호 받기</div>
+      </div></Button>
+      <div className="text-wrapper-4">이름</div>
+      <div className="text-wrapper-5">인증번호 입력 <span className='time_auth'>{formatTime(remainingTime)}</span></div>
+    </div>
+    <div>
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -132,18 +125,20 @@ const FindPw = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            인증 번호가 발송 되었습니다.
+            인증 링크가 발송 되었습니다.
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            발송된 번호를 입력해주세요.
+            발송된 링크를 클릭해주세요.
           </Typography>
         </Box>
       </Modal>
-      </div>
     </div>
-    );
+  </div>
 
   
-  };
+  );
+
   
-  export default FindPw;
+};
+
+export default FindId;

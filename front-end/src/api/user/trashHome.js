@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import './styles/style.css';
 import './styles/donotscroll.css';
 
-const Home = () => {
+const trashHome = () => {
   /*  */
   let [errorMessages, setErrorMessages] = useState('');
 
@@ -69,7 +69,7 @@ const Home = () => {
 
   /* return ( */
   return (
-    <div className='Home' style={{
+    <div className='trashHome' style={{
       backgroundColor: '#FFF5DC'
     }}>
 
@@ -306,4 +306,4 @@ const errorMessage = {
   fontFamily: '"Roboto", sans-serif'
 }
 
-export default Home;
+export default trashHome;
