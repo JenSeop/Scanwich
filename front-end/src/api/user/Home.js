@@ -4,6 +4,9 @@ import '../../index.css';
 import { Box, TextField, Button, createTheme, ThemeProvider } from '@mui/material';
 import axios from 'axios';
 
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+
 const Home = () => {
   
   let [errorMessages, setErrorMessages] = useState('');
@@ -62,16 +65,35 @@ const Home = () => {
   };
 
 
+
+  /* popover */
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  /* -------- */
+  
+
+
+
   return (
 
 <div className='510792' style={style_510792}>
   <span className='Hello'>Welcome to Bakery!</span>
   <span className='NewAccount' style={{
-    color: 'red'
+    color: '#FF4F4F'
   }}>​ {errorMessages}</span>
   
   <div style={innerBox}>
   <span className='Text1'>아이디 또는 이메일</span>
+  <ThemeProvider theme={customUnderline}>
   <Box
       component="form"
       sx={{
@@ -82,15 +104,22 @@ const Home = () => {
   >
   <TextField
     id="standard-required"
-    label="ID"
+    // label="ID"
     variant="standard"
     value={text}
     onChange={handleTextChange}
+    InputProps={{
+      style: {
+        width: 350,
+        borderBottom: '2px solid #FFF5DC'
+      },
+    }}
   />
   </Box>
-
+  </ThemeProvider>
 
   <span className='Text1'>비밀번호</span>
+  <ThemeProvider theme={customUnderline}>
   <Box
     component="form"
     sx={{
@@ -101,15 +130,20 @@ const Home = () => {
   >
   <TextField
     id="standard-password-input"
-    label="Password"
     type="password"
     autoComplete="current-password"
     variant="standard"
     value={password}
     onChange={handlePasswordChange}
+    InputProps={{
+      style: {
+        width: 350,
+        borderBottom: '2px solid #FFF5DC'
+      },
+    }}
   />
   </Box>
-
+  </ThemeProvider>
 
   <ThemeProvider theme={logIn}>
     <Button variant="contained" color='primary' style={{
@@ -126,7 +160,7 @@ const Home = () => {
     </Button>
   </ThemeProvider>
 
-  <ThemeProvider theme={GlogIn}>
+  <ThemeProvider theme={customUnderline}>
     <Button variant="outlined" color='primary' style={{
       // width: 330,
       height: 50,
@@ -145,7 +179,7 @@ const Home = () => {
         }}/>구글 계정으로 로그인</Button>
   </ThemeProvider>
           
-  <ThemeProvider theme={GlogIn}>
+  <ThemeProvider theme={customUnderline}>
     <Button variant="outlined" color='primary' style={{
       // width: 330,
       height: 50,
@@ -167,17 +201,66 @@ const Home = () => {
 <div style={{
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+  color: '#FFF5DC'
 }}>
-  <Link to="/findid" style={{ textDecoration: 'none', color: 'black' }}><div>아이디 찾기</div></Link>/
-  <Link to="/findpw" style={{ textDecoration: 'none', color: 'black' }}><div>비밀번호 찾기</div></Link>/
-  <Link to="/register" style={{ textDecoration: 'none', color: 'black' }}><div>회원가입</div></Link>
+  <Link to="/api/user/findid" style={{ textDecoration: 'none', color: 'black' }}><div style={{
+    color: '#FFF5DC'
+  }}>아이디 찾기</div></Link>/
+  <div style={{
+    color: '#FFF5DC',
+    textDecoration: 'line-through'
+  }}>
+    
+    
+    
+    <Typography
+        aria-owns={open ? 'mouse-over-popover' : undefined}
+        aria-haspopup="true"
+        onMouseEnter={handlePopoverOpen}
+        onMouseLeave={handlePopoverClose}
+      >
+        비밀번호 찾기
+      </Typography>
+      <Popover
+        id="mouse-over-popover"
+        sx={{
+          pointerEvents: 'none',
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+        <Typography sx={{ p: 1 }}>공사중.</Typography>
+      </Popover>
+    
+    
+    
+    
+    
+    
+    </div>/
+  <Link to="/api/user/register" style={{ textDecoration: 'none', color: 'black' }}><div style={{
+    color: '#FFF5DC'
+  }}>회원가입</div></Link>
 </div>
+
+
+
 
 
 {/* 우측상단 로그인 */}
 <ThemeProvider theme={logIn}>
-  <Button variant="contained" color='primary' style={{
+  <Button variant="outlined" color='primary' style={{
     width: 113,
     height: 48,
     fontSize: 20,
@@ -202,9 +285,11 @@ const style_510792 = {
   border: '1px solid black',
   margin: '0px auto',
   padding: '55px 37px',
-  backgroundColor: 'White',
+  // backgroundColor: 'White',
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  // justifyContent: 'center',
+  // alignItems: 'center',
 }
 
 const innerBox = {
@@ -229,6 +314,25 @@ const GlogIn = createTheme({
   palette: {
     primary: {
       main: '#CE881F', // #EDC892
+    },
+  },
+});
+
+const customUnderline = createTheme({
+  palette: {
+    primary: {
+      main: '#FFF5DC',
+    },
+    secondary: {
+      main: '#1dab56',
+    },
+    error: {
+      main: '#FFF5DC',
+      light: 'rgb(255, 247, 227)',
+      dark: 'rgb(178, 171, 154)'
+    },
+    text: {
+      primary: '#fff5dc',
     },
   },
 });

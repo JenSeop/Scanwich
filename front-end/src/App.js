@@ -4,7 +4,6 @@ import FindId from './api/user/FindId';
 import Register from './api/user/Register';
 import Register1 from './api/user/Register1';
 import Register2 from './api/user/Register2';
-import FindId1 from './api/user/FindId1';
 import FindPw from './api/user/FindPw';
 import FindPw1 from './api/user/FindPw1';
 import FindPw2 from './api/user/FindPw2';
@@ -12,6 +11,8 @@ import UploadPage from './api/user/UploadPage';
 import Analysis from './api/user/Analysis';
 import {Error} from './api/user/Error';
 import Home from './api/user/Home';
+import Findid_True from './api/user/FindId_true';
+import Findid_Null from './api/user/Findid_Null';
 
 function App() {
   const navigate = useNavigate();
@@ -42,17 +43,18 @@ function App() {
       </div>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/register1" element={<Register1 />} />
-      <Route path="/register2" element={<Register2/>} />
-      <Route path="/findid" element={<FindId />} />
-      <Route path="/findid1" element={<FindId1 />} />
-      <Route path="/findpw" element={<FindPw/>} />
-      <Route path="/findpw1" element={<FindPw1/>} />
-      <Route path="/findpw2" element={<FindPw2/>} />
-      <Route path='/UploadPage' element={<UploadPage/>}/>
-      <Route path='/Analysis' element={<Analysis/>}/>
-      <Route path='/Error' element={<Error/>}/>
+      <Route path="/api/user/register" element={<Register />} />
+      <Route path="/api/user/register1" element={<Register1 />} />
+      <Route path="/api/user/register2" element={<Register2/>} />
+      <Route path="/api/user/findid" element={<FindId />} />
+      <Route path='/api/user/findid_true' element={<Findid_True/>}/>
+      <Route path="/api/user/Findid_Null" element={<Findid_Null />} />
+      <Route path="/api/user/findpw" element={<FindPw/>} />
+      <Route path="/api/user/findpw1" element={<FindPw1/>} />
+      <Route path="/api/user/findpw2" element={<FindPw2/>} />
+      <Route path='/api/user/UploadPage' element={<UploadPage/>}/>
+      <Route path='/api/user/Analysis' element={<Analysis/>}/>
+      <Route path='/api/user/Error' element={<Error/>}/>
 
       
     </Routes>
