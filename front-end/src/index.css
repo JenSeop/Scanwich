@@ -17,7 +17,7 @@ code {
 }
 
 .Hello {
-  color: #CE881F;
+  color: #FFF5DC;
   font-size: 36px;
   font-weight: bold;
   line-height: 110%; /* 39.6px */
@@ -26,23 +26,48 @@ code {
 }
 
 .NewAccount {
-  color: #CE881F;
+  color: #FFF5DC;
   font-size: 20px;
   font-weight: 500;
   line-height: 110%; /* 22px */
   letter-spacing: 0.2px;
   text-align: center;
-  margin-top: 13px;
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 
+.errorMsg {
+  color: #FF4F4F;
+}
+
 .Text1 {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 21px;
+  font-weight: 500;
   margin-top: 35px;
+  color: #FFF5DC;
 }
 
 .Text2 {
   font-size: 13px;
   font-weight: 400;
+  color: #FFF5DC;
+}
+
+.Text3 {
+  text-align: left;
+  /* margin-left: 5px; */
+  font-size: 21px;
+  font-weight: 600;
+  color: #FFF5DC;
+  margin-top: 50px;
+}
+
+.Text4 {
+  text-align: left;
+  /* margin-left: 5px; */
+  font-size: 15px;
+  font-weight: 400;
+  color: #FFF5DC;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
