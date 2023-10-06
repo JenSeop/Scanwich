@@ -4,7 +4,7 @@
 
 <strong>This World Bakery</strong>팀의 <strong>Scanwich</strong> 서비스는 <strong>"모두를 위한 안전한 모바일 환경"</strong>의 슬로건으로 시작된 <strong>모바일 악성코드 정적 분석 시스템</strong> 입니다. 국내 모바일 점유율 70% 이상의 안드로이드에서 시작해 일반 사용자들이 겪고 있는 다양한 사이버 범죄의 예방 솔루션이 되어주며 국내 피해 사례에 최적화된 오픈 데이터 수집 및 제공을 목표로 합니다.<br>
 
-The <strong>Scanwich</strong> service of the <strong>This World Bakery</strong> team is a mobile malware static analysis system that started with the slogan "Safe Mobile for All." It is a solution to prevent various cybercrime experienced by ordinary users, starting with Android with a mobile share of more than 70% in Korea, and aims to collect and provide open data optimized for victim cases.<br>
+The <strong>Scanwich</strong> service of the <strong>This World Bakery</strong> team is a mobile malware static analysis system that started with the slogan "Safe Mobile for All." It is a solution to prevent various cybercrime experienced by ordinary users, starting with Android with a mobile share of more than 70%, and aims to collect and provide open data optimized for victim cases.<br>
 
 # Enviroment 💻
 <a href="https://react.dev/" onClick=""><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/></a>
