@@ -20,8 +20,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # 파일 업로드
+# 파일 업로드 크기 제한 설정
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 10  # 10MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 10  # 10MB
 ## 파일 업로드를 위한 미디어 루트 및 URL 설정
 MEDIA_ROOT = os.path.join(BASE_DIR, '..\\..\\','files')
+APK_FILE_ROOT = os.path.join(BASE_DIR, '..\\..\\', 'files', 'apk')
+APK_ICON_ROOT = os.path.join(BASE_DIR, '..\\..\\', 'files', 'apk_icon')
+IMG_ROOT = os.path.join(BASE_DIR, '..\\..\\', 'files', 'img')
 
 # 이메일
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -49,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'corsheaders',
     # DRF
     'rest_framework',
     # Scanwich Lib
@@ -56,6 +63,12 @@ INSTALLED_APPS = [
     'users_social',
     'users_file',
     'engine_analysis',
+    # KAKAO SOCIAL LOGIN
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
 ]
 
 # 기본 유저 모델 설정
@@ -71,9 +84,11 @@ REST_FRAMEWORK = {
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,7 +96,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # React 애플리케이션의 정적 파일 경로를 따로 설정합니다.
 REACT_STATIC_DIR = os.path.join('..\\..\\', 'front-end', 'src', 'api')

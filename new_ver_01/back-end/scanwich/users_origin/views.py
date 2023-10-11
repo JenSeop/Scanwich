@@ -8,7 +8,7 @@ from .utils import send_verification_email, send_find_id_email
 from .serializers import UserSerializer
 from rest_framework.permissions import AllowAny
 from .models import CustomUser, EmailVerificationToken
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -21,7 +21,6 @@ from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
 
 User = get_user_model()
 
@@ -103,27 +102,6 @@ def verification_failed_page(request):
 ## 1-5. 인증 실패 페이지 (Back-end 모듈 테스트용)
 def token_not_found_page(request):
     return render(request, 'verification_failed.html')
-
-# 2. 로그인
-class CustomLoginView(LoginView):
-    template_name = 'custom_login.html'  # 커스텀 로그인 페이지 템플릿 경로 지정
-    success_url = reverse_lazy('login_success')  # 로그인 성공 시 리다이렉트할 페이지 지정
-    
-    def form_valid(self, form):
-        # 로그인 시도한 사용자의 이메일 인증 여부 확인
-        user = form.get_user()
-        if user.u_verif:
-            # 이메일 인증이 완료된 사용자인 경우 로그인 허용
-            return super().form_valid(form)
-        else:
-            # 이메일 인증이 완료되지 않은 사용자에게 메시지 표시
-            messages.error(self.request, '이메일 인증을 먼저 완료해야 로그인이 가능합니다.')
-            return self.form_invalid(form)
-        
-## 2-1. 로그인 리다이렉션 (Back-end 모듈 테스트용)
-def login_success(request):
-    # 로그인 성공 후 이동할 페이지에 대한 로직을 추가
-    return render(request, 'login_success.html')
 
 ## 2-2. JWT 로그인 v2
 @api_view(['POST'])  # POST 요청 허용

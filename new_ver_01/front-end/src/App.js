@@ -43,18 +43,18 @@ function App() {
       </div>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/api/user/register" element={<Register />} />
-      <Route path="/api/user/register1" element={<Register1 />} />
-      <Route path="/api/user/register2" element={<Register2/>} />
-      <Route path="/api/user/findid" element={<FindId />} />
-      <Route path='/api/user/findid_true' element={<Findid_True/>}/>
-      <Route path="/api/user/Findid_Null" element={<Findid_Null />} />
-      <Route path="/api/user/findpw" element={<FindPw/>} />
-      <Route path="/api/user/findpw1" element={<FindPw1/>} />
-      <Route path="/api/user/findpw2" element={<FindPw2/>} />
-      <Route path='/api/user/UploadPage' element={<UploadPage/>}/>
-      <Route path='/api/user/Analysis' element={<Analysis/>}/>
-      <Route path='/api/user/Error' element={<Error/>}/>
+      <Route path="/egister" element={<Register />} />
+      <Route path="/register1" element={<Register1 />} />
+      <Route path="/register2" element={<Register2/>} />
+      <Route path="/findid" element={<FindId />} />
+      <Route path='/indid_true' element={<Findid_True/>}/>
+      <Route path="/Findid_Null" element={<Findid_Null />} />
+      <Route path="/findpw" element={<FindPw/>} />
+      <Route path="/findpw1" element={<FindPw1/>} />
+      <Route path="/indpw2" element={<FindPw2/>} />
+      <Route path='/UploadPage' element={<UploadPage/>}/>
+      <Route path='/Analysis' element={<Analysis/>}/>
+      <Route path='/Error' element={<Error/>}/>
 
       
     </Routes>

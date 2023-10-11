@@ -33,9 +33,10 @@ const Home = () => {
   
       // 로그인 성공한 경우 서버에서 토큰을 받음
       const token = response.data.token;
+      const u_id = username;
   
       // 토큰을 쿠키에 저장
-      document.cookie = `token=${token}; path=/; secure; SameSite=Strict`;
+      document.cookie = `token=${token}, u_id=${u_id}; path=/; secure; SameSite=Strict`;
   
       console.log(response.data);
     } catch (error) {

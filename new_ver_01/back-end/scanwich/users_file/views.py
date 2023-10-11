@@ -1,7 +1,14 @@
 # users_file/views.py
 from django.shortcuts import render, redirect, get_object_or_404
+from rest_framework import status
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.response import Response
 from .forms import FileUploadForm
 from .models import UploadedFile
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework.permissions import AllowAny
+import os
+from django.conf import settings
 
 def file_upload(request):
     if request.method == 'POST':
@@ -12,6 +19,34 @@ def file_upload(request):
     else:
         form = FileUploadForm()
     return render(request, 'file_upload.html', {'form': form})
+
+# 허용할 확장자 목록 설정
+ALLOWED_EXTENSIONS = ['apk', 'png', 'hwp']
+
+# 파일 확장자를 확인하는 함수
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([AllowAny])
+def FileUploader(request):
+    if request.method == 'POST' and 'file' in request.FILES:
+        uploaded_file = request.FILES['file']
+
+        if allowed_file(uploaded_file.name):
+
+            with open(os.path.join(settings.APK_FILE_ROOT, uploaded_file.name), 'wb+') as destination:
+                for chunk in uploaded_file.chunks():
+                    destination.write(chunk)
+
+            # 파일 업로드가 성공한 경우 응답을 반환합니다.
+            return Response({'message': 'File uploaded successfully'}, status=status.HTTP_201_CREATED)
+        else:
+            # 확장자가 허용되지 않는 경우 에러 응답을 반환합니다.
+            return Response({'error': 'Invalid file extension'}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
 
 def file_list_all(request):
     # 모든 파일 목록 가져오기

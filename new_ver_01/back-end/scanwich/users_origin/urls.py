@@ -12,14 +12,10 @@ from .views import (
     token_not_found_page,
     verify_email,
 # 로그인/로그아웃
-    CustomLoginView,
-    login_success,
     JWTLogout,
     JWTLogin,
 # 아이디/비밀번호 찾기
     find_id_email,
-    find_id_page,
-    reset_pw_page,
 )
 
 urlpatterns = [

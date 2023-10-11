@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     # 파일 업로드 (only apk)
-    path('api/file/upload/', views.file_upload, name='file_upload'),
+    path('api/file/upload/', views.FileUploader, name='FileUploader'),
     # 파일 리스트 (all)
     path('api/file/list/all', views.file_list_all, name='file_list_all'),
     # 파일 리스트 (not deleted)
