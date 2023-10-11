@@ -1,0 +1,1177 @@
+.navBar {
+  width: 100%;
+  overflow: hidden;
+  background-color: #373531;
+  height: 80px;
+  padding-left: 80px;
+  padding-right: 80px;
+  position: fixed;
+  z-index: 100;
+}
+.navBar1 {
+  font-size: 32px;
+  color: #A9A49D;
+  margin-left: 10px;
+  font-family: 'Roboto';
+  font-weight: 700;
+  position: absolute;
+  top: -25px;
+}
+
+.Rectangle45{
+  border: solid #373531; 
+}
+
+
+
+.login {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.login .div {
+  background-color: #ffffff;
+  height: 100%;
+  position: relative;
+  width: 1440px;
+}
+
+.login .rectangle {
+  border: 1px solid;
+  border-color: #000000;
+  height: 72px;
+  left: 505px;
+  position: absolute;
+  top: 306px;
+  width: 433px;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.login .rectangle-2 {
+  border: 1px solid;
+  border-color: #000000;
+  height: 72px;
+  left: 505px;
+  position: absolute;
+  top: 465px;
+  width: 433px;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.login .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 504px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 412px;
+  width: 359px;
+}
+
+.login .text-wrapper-2 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 503px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 250px;
+  width: 359px;
+}
+
+.login .text-wrapper-3 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 503px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 858px;
+}
+
+.login .text-wrapper-4 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 609px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 858px;
+}
+
+.login .text-wrapper-5 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 855px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 858px;
+}
+
+.login .loginButton {
+  height: 67px;
+  left: 505px;
+  position: absolute;
+  top: 578px;
+  width: 447px;
+  background-color: #d9d9d9;
+  border: none;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  color: #000000;
+}
+
+.login .loginButtonK {
+  height: 67px;
+  left: 505px;
+  position: absolute;
+  top: 663px;
+  width: 447px;
+  background-color: #F7E600;
+  border: 1px solid;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  color: #000000;
+  line-height:70px;
+  text-align: center;
+  border-color: #000000;
+}
+
+.login .overlap-group-wrapper {
+  height: 67px;
+  left: 505px;
+  position: absolute;
+  top: 745px;
+  width: 447px;
+  background-color: #ffffff;
+  border: 1px solid;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  color: #000000;
+  line-height:70px;
+  text-align: center;
+  border-color: #000000;
+}
+
+.login .text-wrapper-9 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 36px;
+  font-weight: 400;
+  left: 504px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 116px;
+  width: 435px;
+}
+
+
+
+
+@media (max-width: 375px) {
+  /* 모바일 */
+  
+  .login {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .login .div {
+    background-color: #ffffff;
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+  
+  .login .rectangle {
+    border: 1px solid;
+    border-color: #000000;
+    height: 62px;
+    position: absolute;
+    left: 50%; 
+    top: 306px;
+    transform: translateX(-50%);
+    width: calc(100% - 50px); 
+  }
+
+}
+
+
+/*  */
+.element-user-register {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element-user-register .div {
+  background-color: #ffffff;
+  height: 100%;
+  position: relative;
+  width: 1440px;
+}
+
+.element-user-register .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 32px;
+  font-weight: 400;
+  height: 60px;
+  left: 512px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 200px;
+  width: 454px;
+}
+
+.element-user-register .text-wrapper-2 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  height: 60px;
+  left: 512px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 308px;
+  width: 336px;
+}
+
+.element-user-register .group {
+  height: 70px;
+  left: 512px;
+  position: absolute;
+  top: 731px;
+  width: 482px;
+}
+
+.element-user-register .overlap-group {
+  background-color: #d9d9d9;
+  height: 70px;
+  position: relative;
+  width: 480px;
+}
+
+.element-user-register .text-wrapper-3 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 63px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 19px;
+  width: 369px;
+}
+
+.element-user-register .overlap-wrapper {
+  height: 70px;
+  left: 512px;
+  position: absolute;
+  top: 380px;
+  width: 482px;
+}
+
+.element-user-register .overlap {
+  height: 70px;
+  position: relative;
+  width: 480px;
+}
+
+.element-user-register .p {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  height: 60px;
+  left: 32px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 5px;
+  width: 391px;
+}
+
+.element-user-register .rectangle {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 480px;
+}
+
+.element-user-register .overlap-group-wrapper {
+  height: 70px;
+  left: 512px;
+  position: absolute;
+  top: 480px;
+  width: 482px;
+}
+
+.element-user-register .div-wrapper {
+  height: 70px;
+  left: 512px;
+  position: absolute;
+  top: 585px;
+  width: 482px;
+}
+
+.scrolling {
+  width: 482px;
+  max-height: 300px;
+  border: 1px solid black;
+  overflow: scroll;
+}
+
+
+
+
+
+/* register1 */
+
+.element-user-register-1 {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element-user-register-1 .div {
+  background-color: #ffffff;
+  height: 100%;
+  position: relative;
+  width: 1440px;
+}
+
+.element-user-register-1 .rectangle {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 446px;
+  position: absolute;
+  top: 292px;
+  width: 600px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-register-1 .rectangle-2 {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 446px;
+  position: absolute;
+  top: 538px;
+  width: 600px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-register-1 .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Korean-Bold", Helvetica;
+  font-size: 30px;
+  font-weight: 700;
+  left: 446px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 435px;
+  width: 359px;
+}
+
+.element-user-register-1 .text-wrapper-2 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Bold", Helvetica;
+  font-size: 32px;
+  font-weight: 700;
+  left: 446px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 190px;
+  width: 359px;
+}
+
+.element-user-register-1 .p {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 22px;
+  font-weight: 400;
+  left: 446px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 230px;
+  width: 612px;
+}
+
+.element-user-register-1 .text-wrapper-3 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 22px;
+  font-weight: 400;
+  left: 446px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 474px;
+  width: 600px;
+}
+
+.element-user-register-1 .group {
+  height: 70px;
+  left: 657px;
+  position: absolute;
+  top: 771px;
+  width: 191px;
+}
+
+.element-user-register-1 .overlap-group {
+  background-color: #d9d9d9;
+  height: 70px;
+  position: relative;
+  width: 189px;
+  top: -50px;
+}
+
+.element-user-register-1 .text-wrapper-4 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 72px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+} 
+
+
+/*  */
+
+.element-user-register-2 {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element-user-register-2 .div {
+  background-color: #ffffff;
+  height: 100%;
+  position: relative;
+  width: 1440px;
+}
+
+.element-user-register-2 .rectangle {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 492px;
+  position: absolute;
+  top: 442px;
+  width: 556px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-register-2 .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Korean-Bold", Helvetica;
+  font-size: 32px;
+  font-weight: 700;
+  left: 492px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 336px;
+  width: 359px;
+}
+
+.element-user-register-2 .text-wrapper-2 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 492px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 389px;
+  width: 600px;
+}
+
+.element-user-register-2 .group {
+  height: 70px;
+  left: 672px;
+  position: absolute;
+  top: 698px;
+  width: 191px;
+}
+
+.element-user-register-2 .overlap-group {
+  background-color: #d9d9d9;
+  height: 70px;
+  position: relative;
+  width: 189px;
+}
+
+.element-user-register-2 .text-wrapper-3 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 46px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 19px;
+}
+
+
+/*  */
+
+.element-user-register-3 {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element-user-register-3 .div {
+  background-color: #ffffff;
+  height: 100%;
+  position: relative;
+  width: 1440px;
+}
+
+.element-user-register-3 .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 419px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 484px;
+  width: 602px;
+}
+
+.element-user-register-3 .text-wrapper-2 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Bold", Helvetica;
+  font-size: 32px;
+  font-weight: 700;
+  left: 595px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 319px;
+  width: 207px;
+}
+
+.element-user-register-3 .group {
+  height: 70px;
+  left: 625px;
+  position: absolute;
+  top: 673px;
+  width: 191px;
+}
+
+.element-user-register-3 .text-wrapper-3 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 0px;
+  top: 0px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  width: 189px;
+  height: 70px;
+  background-color: #D9D9D9;
+}
+
+.element-user-register-3 .text-wrapper-3 .button:hover{
+  background-color: #D9D9D9;
+}
+
+
+
+
+
+/* user find id */
+
+.element-user-findid {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element-user-findid .div {
+  background-color: #ffffff;
+  height: 1024px;
+  position: relative;
+  width: 1440px;
+}
+
+.element-user-findid .rectangle {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 449px;
+  position: absolute;
+  top: 267px;
+  width: 390px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-findid .rectangle-2 {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 449px;
+  position: absolute;
+  top: 447px;
+  width: 390px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-findid .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 449px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 394px;
+  width: 359px;
+}
+
+.element-user-findid .rectangle-3 {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 449px;
+  position: absolute;
+  top: 621px;
+  width: 390px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-findid .overlap {
+  height: 70px;
+  left: 872px;
+  position: absolute;
+  top: 615px;
+  width: 207px;
+}
+
+.element-user-findid .rectangle-4 {
+  background-color: #d9d9d9;
+  height: 74px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 207px;
+}
+
+.element-user-findid .text-wrapper-2 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 49px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 20px;
+  width: 112px;
+}
+
+.element-user-findid .overlap-group {
+  background-color: #d9d9d9;
+  height: 74px;
+  left: 810px;
+  position: absolute;
+  top: 440px;
+  width: 207px;
+}
+
+.element-user-findid .text-wrapper-3 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 25px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 20px;
+  width: 161px;
+}
+
+.element-user-findid .text-wrapper-4 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 449px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 214px;
+  width: 359px;
+}
+
+.element-user-findid .text-wrapper-5 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 449px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 568px;
+  width: 359px;
+}
+
+.overlay {
+  display: none; /* 처음에는 보이지 않도록 설정 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 검은색 배경 */
+  z-index: 1000; /* 화면 위로 떠나도록 설정 */
+}
+
+.time_auth {
+  color: rgb(226, 73, 73);
+}
+
+
+
+
+
+
+
+/* find Id 1 */
+
+.element-user-findid-1 {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element-user-findid-1 .div {
+  background-color: #ffffff;
+  height: 1024px;
+  position: relative;
+  width: 1440px;
+}
+
+.element-user-findid-1 .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Korean-Bold", Helvetica;
+  font-size: 32px;
+  font-weight: 700;
+  left: 580px;
+  letter-spacing: 6.4px;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 444px;
+  width: 311px;
+}
+
+.element-user-findid-1 .group {
+  height: 65px;
+  left: 530px;
+  position: absolute;
+  top: 686px;
+  width: 408px;
+}
+
+.element-user-findid-1 .overlap-group {
+  border: 1px solid;
+  border-color: #000000;
+  height: 65px;
+  position: relative;
+  width: 406px;
+}
+
+.element-user-findid-1 .text-wrapper-2 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 67px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 14px;
+  width: 269px;
+}
+
+.element-user-findid-1 .overlap-wrapper {
+  height: 65px;
+  left: 530px;
+  position: absolute;
+  top: 608px;
+  width: 408px;
+}
+
+.element-user-findid-1 .overlap {
+  background-color: #d9d9d9;
+  height: 65px;
+  position: relative;
+  width: 406px;
+}
+
+.element-user-findid-1 .text-wrapper-3 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 72px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 15px;
+  width: 269px;
+}
+
+.element-user-findid-1 .p {
+  color: #000000;
+  font-family: "Noto Sans-DisplayRegular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 555px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  text-align: center;
+  top: 325px;
+  width: 359px;
+}
+
+
+
+
+/* find pw */
+
+.element-user-findpw {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element-user-findpw .div {
+  background-color: #ffffff;
+  height: 1024px;
+  position: relative;
+  width: 1440px;
+}
+
+.element-user-findpw .rectangle {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 456px;
+  position: absolute;
+  top: 282px;
+  width: 390px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-findpw .rectangle-2 {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 456px;
+  position: absolute;
+  top: 462px;
+  width: 390px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-findpw .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 456px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 409px;
+  width: 359px;
+}
+
+.element-user-findpw .rectangle-3 {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 456px;
+  position: absolute;
+  top: 637px;
+  width: 390px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-findpw .text-wrapper-2 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 456px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 218px;
+  width: 359px;
+}
+
+.element-user-findpw .text-wrapper-3 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 456px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 584px;
+  width: 359px;
+}
+
+.element-user-findpw .overlap-group {
+  height: 70px;
+  left: 880px;
+  position: absolute;
+  top: 636px;
+  width: 207px;
+}
+
+.element-user-findpw .rectangle-4 {
+  background-color: #d9d9d9;
+  height: 74px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 207px;
+}
+
+.element-user-findpw .text-wrapper-4 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 51px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 20px;
+  width: 112px;
+}
+
+.element-user-findpw .overlap {
+  background-color: #d9d9d9;
+  height: 74px;
+  left: 880px;
+  position: absolute;
+  top: 455px;
+  width: 207px;
+}
+
+.element-user-findpw .text-wrapper-5 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 20px;
+  width: 161px;
+}
+
+
+
+
+/* find pw 1 */
+
+.element-user-findpw-1 {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element-user-findpw-1 .div {
+  background-color: #ffffff;
+  height: 1024px;
+  position: relative;
+  width: 1440px;
+}
+
+.element-user-findpw-1 .rectangle {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 525px;
+  position: absolute;
+  top: 342px;
+  width: 390px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-findpw-1 .rectangle-2 {
+  border: 1px solid;
+  border-color: #000000;
+  height: 70px;
+  left: 525px;
+  position: absolute;
+  top: 522px;
+  width: 390px;
+  font-size: 18px;
+  padding-left: 10px; /* input */
+}
+
+.element-user-findpw-1 .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 525px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 469px;
+  width: 359px;
+}
+
+.element-user-findpw-1 .overlap-group {
+  height: 65px;
+  left: 663px;
+  position: absolute;
+  top: 648px;
+  width: 114px;
+}
+
+.element-user-findpw-1 .rectangle-3 {
+  background-color: #d9d9d9;
+  height: 65px;
+  left: -136px;
+  position: absolute;
+  top: 0;
+  width: 404px;
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 22px;
+}
+
+.element-user-findpw-1 .text-wrapper-2 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 34px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 14px;
+  width: 68px;
+}
+
+.element-user-findpw-1 .text-wrapper-3 {
+  color: #000000;
+  font-family: "Noto Sans Korean-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 525px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 289px;
+  width: 359px;
+}
+
+.element-user-findid-1 .pwChange {
+  color: #727272;
+  font-family: "Noto Sans Korean-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  left: 580px;
+  letter-spacing: 6.4px;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 444px;
+  width: 311px;
+}

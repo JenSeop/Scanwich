@@ -17,6 +17,11 @@ from django.contrib.auth import login, logout
 from django.http import JsonResponse
 from uuid import uuid4
 from .models import TokenJWT
+from django.contrib.auth import authenticate, login
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 User = get_user_model()
 
@@ -120,28 +125,46 @@ def login_success(request):
     # 로그인 성공 후 이동할 페이지에 대한 로직을 추가
     return render(request, 'login_success.html')
 
-## 2-2. JWT 로그인
-class JWTLogin(LoginView):
-    template_name = 'jwtlogin.html'
-    success_url = reverse_lazy('jwt_login_success')
-    
-    def form_valid(self, form):
-        user = form.get_user()
-        
+## 2-2. JWT 로그인 v2
+@api_view(['POST'])  # POST 요청 허용
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([AllowAny])
+def JWTLogin(request):
+    u_id = request.data.get('u_id')
+    password = request.data.get('password')
+
+    user = authenticate(request, u_id=u_id, password=password)
+    if user is not None:
         if user.u_verif:  # 이메일 인증 여부 확인
-            login(self.request, user)
-            
+            login(request, user)
+
             # 토큰 생성 및 저장
             token = str(uuid4())  # UUID 토큰 생성
             user_token, created = TokenJWT.objects.get_or_create(u_id=user.u_id)
             user_token.t_key = token
             user_token.save()
-            
-            return JsonResponse({'token': token})
+            return Response({'token': token})
         else:
-            messages.error(self.request, '이메일 인증을 먼저 완료해야 로그인이 가능합니다.')
-            return self.form_invalid(form)
-        
+            return Response({'error': '이메일 인증을 먼저 완료해야 로그인이 가능합니다.'}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({'error': '유효하지 않은 사용자 정보입니다.'}, status=status.HTTP_401_UNAUTHORIZED)
+
+def JWTValid(request):
+    u_id = request.data.get('u_id')
+
+    try:
+        token = TokenJWT.objects.get(u_id=u_id)
+
+        if token.is_token_expired():
+            logout(request)
+            return JsonResponse({"message": "토큰이 만료되었습니다."})
+        else:
+            return JsonResponse({"message": "토큰이 유효합니다."})
+
+    except TokenJWT.DoesNotExist:
+        return JsonResponse({"message": "토큰을 찾을 수 없습니다."})
+    
+
 ## 2-3. JWT 로그아웃
 class JWTLogout(LogoutView):
     def post(self, request):

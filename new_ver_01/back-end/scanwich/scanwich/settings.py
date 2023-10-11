@@ -1,12 +1,16 @@
 # scanwich/settings.py
 from pathlib import Path
 import os
+import sys
 # env 라이브러리
 import environ
 env = environ.Env()
 environ.Env.read_env()
-
+##
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# VT API Key
+VIRUSTOTAL_API_KEY = env("VIRUSTOTAL_API_KEY")
 
 # Django APP Key
 SECRET_KEY = env("SECRET_KEY")
@@ -17,7 +21,7 @@ ALLOWED_HOSTS = []
 
 # 파일 업로드
 ## 파일 업로드를 위한 미디어 루트 및 URL 설정
-MEDIA_ROOT = os.path.join(BASE_DIR, '../../','files')
+MEDIA_ROOT = os.path.join(BASE_DIR, '..\\..\\','files')
 
 # 이메일
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -30,6 +34,7 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 # 로그인/로그아웃 URL
 LOGIN_REDIRECT_URL = 'login_success'
 LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = '/api/user/login/'
 
 # 소셜 로그인
 SITE_ID = 1
@@ -78,7 +83,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'scanwich.urls'
+# React 애플리케이션의 정적 파일 경로를 따로 설정합니다.
+REACT_STATIC_DIR = os.path.join('..\\..\\', 'front-end', 'src', 'api')
+
+# STATICFILES_DIRS 설정에 React 애플리케이션의 정적 파일 경로를 추가합니다.
+STATICFILES_DIRS = [
+    REACT_STATIC_DIR,
+]
 
 TEMPLATES = [
     {
@@ -135,3 +146,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ROOT_URLCONF = 'scanwich.urls'

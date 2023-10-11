@@ -6,13 +6,15 @@ class UploadedFile(models.Model):
     f_id = models.AutoField(primary_key=True)  # 파일 아이디 (자동으로 증가하는 정수)
     f_path = models.FileField(upload_to='apk/')  # 'uploads/' 업로드 파일 저장 경로
     f_date = models.DateTimeField(auto_now_add=True)  # 파일 업로드 시간
-    u_id = models.CharField(max_length=150)  # 유저 아이디
+    u_id = models.CharField(max_length=255)  # 유저 아이디
     f_name = models.CharField(max_length=255)  # 파일 이름
     f_type = models.CharField(max_length=10)  # 파일 확장자
     f_size = models.PositiveBigIntegerField(null=True, blank=True, default=None) # 파일 사이즈
     f_sha256 = models.CharField(max_length=64, blank=True, null=True)  # SHA-256 해시 값
     f_md5 = models.CharField(max_length=32, blank=True, null=True)  # MD5 해시 값을 저장할 필드 추가
     f_deleted = models.CharField(max_length=255, blank=True, null=True) # 파일 삭제 필드
+    s_id = models.IntegerField(default=0)   # Analysis Result ID
+    s_done = models.BooleanField(default=False) # Analysis Result Status
 
     # 파일 사이즈를 저장하기 위한 save 메서드
     def save(self, *args, **kwargs):

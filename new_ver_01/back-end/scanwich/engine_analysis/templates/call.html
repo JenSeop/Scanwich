@@ -9,14 +9,20 @@
     <h1>APK 분석 페이지</h1>
     <form method="post" action="{% url 'analyze_apk' %}">
         {% csrf_token %}
-        <label for="f_path">APK 파일 선택:</label>
-        <select id="f_path" name="f_path" required>
-            <option value="" disabled selected>파일을 선택하세요.</option>
+        <h2>APK 파일 선택:</h2>
+        <ul>
             {% for file in files %}
-            <option value="{{ file.f_path }}">{{ file.f_name }}</option>
+            <li>
+                <label>
+                    <input type="radio" name="f_path" value="{{ file.f_path }}" required>
+                    <input type="hidden" name="f_id" value="{{ file.f_id }}" required>
+                    {{file.f_id}} - {{ file.f_name }} - {{ file.f_date }}
+                </label>
+            </li>
             {% endfor %}
-        </select>
+        </ul>
         <button type="submit">분석 시작</button>
+        <a href="{% url 'result' %}" class="btn btn-primary">결과 페이지로 이동</a>
     </form>
 </body>
 </html>
