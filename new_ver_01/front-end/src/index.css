@@ -1,73 +1,13 @@
 body {
   margin: 0;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #373531;
-  margin-top: 180px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.navBar1:hover {
-  cursor: pointer;
-}
-
-.Hello {
-  color: #FFF5DC;
-  font-size: 36px;
-  font-weight: bold;
-  line-height: 110%; /* 39.6px */
-  letter-spacing: 3.6px;
-  text-align: center;
-}
-
-.NewAccount {
-  color: #FFF5DC;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 110%; /* 22px */
-  letter-spacing: 0.2px;
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
-
-.errorMsg {
-  color: #FF4F4F;
-}
-
-.Text1 {
-  font-size: 21px;
-  font-weight: 500;
-  margin-top: 35px;
-  color: #FFF5DC;
-}
-
-.Text2 {
-  font-size: 13px;
-  font-weight: 400;
-  color: #FFF5DC;
-}
-
-.Text3 {
-  text-align: left;
-  /* margin-left: 5px; */
-  font-size: 21px;
-  font-weight: 600;
-  color: #FFF5DC;
-  margin-top: 50px;
-}
-
-.Text4 {
-  text-align: left;
-  /* margin-left: 5px; */
-  font-size: 15px;
-  font-weight: 400;
-  color: #FFF5DC;
-  margin-top: 10px;
-  margin-bottom: 30px;
 }
