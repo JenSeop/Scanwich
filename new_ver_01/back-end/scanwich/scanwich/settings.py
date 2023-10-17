@@ -102,7 +102,7 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 # React 애플리케이션의 정적 파일 경로를 따로 설정합니다.
-REACT_STATIC_DIR = os.path.join('..\\..\\', 'front-end', 'src', 'api')
+REACT_STATIC_DIR = os.path.join('..\\..\\', 'front-end', 'src', 'pages')
 
 # STATICFILES_DIRS 설정에 React 애플리케이션의 정적 파일 경로를 추가합니다.
 STATICFILES_DIRS = [

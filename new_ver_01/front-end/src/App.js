@@ -12,6 +12,7 @@ import RegisterStep3 from './pages/RegisterStep3';
 import EmailVerif1 from './pages/EmailVerif1';
 import EmailVerif2 from './pages/EmailVerif2';
 import EmailVerif3 from './pages/EmailVerif3';
+import Error from './pages/Error';
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // 예: 768px 이하가 모바일로 간주
@@ -41,7 +42,7 @@ function App() {
         <PcNav />
       )}
 
-      <div style={{ paddingTop: '64px' }}> {/* Navigation Bar의 높이만큼 컨텐츠를 밀어냄 */}
+      <div style={{ paddingTop: '70px' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -51,6 +52,14 @@ function App() {
           <Route path="/emailverif/1" element={<EmailVerif1 />} />
           <Route path="/emailverif/2" element={<EmailVerif2 />} />
           <Route path="/emailverif/3" element={<EmailVerif3 />} />
+          <Route path="/error/400" element={<Error errorCode="400" />} />
+          <Route path="/error/403" element={<Error errorCode="403" />} />
+          <Route path="/error/404" element={<Error errorCode="404" />} />
+          <Route path="/error/500" element={<Error errorCode="500" />} />
+          <Route path="/error/502" element={<Error errorCode="502" />} />
+          <Route path="/error/503" element={<Error errorCode="503" />} />
+          <Route path="/error/504" element={<Error errorCode="504" />} />
+          <Route path="/*" element={<Error errorCode="404" />} />
         </Routes>
       </div>
     </Router>

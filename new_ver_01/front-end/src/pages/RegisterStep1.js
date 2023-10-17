@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, Container, FormControlLabel, Typography, Box, styled } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import TermsAccordion from '../components/TermsAccordion';
 import { Link } from 'react-router-dom';
+import setCookie from '../utils/setCookie';
 
 // 추가한 CSS 스타일링
 const accordionItemStyle = {
@@ -14,6 +15,10 @@ function RegisterStep1() {
   const [agreed, setAgreed] = useState(false);
   const termsOfServiceContent = `...`; // 약관 내용을 여기에 넣으세요.
 
+  useEffect(() => {
+    setCookie('prevPage', '/register/step1', 365);
+  }, [])
+  
   const handleAgreementToggle = () => {
     setAgreed(!agreed);
   };

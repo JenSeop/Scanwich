@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import setCookie from '../utils/setCookie';
 import {
   Container,
   CssBaseline,
@@ -11,7 +12,6 @@ import {
   CardHeader,
   styled 
 } from '@mui/material';
-import Logo from '../assets/images/MainLogo.png';
 
 const CustomTextField = styled(TextField)(({ theme }) => ({
   backgroundColor: theme.palette[2].main, // 테마에서 정의한 두 번째 색상 사용
@@ -20,6 +20,10 @@ const CustomTextField = styled(TextField)(({ theme }) => ({
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    setCookie('prevPage', '/login', 365);
+  }, [])
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -47,12 +51,14 @@ function Login() {
           marginTop: '64px',
         }}
       >
-        <CardHeader
-          avatar={
-            <Avatar src={Logo}
-              alt="Logo"
-            />
-          }
+        <img
+          src="images/MainLogo.png"
+          alt="Scanwich"
+          width={65}
+          height={65}
+          style={{ marginRight: '10px' }}
+          component={Link}
+          to="/"
         />
         <Typography component="h1" variant="h5">
           Scanwich에 로그인

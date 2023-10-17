@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import setCookie from '../utils/setCookie';
 import { Link } from 'react-router-dom';
 import { Button, Container, Typography, Box } from '@mui/material';
 
 function EmailVerif1() {
+  useEffect(() => {
+    setCookie('prevPage', '/emailverif/1', 365);
+  }, [])
   return (
     <Container maxWidth="sm">
       <Box
@@ -22,7 +26,7 @@ function EmailVerif1() {
         {/* 메인 페이지로 이동하는 버튼 */}
         <Button
           variant="contained"
-          color="primary"
+          color="1"
           fullWidth
           component={Link}
           to="/login"

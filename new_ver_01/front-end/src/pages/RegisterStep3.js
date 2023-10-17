@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate  } from 'react-router-dom';
+import setCookie from '../utils/setCookie';
+import { getCookie } from '../utils/getCookie.js';
 import { Link } from 'react-router-dom';
 import { Button, Container, Typography, Box } from '@mui/material';
 
 function RegisterStep3() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(getCookie('prevPage')!="/register/step2") {
+      navigate('/error/403')
+    }
+    setCookie('prevPage', '/register/step3', 365);
+  }, [navigate])
+
   return (
     <Container maxWidth="sm">
       <Box

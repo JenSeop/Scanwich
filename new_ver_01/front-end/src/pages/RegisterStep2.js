@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, TextField, Typography, Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
+import { getCookie } from '../utils/getCookie.js';
+import setCookie from '../utils/setCookie';
+import { getCsrf } from '../utils/getCsrf';
+import axios from 'axios';
 
 function RegisterStep2() {
   const [id, setId] = useState('');
@@ -10,6 +14,13 @@ function RegisterStep2() {
   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    if(getCookie('prevPage')!="/register/step1") {
+      navigate('/error/403')
+    }
+    setCookie('prevPage', '/register/step2', 365)
+  }, [navigate])
 
   const validateId = (input) => {
     const idRegex = /^[a-zA-Z0-9_-]{5,20}$/;
@@ -56,8 +67,28 @@ function RegisterStep2() {
     }
   };
 
-  const handleSubmit = () => {
-    navigate('/register/step3');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const csrfToken = getCsrf();
+      console.log(csrfToken)
+      const userData = {
+        u_id : id,
+        u_email : email,
+        password : password,
+        csrfToken : csrfToken,
+      };
+      const apiUrl = '/api/user/register/';
+      const response = await axios.post(apiUrl, userData);
+      if (response.status === 200 || response.status === 201) {
+        setCookie('prevPage', '/register/step2', 365)
+        navigate('/register/step3');
+      } else {
+        navigate('/error/500')
+      }
+    } catch (error) {
+      console.error('데이터 전송 중 오류 발생:', error);
+    }
   };
 
   return (
@@ -138,6 +169,7 @@ function RegisterStep2() {
             color="1"
             fullWidth
             disabled={!id || !password || !email || idError || passwordError || emailError}
+            onClick={handleSubmit}
           >
             가입하기
           </Button>

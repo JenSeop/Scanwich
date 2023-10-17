@@ -1,7 +1,13 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
+import setCookie from '../utils/setCookie';
 import { Grid, Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
 
 function Home() {
+
+  useEffect(() => {
+    setCookie('prevPage', '/', 365);
+  }, [])
+
   // 서버에서 받아온 게시글 데이터 (예시)
   const posts = [
     {
@@ -92,7 +98,7 @@ function Home() {
       <Grid item xs={12} sm={4}>
         {/* 좌측 컬럼 */}
       </Grid>
-      <Grid item xs={12} sm={8} container spacing={2}>
+      <Grid item xs={12} sm={8} container spacing={2} style={{ background: '#ECECEC', borderRight: '1px solid #DDD' }}>
         {/* 우측 컬럼 */}
         {posts.map((post, index) => (
           <Grid item xs={12} sm={6} key={post.id}>
