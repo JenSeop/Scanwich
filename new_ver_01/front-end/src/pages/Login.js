@@ -13,10 +13,6 @@ import {
   styled 
 } from '@mui/material';
 
-const CustomTextField = styled(TextField)(({ theme }) => ({
-  backgroundColor: theme.palette[2].main, // 테마에서 정의한 두 번째 색상 사용
-}));
-
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

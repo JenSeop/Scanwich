@@ -23,6 +23,9 @@ const theme = createTheme({
     "social": {
       main: '#8B4513',
     },
+    "card": {
+      main: '373531',
+    }
   },
   typography: {
     fontFamily: '"Noto Sans", sans-serif',

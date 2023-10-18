@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Checkbox, Container, FormControlLabel, Typography, Box, styled } from '@mui/material';
+import { Button, Checkbox, Container, FormControlLabel, Typography, Box } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import TermsAccordion from '../components/TermsAccordion';
 import { Link } from 'react-router-dom';

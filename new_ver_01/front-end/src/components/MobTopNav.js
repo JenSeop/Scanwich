@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Button, Box, Typography, InputBase, IconButton, Modal } from '@mui/material';
 import { Link } from 'react-router-dom';
-import UserMenu from '../components/UserMenu';
-import ProfileMenu from '../components/ProfileMenu';
+import UserMenu from './UserMenu';
+import ProfileMenu from './ProfileMenu';
 import SearchIcon from '@mui/icons-material/Search';
-import Search from '../components/Search';
+import Search from './Search';
 
-const PcNav = () => {
-  // 로그인 상태를 관리하는 상태 변수
+const MobTopNav = () => {
+  // 로그인 상태
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isSearchModalOpen, setSearchModalOpen] = useState(false); // 검색 모달 상태 변수
+  const [isSearchModalOpen, setSearchModalOpen] = useState(false);
 
-  // 로그인 버튼 클릭 시 호출되는 함수
+  // 로그인 버튼
   const handleLogin = () => {
-    // 로그인 로직을 처리한 후 로그인 상태를 변경합니다.
     setIsLoggedIn(true);
   };
 
-  // 로그아웃 버튼 클릭 시 호출되는 함수
+  // 로그아웃 버튼
   const handleLogout = () => {
-    // 로그아웃 로직을 처리한 후 로그인 상태를 변경합니다.
     setIsLoggedIn(false);
   };
 
-  // 검색 아이콘 클릭 시 호출되는 함수
+  // 검색 아이콘 클릭
   const handleSearchClick = () => {
-    setSearchModalOpen(true); // 검색 모달을 엽니다.
+    setSearchModalOpen(true);
   };
 
   // 검색 모달 닫기
@@ -37,7 +35,7 @@ const PcNav = () => {
     <AppBar position="fixed" sx={{ backgroundColor: '#373531', zIndex: 1000 }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Toolbar sx={{ justifyContent: 'flex-start' }}>
-          {isLoggedIn && <UserMenu />}
+          <UserMenu />
           <Link to="/" style={{ textDecoration: 'none' }}>
             <img
               src="images/MainLogo.png"
@@ -56,39 +54,6 @@ const PcNav = () => {
           </Link>
         </Toolbar>
         <Toolbar sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
-          {/* 검색 아이콘과 검색창을 묶어서 클릭 이벤트 처리 */}
-          <Box
-            onClick={handleSearchClick}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #FFF5DC',
-              borderRadius: '10px',
-              marginRight: '50px',
-              cursor: 'pointer',
-            }}
-          >
-            <InputBase
-              placeholder="검색하기"
-              sx={{
-                color: '#FFF5DC',
-                marginLeft: '8px',
-                flex: 1,
-                '& input': {
-                  '&::placeholder': {
-                    color: '#FFF5DC',
-                  },
-                },
-              }}
-              inputProps={{
-                'aria-label': 'search',
-                readOnly: true,
-              }}
-            />
-            <IconButton type="submit" sx={{ p: '10px', marginLeft: '8px' }} aria-label="search">
-              <SearchIcon sx={{ color: '#FFF5DC' }} />
-            </IconButton>
-          </Box>
           {isLoggedIn ? (
             <ProfileMenu onLogout={handleLogout} />
           ) : (
@@ -108,9 +73,9 @@ const PcNav = () => {
         onClose={handleCloseSearchModal}
         sx={{
           display: 'flex',
-          alignItems: 'flex-start', // 모달을 화면 상단에 위치시키기 위해 변경
+          alignItems: 'flex-start',
           justifyContent: 'center',
-          paddingTop: '20vh', // 모달을 위로 이동시키기 위한 스타일
+          paddingTop: '20vh',
         }}
       >
         <Box
@@ -128,4 +93,4 @@ const PcNav = () => {
   );
 };
 
-export default PcNav;
+export default MobTopNav;
