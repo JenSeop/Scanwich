@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Button, Box, Typography, InputBase, IconButton, Modal } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, Typography, InputBase, IconButton, DialogContent, Dialog } from '@mui/material';
 import { Link } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import ProfileMenu from './ProfileMenu';
@@ -100,27 +100,11 @@ const PcNav = () => {
           )}
         </Toolbar>
       </Toolbar>
-      <Modal
-        open={isSearchModalOpen}
-        onClose={handleCloseSearchModal}
-        sx={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          paddingTop: '20vh',
-        }}
-      >
-        <Box
-          sx={{
-            backgroundColor: '#373531',
-            border: '2px solid #D8D0C0',
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
+      <Dialog open={isSearchModalOpen} onClose={handleCloseSearchModal}>
+        <DialogContent>
           <Search />
-        </Box>
-      </Modal>
+        </DialogContent>
+      </Dialog>
     </AppBar>
   );
 };

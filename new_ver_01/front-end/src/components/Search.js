@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Box, IconButton, Menu, MenuItem, InputBase } from '@mui/material';
+import { Box, IconButton, InputBase, Typography, Grid } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 const Search = ({ onClose }) => {
@@ -48,39 +48,55 @@ const Search = ({ onClose }) => {
   };
 
   return (
-    <Box
-      onClick={handleSearchClick}
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        border: `1px solid ${isSearchClicked ? '#2AF57B' : '#28E070'}`, // 클릭 상태에 따라 테두리 색상 변경
-        borderRadius: '10px',
-        cursor: 'pointer',
-        backgroundColor: isSearchFocused ? '#EFEFEF' : 'transparent', // 포커스 상태에 따라 배경색 변경
-      }}
-    >
-      <InputBase
-        placeholder="검색하기"
+    <>
+      <Box
+        onClick={handleSearchClick}
         sx={{
-          color: isSearchFocused ? 'Black' : '#2AF57B', // 포커스 상태에 따라 텍스트 색상 변경
-          marginLeft: '8px',
-          flex: 1,
-          '& input': {
-            '&::placeholder': {
-              color: isSearchFocused ? 'Black' : '#2AF57B', // 포커스 상태에 따라 플레이스홀더 색상 변경
+          display: 'flex',
+          alignItems: 'center',
+          border: `1px solid ${isSearchClicked ? '#2AF57B' : '#28E070'}`, // 클릭 상태에 따라 테두리 색상 변경
+          borderRadius: '10px',
+          cursor: 'pointer',
+          backgroundColor: isSearchFocused ? '#EFEFEF' : 'transparent', // 포커스 상태에 따라 배경색 변경
+        }}
+      >
+        <InputBase
+          placeholder="검색하기"
+          sx={{
+            color: isSearchFocused ? 'Black' : '#2AF57B', // 포커스 상태에 따라 텍스트 색상 변경
+            marginLeft: '8px',
+            flex: 1,
+            '& input': {
+              '&::placeholder': {
+                color: isSearchFocused ? 'Black' : '#2AF57B', // 포커스 상태에 따라 플레이스홀더 색상 변경
+              },
             },
-          },
-        }}
-        inputProps={{
-          'aria-label': 'search',
-        }}
-        onFocus={handleSearchClick}
-        onBlur={handleBlur}
-      />
-      <IconButton type="submit" sx={{ p: '10px', marginLeft: '8px' }} aria-label="search">
-        <SearchIcon sx={{ color: isSearchFocused ? '#2AF57B' : '#28E070' }} />{/* 포커스 상태에 따라 아이콘 색상 변경 */}
-      </IconButton>
-    </Box>
+          }}
+          inputProps={{
+            'aria-label': 'search',
+          }}
+          onFocus={handleSearchClick}
+          onBlur={handleBlur}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // 검색어 입력값 업데이트
+        />
+        <IconButton
+          type="submit"
+          sx={{ p: '10px', marginLeft: '8px' }}
+          aria-label="search"
+          onClick={handleSearch} // 검색 아이콘 클릭 시 검색 로직 실행
+        >
+          <SearchIcon sx={{ color: isSearchFocused ? '#2AF57B' : '#28E070' }} />{/* 포커스 상태에 따라 아이콘 색상 변경 */}
+        </IconButton>
+      </Box>
+      <Grid container justifyContent="center">
+        {searchTerm && ( // 검색어가 입력된 경우에만 아래 타이포그래피를 표시
+          <Typography variant="body1" color="textSecondary">
+            " {searchTerm} "
+          </Typography>
+        )}
+      </Grid>
+    </>
   );
 };
 

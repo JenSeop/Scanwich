@@ -18,7 +18,7 @@ import Result from './pages/Result';
 import ResultImg from './components/ResultImg';
 
 function App() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600); // 예: 768px 이하가 모바일로 간주
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600); // 예: 600px 이하가 모바일로 간주
 
   useEffect(() => {
     // 화면 크기 변화 감지
