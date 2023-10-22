@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import setCookie from '../utils/setCookie';
-import { Grid, Divider, Box, Paper, Typography } from '@mui/material';
+import { Grid, Divider } from '@mui/material';
 import ScrollTop from '../components/ScrollTop';
 import List from '../components/List';
 import Queue from '../components/Queue';

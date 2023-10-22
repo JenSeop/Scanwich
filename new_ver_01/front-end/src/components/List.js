@@ -48,7 +48,7 @@ function List({ data, isMobile }) {
       <Grid container spacing={-1} xs={12}>
         {data.map((data, index) => (
           <Grid item xs={12} key={data.id}>
-            <Link to={`/result?${data.id}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/result/${data.id}`} style={{ textDecoration: 'none' }}>
               <Card
                 style={{
                   marginTop: '5px',

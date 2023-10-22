@@ -1,0 +1,16 @@
+/* Result.css */
+
+/* 화면 크기가 600px 이하일 때 적용되는 스타일 */
+@media (max-width: 600px) {
+  .responsive-text {
+    display: none; /* 화면 크기가 작을 때 숨김 */
+  }
+}
+
+/* 화면 크기가 600px 초과일 때 적용되는 스타일 */
+@media (min-width: 601px) {
+  .responsive-text {
+    display: block; /* 화면 크기가 클 때 표시 */
+    /* 원하는 스타일 추가 */
+  }
+}

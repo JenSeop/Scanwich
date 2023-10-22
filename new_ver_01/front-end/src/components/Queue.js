@@ -68,7 +68,7 @@ function Queue({ data, isMobile }) {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: '.apk', // 업로드 허용 확장자 설정 (필요에 따라 수정)
+    accept: '.apk', // 업로드 허용 확장자 설정
   });
 
   return (
@@ -143,7 +143,7 @@ function Queue({ data, isMobile }) {
       <Grid container spacing={-1} xs={12}>
         {data.map((data, index) => (
           <Grid item xs={12} key={data.id}>
-            <Link to={`/result?${data.id}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/result/${data.id}`} style={{ textDecoration: 'none' }}>
               <Card
                 style={{
                   marginTop: '5px',

@@ -16,6 +16,7 @@ import EmailVerif3 from './pages/EmailVerif3';
 import Error from './pages/Error';
 import Result from './pages/Result';
 import ResultImg from './components/ResultImg';
+import Loading from './components/Loading';
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600); // 예: 600px 이하가 모바일로 간주
@@ -37,7 +38,7 @@ function App() {
   return (
     <Router>
       {isMobile ? (
-        <MobTopNav />
+        <MobTopNav isMobile={isMobile}/>
       ) : (
         <PcNav />
       )}
@@ -52,8 +53,9 @@ function App() {
           <Route path="/emailverif/1" element={<EmailVerif1 />} />
           <Route path="/emailverif/2" element={<EmailVerif2 />} />
           <Route path="/emailverif/3" element={<EmailVerif3 />} />
-          <Route path="/result" element={<Result />} />
-          <Route path="/resultimg" element={<ResultImg initialScore="1"/>} />
+          <Route path="/result/1" element={<Result />} />
+          <Route path="/loading" element={<Loading status="loading" />} />
+          <Route path="/resultimg" element={<ResultImg paramScore={'1'} iconSize={520} circleSize={520}/>} />
           <Route path="/error/400" element={<Error errorCode="400" />} />
           <Route path="/error/403" element={<Error errorCode="403" />} />
           <Route path="/error/404" element={<Error errorCode="404" />} />

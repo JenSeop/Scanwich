@@ -38,7 +38,7 @@ const PcNav = () => {
           <UserMenu />
           <Link to="/" style={{ textDecoration: 'none' }}>
             <img
-              src="images/MainLogo.png"
+              src="/images/MainLogo.png"
               alt="Scanwich"
               width={65}
               height={65}

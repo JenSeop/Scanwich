@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 
-const ResultImg = ({ initialScore }) => {
-  const [score, setScore] = useState(initialScore);
+const ResultImg = ({ paramScore, iconSize ,circleSize }) => {
+  const [score, setScore] = useState(paramScore);
 
-  const getImagePath = (score) => {
-    switch (score) {
-      case "1":
-        return 'images/1.png';
-      case "2":
-        return 'images/2.png';
-      case "3":
-        return 'images/3.png';
-      case "4":
-        return 'images/4.png';
-      case "5":
-        return 'images/5.png';
-      case "6":
-        return 'images/6.png';
-      case "7":
-        return 'images/7.png';
-      case "8":
-        return 'images/8.png';
+  const getImagePath = (paramScore) => {
+    switch (paramScore) {
+      case '1':
+        return '/images/1.png';
+      case '2':
+        return '/images/2.png';
+      case '3':
+        return '/images/3.png';
+      case '4':
+        return '/images/4.png';
+      case '5':
+        return '/images/5.png';
+      case '6':
+        return '/images/6.png';
+      case '7':
+        return '/images/7.png';
+      case '8':
+        return '/images/8.png';
       default:
-        return 'images/default.png';
+        return '/images/default.png';
     }
   };
 
@@ -37,8 +37,6 @@ const ResultImg = ({ initialScore }) => {
     'radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0.7) 60%, transparent 100%)',
   ];
 
-  const circleSize = '420px';
-
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       {/* 배경 원형 */}
@@ -52,7 +50,7 @@ const ResultImg = ({ initialScore }) => {
           width: circleSize,
           height: circleSize,
           borderRadius: '50%',
-          background: gradientColors[score - 1],
+          background: gradientColors[paramScore - 1],
           overflow: 'hidden',
         }}
       >
@@ -67,20 +65,20 @@ const ResultImg = ({ initialScore }) => {
             width: '70%',
             height: '70%',
             borderRadius: '50%',
-            backgroundColor: 'white',
+            backgroundColor: '#373531',
             zIndex: 1,
           }}
         ></div>
       </div>
       {/* 아이콘 */}
       <img
-        src={getImagePath(score)}
-        alt={`Result Score ${score}`}
+        src={getImagePath(paramScore)}
+        alt={`Result Score ${paramScore}`}
         style={{
           position: 'relative',
           zIndex: 2,
-          maxWidth: '100%',
-          maxHeight: '100%',
+          maxWidth: iconSize,
+          maxHeight: iconSize,
         }}
       />
     </div>

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Button, Box, Typography, InputBase, IconButton, Modal } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, Typography, Modal } from '@mui/material';
 import { Link } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import ProfileMenu from './ProfileMenu';
-import SearchIcon from '@mui/icons-material/Search';
 import Search from './Search';
 
-const MobTopNav = () => {
+const MobTopNav = (isMobile) => {
   // 로그인 상태
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
@@ -58,12 +57,14 @@ const MobTopNav = () => {
             <ProfileMenu onLogout={handleLogout} />
           ) : (
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-              <Button variant="outlined" color="1" component={Link} to="/login">
-                로그인
-              </Button>
+            <Button variant="outlined" color="1" component={Link} to="/login">
+              로그인
+            </Button>
+            {isMobile ? false :
               <Button variant="outlined" color="1" component={Link} to="/register/step1">
                 회원가입
               </Button>
+            }
             </Box>
           )}
         </Toolbar>
