@@ -1,0 +1,13 @@
+/* BotNav.css */
+
+.mob-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #373531;
+  justify-content: space-around;
+  padding: 10px;
+  color: white;
+  z-index: 1000;
+}

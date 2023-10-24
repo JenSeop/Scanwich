@@ -281,7 +281,7 @@ const Home = () => {
     
     
     </div>/
-  <Link to="/api/user/register" style={{ textDecoration: 'none', color: 'black' }}><div style={{
+  <Link to="/register" style={{ textDecoration: 'none', color: 'black' }}><div style={{
     color: '#FFF5DC'
   }}>회원가입</div></Link>
 </div>
