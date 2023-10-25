@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import setCookie from '../utils/setCookie';
 import { Grid, Divider } from '@mui/material';
-import ScrollTop from '../components/ETC/ScrollTop';
+import ScrollTop from '../components/MUI/ScrollTop';
 import List from '../components/Home/List';
 import Queue from '../components/Home/Queue';
 
@@ -14,6 +14,130 @@ function Home(props) {
 
   // 서버에서 받아온 게시글 데이터 (예시)
   const posts = [
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+  ];
+
+  const posts2 = [
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
+    {
+      id: 1,
+      apkImage: '/path/to/apk1.png',
+      apkName: 'APK 이름 1',
+      malwareInfo: '1',
+      userName: 'User1',
+      userProfile: '/path/to/user1.jpg',
+      analysisScore: '1',
+      analysisDate: '2023-09-12',
+      analysisStatus: 'false'
+    },
     {
       id: 1,
       apkImage: '/path/to/apk1.png',
@@ -42,7 +166,7 @@ function Home(props) {
             marginLeft: '-10px',
           }}
         >
-          <Queue data={posts} isMobile={isMobile}/>
+          <Queue data={posts2} isMobile={isMobile}/>
         </Grid>
         }
         <Divider orientation="vertical" />

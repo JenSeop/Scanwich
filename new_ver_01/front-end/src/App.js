@@ -17,6 +17,12 @@ import Error from './pages/Error';
 import Report from './pages/Report';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
+import History from './pages/History';
+import Guide from './pages/Guide';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Licenses from './pages/Licenses';
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600); // 예: 600px 이하가 모바일로 간주
@@ -40,16 +46,17 @@ function App() {
 
   return (
     <Router>
-      {isMobile ? (
-        <MobTopNav isMobile={isMobile}/>
-      ) : (
-        <PcNav />
-      )}
-
+      <PcNav isMobile={isMobile} />
       <div style={{ paddingTop: '70px' }}>
         <Routes>
           <Route path="/" element={<Home isMobile={isMobile}/>} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/Guide" element={<Guide />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/Licenses" element={<Licenses />} />
           <Route path="/register/step1" element={<RegisterStep1 />} />
           <Route path="/register/step2" element={<RegisterStep2 />} />
           <Route path="/register/step3" element={<RegisterStep3 />} />

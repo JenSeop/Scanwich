@@ -76,7 +76,10 @@ export default function UserMenu() {
             </ListItemButton>
           </ListItem>
         </List>
-      <Box sx={{ marginTop: '57vh' }}>
+      <Box sx={{ position: 'fixed', // 박스를 고정 위치로 설정
+        bottom: '0', // 화면 하단에 위치
+        left: '0', // 좌측에 위치 (원하는 위치로 조정 가능)
+      }}>
         <Divider />
         <Grid container sx={{ padding: '16px' }}>
           <Grid item xs={12}>

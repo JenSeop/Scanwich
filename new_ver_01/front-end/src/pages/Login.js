@@ -16,10 +16,12 @@ import {
 } from '@mui/material';
 import { getCsrf } from '../utils/getCsrf.js';
 import { getCookie } from '../utils/getCookie.js';
+import SnackBar from '../components/MUI/SnackBar';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [status, setStatus] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -59,9 +61,18 @@ function Login() {
       navigate('/');
       window.location.reload();
     } catch (error) {
-      console.error('로그인 오류:', error);
-      console.log('로그인에 실패했습니다. 다시 시도하세요.');
+      openSnackbar();
+      setUsername('');
+      setPassword('');
     }
+  };
+
+  const openSnackbar = () => {
+    setStatus(true);
+
+    setTimeout(() => {
+      setStatus(false);
+    }, 3000);
   };
 
   return (
@@ -161,6 +172,7 @@ function Login() {
           </Grid>
         </form>
       </div>
+      {status && <SnackBar type={'error'} message={'아이디 또는 비밀번호를 잘못 입력했습니다.'}/>}
     </Container>
   );
 }

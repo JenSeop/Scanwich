@@ -7,7 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Search from '../Search';
 import { getTokenFromCookie, getUidFromCookie, getEmailFromCookie } from '../../utils/getAuth.js';
 
-const PcNav = () => {
+const PcNav = ({isMobile}) => {
   // 로그인 상태
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
@@ -80,7 +80,8 @@ const PcNav = () => {
           </Link>
         </Toolbar>
         <Toolbar sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
-          <Box
+          
+          {!isMobile && <Box
             onClick={handleSearchClick}
             sx={{
               display: 'flex',
@@ -111,7 +112,7 @@ const PcNav = () => {
             <IconButton type="submit" sx={{ p: '10px', marginLeft: '8px' }} aria-label="search">
               <SearchIcon sx={{ color: '#FFF5DC' }} />
             </IconButton>
-          </Box>
+          </Box>}
           {isLoggedIn ? (
             <ProfileMenu onLogout={handleLogout} userName={u_id} userEmail={u_email}/>
           ) : (

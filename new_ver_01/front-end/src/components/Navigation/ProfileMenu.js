@@ -15,6 +15,7 @@ import RestorePageIcon from '@mui/icons-material/RestorePage';
 import PlagiarismIcon from '@mui/icons-material/Plagiarism';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useNavigate  } from 'react-router-dom';
 import { getUidFromCookie } from '../../utils/getAuth.js';
 import { getCsrf } from '../../utils/getCsrf.js';
@@ -23,6 +24,11 @@ import { getTokenFromCookie } from '../../utils/getAuth.js';
 export default function ProfileMenu({userName, userEmail}) {
   const [state, setState] = React.useState({ right: false });
   const navigate = useNavigate();
+
+  const linkStyle = {
+    color: 'inherit', // 기본 색상으로 설정
+    textDecoration: 'none', // 밑줄 제거
+  };
 
   const handleLogout = async () => {
     try {
@@ -80,16 +86,14 @@ export default function ProfileMenu({userName, userEmail}) {
     >
       {/* 닫기 버튼 */}
       <Button
-        variant='contained'
+        variant='text'
         onClick={toggleDrawer(anchor, false)}
         sx={{
           position: 'absolute',
           top: '8px',
           right: '8px',
-          color: 'white',
           width: '32px',
           height: '32px',
-          padding: '1px',
         }}
         color='3'
       >
@@ -131,7 +135,7 @@ export default function ProfileMenu({userName, userEmail}) {
       <Divider />
       <List>
         {/* 프로필 */}
-        <ListItem key="Profile" disablePadding>
+        <ListItem key="Profile" component={Link} to="/profile" style={linkStyle} disablePadding >
           <ListItemButton>
             <ListItemIcon>
               <AccountBoxIcon />
@@ -142,7 +146,7 @@ export default function ProfileMenu({userName, userEmail}) {
         <Divider />
         
         {/* 분석 기록 */}
-        <ListItem key="AnalysisHistory" disablePadding>
+        <ListItem key="AnalysisHistory" component={Link} to="/history" style={linkStyle} disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <RestorePageIcon />
@@ -166,7 +170,7 @@ export default function ProfileMenu({userName, userEmail}) {
 
       {/* 로그아웃 버튼을 Drawer의 맨 하단에 추가 */}
       <Box sx={{ position: 'absolute', bottom: '16px', left: '16px', right: '16px' }}>
-        <Button variant="contained" color="3" fullWidth onClick={handleLogout} sx={{ color: '#FFFFFF' }}>
+        <Button variant="outlined" color="3" fullWidth onClick={handleLogout}>
           로그아웃
         </Button>
       </Box>
