@@ -20,3 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+class TokenJWTSerializer(serializers.Serializer):
+    u_id = serializers.CharField(max_length=150)
+    t_key = serializers.UUIDField()

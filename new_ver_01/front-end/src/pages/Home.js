@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import setCookie from '../utils/setCookie';
 import { Grid, Divider } from '@mui/material';
-import ScrollTop from '../components/ScrollTop';
-import List from '../components/List';
-import Queue from '../components/Queue';
+import ScrollTop from '../components/ETC/ScrollTop';
+import List from '../components/Home/List';
+import Queue from '../components/Home/Queue';
 
 function Home(props) {
   const { isMobile } = props;

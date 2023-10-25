@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import setCookie from '../utils/setCookie';
+import { useNavigate  } from 'react-router-dom';
+import axios from 'axios';
 import {
   Container,
   CssBaseline,
@@ -12,12 +14,18 @@ import {
   CardHeader,
   styled 
 } from '@mui/material';
+import { getCsrf } from '../utils/getCsrf.js';
+import { getCookie } from '../utils/getCookie.js';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if(getCookie('token')) {
+      navigate('/error/403')
+    }
     setCookie('prevPage', '/login', 365);
   }, [])
 
@@ -29,11 +37,31 @@ function Login() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // 여기에서 로그인 로직을 추가하세요.
-    console.log('Username:', username);
-    console.log('Password:', password);
+    
+    try {
+      const csrfToken = getCsrf();
+      const userData = {
+        u_id: username,
+        password: password,
+        csrfToken : csrfToken,
+      };
+      const apiUrl = '/api/user/jwtlogin/';
+      const response = await axios.post(apiUrl, userData);
+      const token = response.data.token;
+      const u_id = response.data.u_id;
+      const email = response.data.email;
+
+      document.cookie = `u_token=${token}; path=/; expires=;`;
+      document.cookie = `u_id=${u_id}; path=/; expires=;`
+      document.cookie = `u_email=${email}; path=/; expires=;`
+      navigate('/');
+      window.location.reload();
+    } catch (error) {
+      console.error('로그인 오류:', error);
+      console.log('로그인에 실패했습니다. 다시 시도하세요.');
+    }
   };
 
   return (
@@ -44,19 +72,19 @@ function Login() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: '64px',
+          marginTop: '5vh',
         }}
       >
         <img
-          src="images/MainLogo.png"
+          src="/images/remaster/10.png"
           alt="Scanwich"
-          width={65}
-          height={65}
+          width={120}
+          height={120}
           style={{ marginRight: '10px' }}
           component={Link}
           to="/"
         />
-        <Typography component="h1" variant="h5">
+        <Typography variant="h4" fontWeight="bold" color="#28E070">
           Scanwich에 로그인
         </Typography>
         <form onSubmit={handleSubmit} style={{ width: '100%', marginTop: '16px' }}>
@@ -66,7 +94,7 @@ function Login() {
             required
             fullWidth
             id="username"
-            label="Username"
+            label="ID"
             name="username"
             autoComplete="username"
             value={username}
@@ -79,7 +107,7 @@ function Login() {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="PW"
             type="password"
             id="password"
             autoComplete="current-password"

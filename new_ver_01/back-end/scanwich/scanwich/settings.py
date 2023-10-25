@@ -19,6 +19,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Front-end Path 세팅
+FRONTEND_ADDRESS = os.environ.get('FRONTEND_ADDRESS', 'https://localhost')
+
 # 파일 업로드
 # 파일 업로드 크기 제한 설정
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 10  # 10MB
