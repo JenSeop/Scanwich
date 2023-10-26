@@ -17,7 +17,7 @@ const CustomSnackbar = ({ type, message }) => {
 
   return (
     <Snackbar
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       open={open}
       autoHideDuration={3000}
       onClose={handleClose}
@@ -25,6 +25,7 @@ const CustomSnackbar = ({ type, message }) => {
         zIndex: 9999,
         borderRadius: '8px',
         padding: '16px',
+        marginTop: '10vh'
       }}
     >
       <Alert

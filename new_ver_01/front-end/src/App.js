@@ -24,6 +24,11 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Licenses from './pages/Licenses';
 
+import FindID from './pages/Auth/FindId'
+import FindIDResult from './pages/Auth/FindIdResult'
+import FindPW from './pages/Auth/FindPw'
+import FindPWResult from './pages/Auth/FindPwResult'
+
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600); // 예: 600px 이하가 모바일로 간주
   const [display, setDisplay] = useState(window.innerWidth);
@@ -51,6 +56,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home isMobile={isMobile}/>} />
           <Route path="/login" element={<Login />} />
+          <Route path="/find/id/step1" element={<FindID/>} />
+          <Route path="/find/id/step2" element={<FindIDResult/>} />
+          <Route path="/find/pw/step1" element={<FindPW/>} />
+          <Route path="/find/pw/step2" element={<FindPWResult/>} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/history" element={<History />} />
           <Route path="/Guide" element={<Guide />} />

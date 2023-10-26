@@ -155,12 +155,12 @@ function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body1" underline='none' color="#373531">
+              <Link href="/find/id/step1" variant="body1" underline='none' color="#373531">
                 아이디 찾기
               </Link>
             </Grid>
             <Grid item xs>
-              <Link href="#" variant="body1" underline='none' color="#373531">
+              <Link href="/find/pw/step1" variant="body1" underline='none' color="#373531">
                 비밀번호 찾기
               </Link>
             </Grid>
