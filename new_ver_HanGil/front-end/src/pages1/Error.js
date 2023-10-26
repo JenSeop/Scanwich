@@ -1,5 +1,5 @@
 import React from "react";
-import { BackButton } from "./BackButton";
+import { BackButton } from "../components1/BackButton";
 
 
 export const Error = () => {

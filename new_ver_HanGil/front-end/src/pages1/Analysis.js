@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -35,10 +35,15 @@ const Analysis = () => {
         marginTop: '100px'
       }}>Analysis Report</div>
       <div className='whiteBox' style={whiteBoxStyle}>
-        <img src='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbunxI8%2FbtsuqzSpafA%2FmTfNYPERZ9BTrqFKuDYBd1%2Fimg.png' style={{
-          width: '1000px',
-          // maxHeight: '487px'
-        }}></img>
+        <img src='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbunxI8%2FbtsuqzSpafA%2FmTfNYPERZ9BTrqFKuDYBd1%2Fimg.png'
+             style={{
+             width: '1000px',
+              // maxHeight: '487px'
+             }}
+             alt='img'
+             >
+             
+        </img>
       </div>
 
       <Paper sx={{ width: '1000px', overflow: 'hidden', margin: '0 auto' }}>
