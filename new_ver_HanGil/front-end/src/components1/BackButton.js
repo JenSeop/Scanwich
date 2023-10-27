@@ -16,7 +16,7 @@ const back_button = {
   position: 'relative',
   width: '553px',
   left: '683px',
-  position: 'absolute',
+  // position: 'absolute',
   top: '800px',
 }
 

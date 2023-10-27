@@ -1,19 +1,23 @@
 import React, { useEffect } from 'react';
-import { Route, Routes, useNavigate, Switch, Link } from 'react-router-dom';
-import FindId from './api/user/FindId';
-import Register from './api/user/Register';
-import Register1 from './api/user/Register1';
-import Register2 from './api/user/Register2';
-import FindPw from './api/user/FindPw';
-import FindPw1 from './api/user/FindPw1';
-import FindPw2 from './api/user/FindPw2';
-import UploadPage from './api/user/UploadPage';
-import Analysis from './api/user/Analysis';
-import {Error} from './api/user/Error';
-import Home from './api/user/Home';
-import Findid_True from './api/user/FindId_true';
-import Findid_Null from './api/user/Findid_Null';
-import AnalysisResult from './api/user/AnalysisResult';
+import { Route, Routes, useNavigate, Link } from 'react-router-dom';
+
+
+
+import Home from './pages1/Home';
+import Register from './pages1/Register';
+import Register1 from './pages1/Register1';
+import Register2 from './pages1/Register2';
+import FindId from './pages1/FindId';
+import FindIdTrue from './pages1/FindIdTrue';
+import FindIdNull from './pages1/FindIdNull';
+import FindPw from './pages1/FindPw';
+import FindPw2 from './pages1/FindPw2';
+import FindPwTrue from './pages1/FindPwTrue';
+import FindPwNull from './pages1/FindPwNull';
+import UploadPage from './pages1/UploadPage';
+import Analysis from './pages1/Analysis';
+import { Error } from './pages1/Error';
+
 
 function App() {
   const navigate = useNavigate();
@@ -31,32 +35,39 @@ function App() {
     return () => {
       navBar.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [navigate]);
 
 
   return (
     <div className="App">
-      <div className='navBar' style={{ position: 'sticky', top: '0px', position:'-webkit-sticky' }}>
-        <span className='navBar1'><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FWh9H8%2Fbtst7RMKPq6%2Fo1R3oEEWhZCvymoBILvkT0%2Fimg.png" style={{width: 80, height: 80, left: 0, top: 25, position: 'relative', paddingRight:15}}></img>Scanwich
+      <div className='navBar' style={{ top: '0px', position:'-webkit-sticky' }}>
+        <span className='navBar1'><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FWh9H8%2Fbtst7RMKPq6%2Fo1R3oEEWhZCvymoBILvkT0%2Fimg.png" style={{width: 80, height: 80, left: 0, top: 25, position: 'relative', paddingRight:15}} alt='Scanwich'></img>Scanwich
           <Link to="/Analysis">분석페이지</Link>
           <Link to="/UploadPage">APK업로드</Link>
         </span>
       </div>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/register1" element={<Register1 />} />
-      <Route path="/register2" element={<Register2/>} />
-      <Route path="/findid" element={<FindId />} />
-      <Route path='/indid_true' element={<Findid_True/>}/>
-      <Route path="/Findid_Null" element={<Findid_Null />} />
-      <Route path="/findpw" element={<FindPw/>} />
-      <Route path="/findpw1" element={<FindPw1/>} />
-      <Route path="/indpw2" element={<FindPw2/>} />
-      <Route path='/UploadPage' element={<UploadPage/>}/>
-      <Route path='/Analysis' element={<Analysis/>}/>
-      <Route path='/Error' element={<Error/>}/>
-      <Route path='/AnalysisResult' element={<AnalysisResult />}/>
+
+
+
+      <Route path="/" element={<Home/>} />
+
+      <Route path='/register' element={<Register/>} />
+      <Route path='/register1' element={<Register1/>} />
+      <Route path='/register' element={<Register2/>} />
+      
+      <Route path="/findid" element={<FindId/>} />
+      <Route path='/findidtrue' element={<FindIdTrue/>} />
+      <Route path='/findidnull' element={<FindIdNull/>} />
+
+      <Route path='/findpw' element={<FindPw/>} />
+      <Route path='/findpw2' element={<FindPw2/>} />
+      <Route path='/findpwtrue' element={<FindPwTrue/>} />
+      <Route path='/findpwnull' element={<FindPwNull/>} />
+
+      <Route path='/uploadpage' element={<UploadPage/>} />
+      <Route path='/analysis' element={<Analysis/>} />
+      <Route path='/error' element={<Error/>} />
 
       
     </Routes>
