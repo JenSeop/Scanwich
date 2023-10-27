@@ -4,7 +4,7 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from django.shortcuts import render
-from .utils import send_verification_email, send_find_id_email
+from .utils import send_verification_email, send_find_id_email, random_password_string, send_reset_password_email
 from .serializers import UserSerializer
 from rest_framework.permissions import AllowAny
 from .models import CustomUser, EmailVerificationToken
@@ -95,16 +95,6 @@ def resend_verification_email(request):
             return Response({"error": "해당 이메일 주소로 등록된 사용자가 없습니다."}, status=status.HTTP_400_BAD_REQUEST)
     
     return Response({"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST)
-
-## 1-3. 인증 성공 페이지 (Back-end 모듈 테스트용)
-def verification_success_page(request):
-    return render(request, 'verification_success.html')
-## 1-4. 인증 에러 페이지 (Back-end 모듈 테스트용)
-def verification_failed_page(request):
-    return render(request, 'verification_error.html')
-## 1-5. 인증 실패 페이지 (Back-end 모듈 테스트용)
-def token_not_found_page(request):
-    return render(request, 'verification_failed.html')
 
 ## 2-2. JWT 로그인 v2
 @api_view(['POST'])
@@ -205,10 +195,6 @@ def find_id_email(request):
     
     return Response({"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST)
 
-## 3-2. ID 찾기 페이지 (Back-end 모듈 테스트용)
-def find_id_page(request):
-    return render(request, 'find_id_page.html')
-
 ## 3-3. PW 재설정
 class ResetPasswordAPIView(APIView):
     permission_classes = [AllowAny]  # 인증 요구 해제
@@ -229,6 +215,20 @@ class ResetPasswordAPIView(APIView):
         except CustomUser.DoesNotExist:
             return Response({"error": "유저를 찾을 수 없습니다."}, status=status.HTTP_404_NOT_FOUND)
         
-## 3-4. PW 찾기 페이지 (Back-end 모듈 테스트용)
-def reset_pw_page(request):
-    return render(request, 'reset_pw_page.html')
+## 3-4. PW 이메일 인증 방식
+@api_view(['POST'])
+@permission_classes([AllowAny,])
+def reset_password_by_email(request):
+    email = request.data.get('u_email')
+    try:
+        user = User.objects.get(u_email=email)
+    except User.DoesNotExist:
+        return Response({'error': '해당 이메일을 가진 사용자를 찾을 수 없습니다.'}, status=400)
+
+    new_password = random_password_string()
+    user.set_password(new_password)
+    user.save()
+
+    send_reset_password_email(user, new_password)
+
+    return Response({'message': '새 비밀번호가 이메일로 전송되었습니다.'})

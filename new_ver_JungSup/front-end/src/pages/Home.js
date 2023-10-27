@@ -21,7 +21,7 @@ function Home(props) {
       malwareInfo: '1',
       userName: 'User1',
       userProfile: '/path/to/user1.jpg',
-      analysisScore: '8',
+      analysisScore: '1',
       analysisDate: '2023-09-12',
       analysisStatus: 'false'
     },

@@ -3,6 +3,12 @@
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+import string
+import random
+
+def random_password_string(length=8):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(characters) for i in range(length))
 
 def send_verification_email(user, token):
     # 이메일 제목
@@ -36,4 +42,15 @@ def send_find_id_email(user, message):
     message = f'귀하의 아이디는 다음과 같습니다: {user.u_id}.'
     
     # 이메일 전송
+    send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+
+def send_reset_password_email(user, new_password):
+    subject = '[Scanwich] Find PW'
+    context = {'message': new_password}
+    html_message = render_to_string('find_pw_page.html', context)
+
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = [user.u_email]
+    message = f'귀하의 새 비밀번호는 다음과 같습니다: {new_password}. 로그인 후 변경해 주세요.'
+
     send_mail(subject, message, from_email, recipient_list, html_message=html_message)

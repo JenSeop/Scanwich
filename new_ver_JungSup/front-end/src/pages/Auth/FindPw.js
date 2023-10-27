@@ -22,7 +22,7 @@ const FindPw = () => {
         u_email : email,
         csrfToken : csrfToken,
       };
-      const apiUrl = '/api/user/reset_pw/';
+      const apiUrl = '/api/user/find_pw/';
       const response = await axios.post(apiUrl, userData);
 
       if (response.status === 200 || response.status === 201) {

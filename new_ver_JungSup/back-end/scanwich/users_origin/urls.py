@@ -4,18 +4,16 @@ from django.urls import path, include
 from django.contrib.auth.views import LogoutView
 from .views import (
 # 회원가입
-    ResetPasswordAPIView,
     UserRegisterView,
     resend_verification_email,
-    verification_success_page,
-    verification_failed_page,
-    token_not_found_page,
     verify_email,
 # 로그인/로그아웃
     JWTLogout,
     JWTLogin,
 # 아이디/비밀번호 찾기
     find_id_email,
+    reset_password_by_email,
+    ResetPasswordAPIView,
 )
 
 urlpatterns = [
@@ -34,6 +32,8 @@ urlpatterns = [
 # 아이디/비밀번호 찾기
     ## 아이디 찾기
     path('api/user/find_id/', find_id_email, name='find_id_email'), # API
-    ## 비밀번호 찾기
+    ## 랜덤 비밀번호 이메일 발송
+    path('api/user/find_pw/', reset_password_by_email, name='find_pw_email'),  # API
+# 아이디/비밀번호 변경
     path('api/user/reset_pw/', ResetPasswordAPIView.as_view(), name='reset_pw'), # API
 ]

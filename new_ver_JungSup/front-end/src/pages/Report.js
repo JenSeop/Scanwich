@@ -25,7 +25,7 @@ export default function Report({display}) {
       userProfile: '/path/to/user1.jpg',
       userName: 'User1',
       vtScore: '62',
-      analysisScore: '1',
+      analysisScore: '8',
       analysisDate: '2023-09-12',
       analysisStatus: 'false'
     },
