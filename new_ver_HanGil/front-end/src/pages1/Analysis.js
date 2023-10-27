@@ -1,173 +1,31 @@
-import React from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
+import React, { useState, useEffect } from 'react';
+import CHART from '../components1/CHART';
 
-const Analysis = () => {
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+const Analysis= ()=> {
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  const C= { height: 321 }
+  const [data, setData]= useState(null);
+  
+  useEffect(() => {
+    let URL= "https://raw.githubusercontent.com/scriptfetish/scriptfetish.github.io/main/test.json"
+    let req= new XMLHttpRequest();
+    req.open("GET", URL);
+    req.onload= () => {
+      var node= JSON.parse(req.response);
+      setData(node);
+    };
+    req.send();
+  }, []);
 
-  return(
-    <div className='Analysis' style={textcenterStyle}>
-      <div style={{
-        color: '#CE881F',
-        fontSize: '36px',
-        fontStyle: 'normal',
-        fontWeight: '700',
-        fontFamily: 'Noto Sans KR',
-        lineHeight: '100px',
-        letterSpacing: '0.36px',
-        marginTop: '100px'
-      }}>Analysis Report</div>
-      <div className='whiteBox' style={whiteBoxStyle}>
-        <img src='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbunxI8%2FbtsuqzSpafA%2FmTfNYPERZ9BTrqFKuDYBd1%2Fimg.png'
-             style={{
-             width: '1000px',
-              // maxHeight: '487px'
-             }}
-             alt='img'
-             >
-             
-        </img>
-      </div>
+  if (data=== null) return <div className='Hello'>로딩</div>
 
-      <Paper sx={{ width: '1000px', overflow: 'hidden', margin: '0 auto' }}>
-      <div style={{
-        fontWeight: '700',
-        fontFamily: 'Noto Sans KR',
-        color: '#CE881F',
-        fontSize: '48px',
-        textAlign: 'left',
-        backgroundColor: '#FFF5DC'
-      }}>상세 분석결과 보기</div>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
-
+  return (
+    <div style= {C}>
+      <CHART data= {data} />
     </div>
   );
-}
-
-//
-const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
-];
-
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
-
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
-];
-//
-const whiteBoxStyle = {
-  // border: '1px solid black',
-  // width: '81.614583%',
-  width: '1000px',
-  height: '470px',
-  margin: '10px auto',
-  backgroundColor: 'White'
-}
-
-const textcenterStyle = {
-  textAlign: 'center'
 }
 
 export default Analysis;
