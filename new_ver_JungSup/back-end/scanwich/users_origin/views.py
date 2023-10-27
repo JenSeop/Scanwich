@@ -4,7 +4,7 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from django.shortcuts import render
-from .utils import send_verification_email, send_find_id_email, random_password_string, send_reset_password_email
+from .utils import send_verification_email, send_find_id_email, random_password_string, send_reset_password_email, check_password
 from .serializers import UserSerializer
 from rest_framework.permissions import AllowAny
 from .models import CustomUser, EmailVerificationToken
@@ -198,14 +198,20 @@ def find_id_email(request):
 ## 3-3. PW 재설정
 class ResetPasswordAPIView(APIView):
     permission_classes = [AllowAny]  # 인증 요구 해제
+    
     def post(self, request):
         u_id = request.data.get('u_id')
         u_email = request.data.get('u_email')
+        current_password = request.data.get('current_password')  # 사용자로부터 입력받은 현재 비밀번호
         new_password = request.data.get('new_password')  # 사용자로부터 입력받은 새로운 비밀번호
         
         try:
             user = CustomUser.objects.get(u_id=u_id, u_email=u_email)
             
+            # 현재 비밀번호가 일치하는지 확인
+            if not check_password(current_password, user.password):
+                return Response({"error": "현재 비밀번호가 일치하지 않습니다."}, status=status.HTTP_400_BAD_REQUEST)
+
             # 새로운 비밀번호로 업데이트하고 저장
             user.set_password(new_password)
             user.save()

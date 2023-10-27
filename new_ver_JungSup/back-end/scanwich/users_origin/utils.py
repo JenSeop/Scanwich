@@ -3,12 +3,16 @@
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.contrib.auth.hashers import check_password as django_check_password
 import string
 import random
 
 def random_password_string(length=8):
     characters = string.ascii_letters + string.digits + string.punctuation
     return ''.join(random.choice(characters) for i in range(length))
+
+def check_password(plain_password, hashed_password):
+    return django_check_password(plain_password, hashed_password)
 
 def send_verification_email(user, token):
     # 이메일 제목
