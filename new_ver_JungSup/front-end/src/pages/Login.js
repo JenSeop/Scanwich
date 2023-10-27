@@ -15,7 +15,7 @@ import {
   styled 
 } from '@mui/material';
 import { getCsrf } from '../utils/getCsrf.js';
-import { getCookie } from '../utils/getCookie.js';
+import { getCookie } from '../utils/getAuth.js';
 import SnackBar from '../components/MUI/SnackBar';
 
 function Login() {

@@ -3,7 +3,6 @@ import { Button, Container, TextField, Typography, Box } from '@mui/material';
 import { useNavigate  } from 'react-router-dom';
 import SnackBar from '../../components/MUI/SnackBar';
 import { Link } from 'react-router-dom';
-import { getCookie } from '../../utils/getCookie.js';
 import setCookie from '../../utils/setCookie.js';
 import { getCsrf } from '../../utils/getCsrf.js';
 import axios from 'axios';

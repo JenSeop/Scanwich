@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, TextField, Typography, Box } from '@mui/material';
 import { useNavigate  } from 'react-router-dom';
-import { getCookie } from '../../utils/getCookie.js';
+import { getCookie } from '../../utils/getAuth.js';
 import setCookie from '../../utils/setCookie.js';
 import { getCsrf } from '../../utils/getCsrf.js';
 import axios from 'axios';

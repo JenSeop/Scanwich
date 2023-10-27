@@ -4,6 +4,7 @@ import { Grid, Divider } from '@mui/material';
 import ScrollTop from '../components/MUI/ScrollTop';
 import List from '../components/Home/List';
 import Queue from '../components/Home/Queue';
+import isLoggedIn from '../utils/getAuth'
 
 function Home(props) {
   const { isMobile } = props;

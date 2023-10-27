@@ -20,6 +20,7 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ErrorIcon from '@mui/icons-material/Error';
 import AddIcon from '@mui/icons-material/Add';
 import { useDropzone } from 'react-dropzone';
+import { isLoggedIn } from '../../utils/getAuth';
 
 const FileUploadContainer = styled('div')({
   border: '2px dashed #ccc', // 점선으로 그려질 네모난 박스
@@ -49,6 +50,7 @@ function Queue({ data, isMobile }) {
   const [openModal, setOpenModal] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [file, setFile] = useState();
+  const isLogin = isLoggedIn();
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -72,151 +74,170 @@ function Queue({ data, isMobile }) {
   });
 
   return (
-    <Grid>
-      {isMobile ? true : 
-        <Grid
-        container
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginTop: '5px',
-          marginBottom: '1px',
-          marginLeft: '22px',
-        }}
-      >
-        <Typography variant="h6" color="#373531" fontWeight="bold">
-          Queue
-        </Typography>
-        <Button
-          variant="contained"
-          color="2"
-          onClick={handleOpenModal}
-          startIcon={<AddIcon />}
+    <>
+      <Grid>
+        {isMobile ? true : 
+          <Grid
+          container
           style={{
-            color: 'white',
-            width: '70px',
-            height: '25px',
-            fontSize: '12px',
-            marginRight: '32px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: '5px',
+            marginBottom: '1px',
+            marginLeft: '22px',
           }}
         >
-          NEW
-        </Button>
-      </Grid>
-      }
-      <Dialog open={openModal} onClose={handleCloseModal}>
-        <DialogTitle style={{ textAlign: 'center' }}>파일 업로드</DialogTitle>
-          <DialogContent>
-            <FileUploadContainer {...getRootProps()}>
-              <input {...getInputProps()} />
-              {file ? (
-                <>
-                  <InsertDriveFileIcon style={{ fontSize: 48 }}/>
-                  <Typography variant="body2" color="textSecondary">
-                    {file.name}
-                  </Typography>
-                </>
-              ) : (
-                <>
-                  <FileOpenIcon style={{ fontSize: 48 }}/>
-                  <Typography variant="body2" color="textSecondary">
-                    파일을 드래그 앤 드랍 하거나 클릭
-                  </Typography>
-                </>
-              )}
-            </FileUploadContainer>
-          </DialogContent>
-        <DialogActions style={{ justifyContent: 'center' }}>
-          {file ? (
-            <>
-              <Button variant="outlined" color="2">
-                분석
-              </Button>
-            </>
-          ) : null}
-          <Button onClick={handleCloseModal} variant="outlined" color="2">
-            취소
+          <Typography variant="h6" color="#373531" fontWeight="bold">
+            Queue
+          </Typography>
+          <Button
+            variant="contained"
+            color="2"
+            onClick={handleOpenModal}
+            startIcon={<AddIcon />}
+            style={{
+              color: 'white',
+              width: '70px',
+              height: '25px',
+              fontSize: '12px',
+              marginRight: '32px',
+            }}
+          >
+            NEW
           </Button>
-        </DialogActions>
-      </Dialog>
-      <Grid container spacing={-1} xs={12}>
-        {data.map((data, index) => (
-          <Grid item xs={12} key={data.id}>
-            <Link to={`/report/${data.id}`} style={{ textDecoration: 'none' }}>
-              <Card
-                style={{
-                  marginTop: '5px',
-                  marginBottom: '1px',
-                  marginLeft: '19px',
-                  marginRight: '2px',
-                  width: 'auto',
-                  backgroundColor: '#373531',
-                  border: '1px solid #000',
-                }}
-              >
-                <CardActionArea>
-                  <CardContent>
-                    <Grid container spacing={0} alignItems="center" justifyContent="center">
-                      <Grid item xs={2}>
-                        <div
-                          style={{
-                            width: '10px',
-                            height: '10px',
-                            borderRadius: '50%',
-                            background: mapStatusToColor(data.analysisScore),
-                          }}
-                        ></div>
-                      </Grid>
-                      <Grid item xs={0} color="white">
-                        {data.apkImage && data.apkImage !== '/path/to/invalid/image' ? (
-                          <FileOpenIcon fontSize="small" />
-                        ) : (
-                          <img
-                            src={data.apkImage}
-                            alt="apkImage"
+        </Grid>
+        }
+        <Dialog open={openModal} onClose={handleCloseModal}>
+          <DialogTitle style={{ textAlign: 'center' }}>파일 업로드</DialogTitle>
+            <DialogContent>
+              {isLogin &&
+              <FileUploadContainer {...getRootProps()}>
+                <input {...getInputProps()} />
+                {file ? (
+                  <>
+                    <InsertDriveFileIcon style={{ fontSize: 48 }}/>
+                    <Typography variant="body2" color="textSecondary">
+                      {file.name}
+                    </Typography>
+                  </>
+                ) : (
+                  <>
+                    <FileOpenIcon style={{ fontSize: 48 }}/>
+                    <Typography variant="body2" color="textSecondary">
+                      파일을 드래그 앤 드랍 하거나 클릭
+                    </Typography>
+                  </>
+                )}
+              </FileUploadContainer>
+              }
+              {!isLogin &&
+              <Grid style={{ textAlign: 'center' }}>
+                <FileOpenIcon style={{ fontSize: 48 }}/>
+                <Typography variant="body2" color="textSecondary">
+                  로그인이 필요한 서비스입니다.
+                </Typography>
+              </Grid>
+              }
+            </DialogContent>
+          <DialogActions style={{ justifyContent: 'center' }}>
+            {file ? (
+              <>
+                <Button variant="outlined" color="2">
+                  분석
+                </Button>
+              </>
+            ) : null}
+            {isLogin &&
+              <Button onClick={handleCloseModal} variant="outlined" color="2">
+                취소
+              </Button>
+            }
+            {!isLogin &&
+              <Button onClick={handleCloseModal} variant="outlined" color="2">
+                닫기
+              </Button>
+            }
+          </DialogActions>
+        </Dialog>
+        <Grid container spacing={-1} xs={12}>
+          {data.map((data, index) => (
+            <Grid item xs={12} key={data.id}>
+              <Link to={`/report/${data.id}`} style={{ textDecoration: 'none' }}>
+                <Card
+                  style={{
+                    marginTop: '5px',
+                    marginBottom: '1px',
+                    marginLeft: '19px',
+                    marginRight: '2px',
+                    width: 'auto',
+                    backgroundColor: '#373531',
+                    border: '1px solid #000',
+                  }}
+                >
+                  <CardActionArea>
+                    <CardContent>
+                      <Grid container spacing={0} alignItems="center" justifyContent="center">
+                        <Grid item xs={2}>
+                          <div
                             style={{
                               width: '10px',
                               height: '10px',
                               borderRadius: '50%',
+                              background: mapStatusToColor(data.analysisScore),
                             }}
-                          />
-                        )}
+                          ></div>
+                        </Grid>
+                        <Grid item xs={0} color="white">
+                          {data.apkImage && data.apkImage !== '/path/to/invalid/image' ? (
+                            <FileOpenIcon fontSize="small" />
+                          ) : (
+                            <img
+                              src={data.apkImage}
+                              alt="apkImage"
+                              style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                              }}
+                            />
+                          )}
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Typography variant="body3" color="white">
+                            {data.apkName}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Typography variant="body3" color="white">
+                            {data.analysisDate}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={0} style={{ color: 'white' }}>
+                          {data.analysisStatus === "false" ? (
+                            <Grid style={{ color: 'white' }}>
+                              <ChangeCircleIcon fontSize="small" />
+                            </Grid>
+                          ) : data.analysisStatus === "true" ? (
+                            <Grid style={{ color: '#2AF57B' }}>
+                              <CheckCircleIcon fontSize="small" />
+                            </Grid>
+                          ) : (
+                            <Grid style={{ color: 'red' }}>
+                              <ErrorIcon fontSize="small" />
+                            </Grid>
+                          )}
+                        </Grid>
                       </Grid>
-                      <Grid item xs={4}>
-                        <Typography variant="body3" color="white">
-                          {data.apkName}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={4}>
-                        <Typography variant="body3" color="white">
-                          {data.analysisDate}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={0} style={{ color: 'white' }}>
-                        {data.analysisStatus === "false" ? (
-                          <Grid style={{ color: 'white' }}>
-                            <ChangeCircleIcon fontSize="small" />
-                          </Grid>
-                        ) : data.analysisStatus === "true" ? (
-                          <Grid style={{ color: '#2AF57B' }}>
-                            <CheckCircleIcon fontSize="small" />
-                          </Grid>
-                        ) : (
-                          <Grid style={{ color: 'red' }}>
-                            <ErrorIcon fontSize="small" />
-                          </Grid>
-                        )}
-                      </Grid>
-                    </Grid>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Link>
-          </Grid>
-        ))}
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 }
 
