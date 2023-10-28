@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import setCookie from '../utils/setCookie';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate, Link  } from 'react-router-dom';
 import axios from 'axios';
 import {
   Container,
@@ -10,7 +10,6 @@ import {
   Typography,
   Avatar,
   Grid,
-  Link,
   CardHeader,
   styled 
 } from '@mui/material';
@@ -155,19 +154,13 @@ function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="/find/id/step1" variant="body1" underline='none' color="#373531">
-                아이디 찾기
-              </Link>
+              <Button variant="text" color="3" component={Link} to={"/find/id/step1"}>아이디 찾기</Button>
             </Grid>
             <Grid item xs>
-              <Link href="/find/pw/step1" variant="body1" underline='none' color="#373531">
-                비밀번호 찾기
-              </Link>
+              <Button variant="text" color="3" component={Link} to={"/find/pw/step1"}>비밀번호 찾기</Button>
             </Grid>
             <Grid item>
-              <Link href="/register/step1" variant="body1" underline='none' color="#373531">
-                <strong>회원가입</strong>
-              </Link>
+              <Button variant="text" color="3" component={Link} to={"/register/step1"}>회원가입</Button>
             </Grid>
           </Grid>
         </form>

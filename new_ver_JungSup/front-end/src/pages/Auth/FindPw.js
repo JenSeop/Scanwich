@@ -89,7 +89,7 @@ const FindPw = () => {
         이메일
         </Typography>
         <Typography variant="body1" align="left" gutterBottom>
-        인증에 사용될 이메일 주소를 입력해주세요.
+          임시 비밀번호 발급 이메일 주소를 입력해주세요.
         </Typography>
         <TextField
           label="EMAIL"

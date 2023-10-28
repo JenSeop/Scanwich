@@ -19,7 +19,7 @@ const FindPwResult = () => {
         비밀번호 찾기 완료 :)
       </Typography>
       <Typography variant="body1" align="center" fontWeight="bold" color="#373531" gutterBottom>
-        입력한 이메일로 발송된 비밀번호를 확인해주세요.
+        이메일로 발송된 임시 비밀번호를 확인해주세요.
       </Typography>
       <Button
           variant="contained"
