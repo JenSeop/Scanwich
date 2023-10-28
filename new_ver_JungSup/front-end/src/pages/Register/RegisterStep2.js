@@ -77,7 +77,7 @@ function RegisterStep2() {
         password : password,
         csrfToken : csrfToken,
       };
-      const apiUrl = '/api/user/register/';
+      const apiUrl = '/client/user/register/';
       const response = await axios.post(apiUrl, userData);
       if (response.status === 200 || response.status === 201) {
         setCookie('prevPage', '/register/step2', 365)

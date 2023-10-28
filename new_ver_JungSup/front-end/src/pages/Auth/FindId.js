@@ -21,7 +21,7 @@ const FindId = () => {
         u_email : email,
         csrfToken : csrfToken,
       };
-      const apiUrl = '/api/user/find_id/';
+      const apiUrl = '/client/user/find_id/';
       const response = await axios.post(apiUrl, userData);
 
       if (response.status === 200 || response.status === 201) {

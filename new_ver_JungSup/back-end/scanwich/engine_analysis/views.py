@@ -36,7 +36,7 @@ def save_apk_icon(icon_data, icon_filename):
         return icon_filepath
     except Exception as e:
         return str(e)
-
+    
 @csrf_exempt  # CSRF 보호 비활성화 (테스트 목적)
 def analyze_apk(request):
     if request.method == 'POST':

@@ -18,9 +18,6 @@ def test(api_key, file_path):
     result_scan = response_scan.json()
     scan_resource = result_scan['resource']
 
-    # URL 스캔 시작 안내
-    print('Virustotal FILE SCAN START (60 Seconds Later):', file_path, '\n')
-
     # URL 스캔 후 1분 대기 : 결과가 바로 나오지 않기 때문에 1분 정도 대기
     time.sleep(60)
 

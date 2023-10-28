@@ -1,11 +1,11 @@
 # scanwich/settings.py
 from pathlib import Path
 import os
-import sys
 # env 라이브러리
 import environ
 env = environ.Env()
 environ.Env.read_env()
+
 ##
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'corsheaders',
     # DRF
     'rest_framework',
-    # Scanwich Lib
+    # Scanwich APP
     'users_origin',
     'users_social',
     'users_file',

@@ -48,7 +48,7 @@ function Login() {
         password: password,
         csrfToken : csrfToken,
       };
-      const apiUrl = '/api/user/jwtlogin/';
+      const apiUrl = '/client/user/jwtlogin/';
       const response = await axios.post(apiUrl, userData);
       const token = response.data.token;
       const u_id = response.data.u_id;
@@ -154,13 +154,32 @@ function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Button variant="text" color="3" component={Link} to={"/find/id/step1"}>아이디 찾기</Button>
+              <Button variant="text" color="3" component={Link} to={"/find/id/step1"}
+              sx={{
+                '&:hover': {
+                  backgroundColor: 'transparent', 
+                  textDecoration: 'none'}
+              }}
+              >아이디 찾기</Button>
             </Grid>
             <Grid item xs>
-              <Button variant="text" color="3" component={Link} to={"/find/pw/step1"}>비밀번호 찾기</Button>
+              <Button variant="text" color="3" component={Link} to={"/find/pw/step1"}
+              sx={{
+                '&:hover': {
+                  backgroundColor: 'transparent', 
+                  textDecoration: 'none'}
+              }}
+              >비밀번호 찾기</Button>
             </Grid>
             <Grid item>
-              <Button variant="text" color="3" component={Link} to={"/register/step1"}>회원가입</Button>
+              <Button variant="text" color="3" component={Link} to={"/register/step1"}
+              sx={{
+                fontWeight: 600,
+                '&:hover': {
+                  backgroundColor: 'transparent', 
+                  textDecoration: 'none'}
+                }}
+              >회원가입</Button>
             </Grid>
           </Grid>
         </form>

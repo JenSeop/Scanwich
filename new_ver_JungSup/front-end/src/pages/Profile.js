@@ -51,7 +51,7 @@ const Profile = () => {
   const handleLogout = async () => {
     try {
       // 로그아웃 API 호출
-      const apiUrl = '/api/user/jwtlogout/';
+      const apiUrl = '/client/user/jwtlogout/';
       const u_token = getTokenFromCookie();
       const csrfToken = getCsrf();
 

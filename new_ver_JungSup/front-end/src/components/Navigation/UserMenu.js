@@ -99,7 +99,14 @@ export default function UserMenu() {
     <div>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} color='4'><MenuIcon /></Button>
+          <Button onClick={toggleDrawer(anchor, true)} color='4'
+          sx={{ 
+                '&:hover': {
+                    backgroundColor: 'transparent', 
+                    textDecoration: 'none' 
+                } 
+            }}
+        ><MenuIcon /></Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

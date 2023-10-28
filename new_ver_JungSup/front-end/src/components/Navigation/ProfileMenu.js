@@ -33,7 +33,7 @@ export default function ProfileMenu({userName, userEmail}) {
   const handleLogout = async () => {
     try {
       // 로그아웃 API 호출
-      const apiUrl = '/api/user/jwtlogout/';
+      const apiUrl = '/client/user/jwtlogout/';
       const u_id = getUidFromCookie();
       const u_token = getTokenFromCookie();
       const csrfToken = getCsrf();
@@ -94,6 +94,10 @@ export default function ProfileMenu({userName, userEmail}) {
           right: '8px',
           width: '32px',
           height: '32px',
+          '&:hover': {
+            backgroundColor: 'transparent', 
+            textDecoration: 'none' 
+        } 
         }}
         color='3'
       >
@@ -181,7 +185,14 @@ export default function ProfileMenu({userName, userEmail}) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} color='4'><PersonIcon /></Button>
+          <Button onClick={toggleDrawer(anchor, true)} color='4'
+          sx={{ 
+                '&:hover': {
+                    backgroundColor: 'transparent', 
+                    textDecoration: 'none' 
+                } 
+            }}
+          ><PersonIcon /></Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
