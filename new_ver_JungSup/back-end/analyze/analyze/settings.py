@@ -1,11 +1,21 @@
+# settings.py
+import os
 from pathlib import Path
 import environ
 env = environ.Env()
 environ.Env.read_env()
 
+MEDIA_ROOT = "../../files/"
+MEDIA_URL = '/media/'
 BASE_DIR = Path(__file__).resolve().parent.parent
+ICON_STORAGE_PATH = os.path.join(BASE_DIR.parent.parent, 'files', 'apk_icon')
+
 
 SECRET_KEY = env("SECRET_KEY")
+
+VIRUSTOTAL_API_KEY = env("VIRUSTOTAL_API_KEY")
+VIRUSTOTAL_API_KEY_SPAIR = env("VIRUSTOTAL_API_KEY_SPAIR")
+
 
 DEBUG = True
 
@@ -20,6 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'corsheaders',
+    # Django Q
+    'django_q',
     # DRF
     'rest_framework',
     # Analyze APP
@@ -67,6 +79,17 @@ DATABASES = {
         'PORT': env("PORT"),
     }
 }
+
+Q_CLUSTER = {
+    'name': 'DjangORM',
+    'workers': 4,
+    'timeout': 90,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default'
+}
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

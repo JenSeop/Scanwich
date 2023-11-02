@@ -21,10 +21,13 @@ import ErrorIcon from '@mui/icons-material/Error';
 import AddIcon from '@mui/icons-material/Add';
 import { useDropzone } from 'react-dropzone';
 import { isLoggedIn } from '../../utils/getAuth';
+import { getCsrf } from '../../utils/getCsrf.js';
+import { getUidFromCookie } from '../../utils/getAuth.js';
+import axios from 'axios';
 
 const FileUploadContainer = styled('div')({
-  border: '2px dashed #ccc', // 점선으로 그려질 네모난 박스
-  borderRadius: '8px', // 라운드 처리
+  border: '2px dashed #ccc',
+  borderRadius: '8px',
   padding: '20px',
   textAlign: 'center',
   cursor: 'pointer',
@@ -61,10 +64,7 @@ function Queue({ data, isMobile }) {
     setFile(null);
   };
 
-  // react-dropzone 설정
   const onDrop = (acceptedFiles) => {
-    // 업로드할 파일 처리 로직 추가
-    console.log(acceptedFiles); // 선택한 파일 확인용
     setFile(acceptedFiles[0]);
   };
 
@@ -72,6 +72,27 @@ function Queue({ data, isMobile }) {
     onDrop,
     accept: '.apk', // 업로드 허용 확장자 설정
   });
+
+  const uploadFile = async () => {
+    const csrfToken = getCsrf();
+    const Uid = getUidFromCookie();
+    const formData = new FormData();
+    formData.append('u_id', Uid);
+    formData.append('file', file);
+    formData.append('csrfToken', csrfToken);
+
+    try {
+      const response = await axios.post('/analyze/engine/call/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('File uploaded successfully:', response.data);
+      handleCloseModal();  // 파일 업로드 후 모달 닫기
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+  };
 
   return (
     <>
@@ -143,7 +164,7 @@ function Queue({ data, isMobile }) {
           <DialogActions style={{ justifyContent: 'center' }}>
             {file ? (
               <>
-                <Button variant="outlined" color="2">
+                <Button variant="outlined" color="2" onClick={uploadFile}>
                   분석
                 </Button>
               </>
