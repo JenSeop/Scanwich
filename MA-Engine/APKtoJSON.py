@@ -1,32 +1,26 @@
-#note : 이 코드는 apk을 넣을 때 클래스 이름, 필드(이름), 메서드(이름), 관계(extend, dependency) 등을 json으로 변경하는 코드입니다.
 import json
 from androguard.core.bytecodes.apk import APK
 from androguard.core.bytecodes.dvm import DalvikVMFormat
-from androguard.core.analysis.analysis import Analysis
-from androguard.decompiler.dad.decompile import DvClass
-from androguard.core.analysis.analysis import ClassAnalysis
 from androguard.misc import AnalyzeAPK
 
-apk_file_path = "apk_path"  #apk파일 위치
-
+apk_file_path = "a3b918f6f29b337598fb1ef1b30ad56fb313d586c8f8b8b1a369f1e88f3fa10f"  # apk파일 위치
 try:
     a, d, dx = AnalyzeAPK(apk_file_path)  #apk파일의 데이터 객체를 저장함.
 
     data_className = []  # 클래스 이름이 들어갈 배열
     for i in dx.get_classes():
         class_name = i.name[1:]
-        if "$" not in class_name:  # 클래스 이름에 $가 없는 경우에만 추가
-            data_className.append(class_name)
+        data_className.append(class_name)
 
     data_classes = []  # 메서드 이름이 들어갈 배열
     for class_obj in dx.get_classes():
         class_name = class_obj.name[1:].rstrip(';')
-        if "$" not in class_name:  # 클래스 이름에 $가 없는 경우에만 처리
+        if "$" not in class_name and not "android" in class_name and not "androidx" in class_name and not "com" in class_name:  # 클래스 이름에 $가 없는 경우에만 처리
             fields = class_obj.get_fields() #필드 정보를 추출하여 fields에 저장함.
             methods = class_obj.get_methods() #메서드 정보를 추출하여 methods에 저장함.
 
             class_info = {
-                "name": class_name,
+                "Classname": class_name,
                 "properties": [],
                 "method": []
             }
@@ -48,10 +42,10 @@ try:
 
     data_parents = []  # 부모 클래스가 들어갈 배열
     for j in dx.get_classes():
-        data_parents.append(j.extends[1:]) #클래스 객체에서 상속관계에 있는 클래스를 추출하여 data_parents 배열에 넣음.
-
+        data_parents.append(j.extends[1:])    
     for k, l in zip(data_className, data_parents): #상속관계의 json 형식
-        data_associate.append({"from": k, "to": l, "type": "extend"})
+        if "$" not in k and "$" not in l and not "android" in k and not "android" in l and not "google" in k and not "google" in l and not "com" in k and not "com" in l:
+            data_associate.append({"from": k, "to": l, "type": "extend"})
 
     #dependency관계에 있는 클래스를 from, to 관계로 출력함.
     for class_obj in dx.get_classes(): #dependency관계에 있는 클래스를 from, to 관계로 출력함.
@@ -64,22 +58,26 @@ try:
                     to_class = reference[0].name[1:] #to에 해당하는 클래스
                     reference_type = "dependency" #참조 속성을 정함.
 
-                    if from_class != to_class: #자기 자신과 같지 않은 클래스일 때 다음을 실행함.
+                    if "$" not in from_class and "$" not in to_class and from_class != to_class and not "android" in from_class and not "android" in to_class and not "google" in from_class and not "google" in to_class and not "com" in from_class and not "com" in to_class: #자기 자신과 같지 않은 클래스일 때 다음을 실행함.
                         association = {
                             "from": from_class,
                             "to": to_class,
                             "type": reference_type
                         }
                         data_associate.append(association)
-
+                        
     result_dict = {"Classes": data_classes, "Associations": data_associate}
 
     json_val = json.dumps(result_dict)
 
-    file = open('APKtoJson.txt', 'w')
+    file = open('APKtoJson2.txt', 'w')
     file.write(json_val)
     file.close()
 except FileNotFoundError:
-    print("파일을 찾을 수 없습니다. 파일 위치를 확인해주세요.")
+    print("APK File not found. Please check the file.")
 except Exception as e:
-    print("오류 발생:", e)
+    if "Requested API level 31 is larger than maximum we have" in str(e):
+        print("SDK version error. Processing aborted.")
+        
+    else:
+        print("An error occurred:", e)
