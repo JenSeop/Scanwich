@@ -3,7 +3,7 @@ from androguard.core.bytecodes.apk import APK
 from androguard.core.bytecodes.dvm import DalvikVMFormat
 from androguard.misc import AnalyzeAPK
 
-apk_file_path = "a3b918f6f29b337598fb1ef1b30ad56fb313d586c8f8b8b1a369f1e88f3fa10f"  # apk파일 위치
+apk_file_path = "apk_path"  # apk파일 위치
 try:
     a, d, dx = AnalyzeAPK(apk_file_path)  #apk파일의 데이터 객체를 저장함.
 
@@ -44,7 +44,7 @@ try:
     for j in dx.get_classes():
         data_parents.append(j.extends[1:])    
     for k, l in zip(data_className, data_parents): #상속관계의 json 형식
-        if "$" not in k and "$" not in l and not "android" in k and not "android" in l and not "google" in k and not "google" in l and not "com" in k and not "com" in l:
+        if "$" not in k and "$" not in l and not "android" in k and not "android" in l and not "com" in k and not "com" in l:
             data_associate.append({"from": k, "to": l, "type": "extend"})
 
     #dependency관계에 있는 클래스를 from, to 관계로 출력함.
@@ -58,7 +58,7 @@ try:
                     to_class = reference[0].name[1:] #to에 해당하는 클래스
                     reference_type = "dependency" #참조 속성을 정함.
 
-                    if "$" not in from_class and "$" not in to_class and from_class != to_class and not "android" in from_class and not "android" in to_class and not "google" in from_class and not "google" in to_class and not "com" in from_class and not "com" in to_class: #자기 자신과 같지 않은 클래스일 때 다음을 실행함.
+                    if "$" not in from_class and "$" not in to_class and from_class != to_class and not "android" in from_class and not "android" in to_class and not "com" in from_class and not "com" in to_class: #자기 자신과 같지 않은 클래스일 때 다음을 실행함.
                         association = {
                             "from": from_class,
                             "to": to_class,
