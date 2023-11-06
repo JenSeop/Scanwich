@@ -11,12 +11,14 @@ def analysis_engine(r_id, f_path):
   print(f"Activated Engine - report({r_id}) - f_path({f_path})")
   
   file_info = file_info_module(f_path)
-  file_info_dict = json.loads(file_info)
-  f_sha256 = file_info_dict.get("f_sha256", "")
+  f_sha256 = file_info.get("f_sha256", "")
+  file_classes = file_class_module(f_path)
+  vt_data = vt_output_module(vt_key, f_sha256)
+  androguard_data = androguard_module(r_id, f_path)
     
   return {
     "file_info": file_info,
-    "file_classes": file_class_module(f_path),
-    "vt_data": vt_output_module(vt_key, f_sha256),
-    "androguard_data": androguard_module(r_id, f_path),
+    "file_classes": file_classes,
+    "vt_data": vt_data,
+    "androguard_data": androguard_data,
   }

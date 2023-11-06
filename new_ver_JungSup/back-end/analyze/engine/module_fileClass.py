@@ -11,6 +11,5 @@ def file_class_module(f_path):
     extends_data = [{"from": k.rstrip(';'), "to": l.rstrip(';'), "type": "extend"} for k, l in zip(data_nomal, data_parents)]
 
     result_dict = {"Classes": classes_data, "Associations": extends_data}
-    json_val = json.dumps(result_dict)
     
-    return json_val
+    return result_dict

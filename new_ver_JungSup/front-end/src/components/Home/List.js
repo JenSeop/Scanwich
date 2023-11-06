@@ -7,6 +7,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
+import axios from 'axios';
+import { getScore } from '../../utils/getScore.js';
 
 function mapStatusToColor(malwareScore) {
   const gradientColors = [
@@ -21,12 +23,22 @@ function mapStatusToColor(malwareScore) {
     'radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0.7) 60%, transparent 100%)',
   ];
 
-  return gradientColors[malwareScore - 1] || gradientColors[0];
+  return gradientColors[malwareScore] || gradientColors[0];
 }
 
 function List({ data, isMobile }) {
+  const [list, setList] = useState([]);
   
   useEffect(() => {
+    // 페이지 로딩 시 API 호출
+    axios.get('/analyze/report/all/')  // axios.get을 사용하여 API 호출
+      .then(response => {
+        setList(response.data);  // API의 응답을 data 상태에 설정
+      })
+      .catch(error => {
+        console.error('API 호출에서 오류 발생:', error);
+      });
+
     setCookie('prevPage', '/', 365);
   }, []);
 
@@ -46,9 +58,9 @@ function List({ data, isMobile }) {
         </Grid>
         }
       <Grid container spacing={-1} xs={12}>
-        {data.map((data, index) => (
-          <Grid item xs={12} key={data.id}>
-            <Link to={`/report/${data.id}`} style={{ textDecoration: 'none' }}>
+        {list.sort((a, b) => a.r_id - b.r_id).reverse().map((list, index) => (
+          <Grid item xs={12} key={list.r_id}>
+            <Link to={`/report?${list.r_id}`} style={{ textDecoration: 'none' }}>
               <Card
                 style={{
                   marginTop: '5px',
@@ -64,21 +76,28 @@ function List({ data, isMobile }) {
                   <CardContent>
                     <Grid container spacing={0} alignItems="center" justifyContent="center">
                       <Grid item xs={1}>
-                        <div
-                          style={{
-                            width: '10px',
-                            height: '10px',
-                            borderRadius: '50%',
-                            background: mapStatusToColor(data.analysisScore),
-                          }}
-                        ></div>
+                      <div
+                        style={{
+                          width: '10px',
+                          height: '10px',
+                          borderRadius: '50%',
+                          background: (list.r_data && list.r_data.vt_data) ? 
+                                    mapStatusToColor(getScore(list.r_data.vt_data.count, list.r_data.vt_data.score)) :
+                                    mapStatusToColor(0),
+                        }}
+                      ></div>
+                      </Grid>
+                      <Grid item xs>
+                        <Typography variant="body3" color="white">
+                          {list.r_id}
+                        </Typography>
                       </Grid>
                       <Grid item xs={0} color="white">
-                        {data.apkImage && data.apkImage !== '/path/to/invalid/image' ? (
+                        {list.r_data.androguard_data.apk.icon && list.r_data.androguard_data.apk.icon !== '/path/to/invalid/image' ? (
                           <InsertDriveFileIcon fontSize="small" />
                         ) : (
                           <img
-                            src={data.apkImage}
+                            src={list.r_data.androguard_data.apk.icon}
                             alt="apkImage"
                             style={{
                               width: '10px',
@@ -90,20 +109,20 @@ function List({ data, isMobile }) {
                       </Grid>
                       <Grid item xs={3}>
                         <Typography variant="body3" color="white">
-                          {data.apkName}
+                          {list.r_data.androguard_data.apk.name}
                         </Typography>
                       </Grid>
                       <Grid item xs={2}>
                         <Typography variant="body3" color="white">
-                          {data.malwareInfo}
+                          {list.malwareInfo}
                         </Typography>
                       </Grid>
                       <Grid item xs={0} color="white">
-                        {data.userProfile !== '/path/to/invalid/image' ? (
+                        {list.userProfile !== '/path/to/invalid/image' ? (
                           <AccountCircleIcon fontSize="small" />
                         ) : (
                           <img
-                            src={data.userProfile}
+                            src={list.userProfile}
                             alt="UserProfile"
                             style={{
                               width: '20px',
@@ -115,20 +134,20 @@ function List({ data, isMobile }) {
                       </Grid>
                       <Grid item xs={2}>
                         <Typography variant="body3" color="white">
-                          {data.userName}
+                          {list.u_id}
                         </Typography>
                       </Grid>
                       <Grid item xs={2}>
                         <Typography variant="body3" color="white">
-                          {data.analysisDate}
+                          {list.r_date.substring(0, 10)}
                         </Typography>
                       </Grid>
                       <Grid item xs={0} style={{ color: 'white' }}>
-                        {data.analysisStatus === "false" ? (
+                        {list.r_status === "false" ? (
                           <Grid style={{ color: 'white' }}>
                             <ChangeCircleIcon fontSize="small" />
                           </Grid>
-                        ) : data.analysisStatus === "true" ? (
+                        ) : list.r_status === "true" ? (
                           <Grid style={{ color: '#2AF57B' }}>
                             <CheckCircleIcon fontSize="small" />
                           </Grid>

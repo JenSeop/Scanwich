@@ -1,0 +1,492 @@
+{
+  "r_id": 41,
+  "r_date": "2023-11-06T06:34:57.616253Z",
+  "r_data": {
+      "vt_data": {
+          "info": {
+              "sha1": "9db2b166e37a0521e38c3e1fe7297c480cbea809",
+              "scan_id": "a30757a7a3682ffe0f8006937addadc2e0a68b05aec71b827c4ce1e04f1b2eda-1696335407",
+              "resource": "a30757a7a3682ffe0f8006937addadc2e0a68b05aec71b827c4ce1e04f1b2eda",
+              "scan_date": "2023-10-03 12:16:47"
+          },
+          "count": 64,
+          "score": 6,
+          "vendor": {
+              "AVG": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "23.9.8494.0",
+                  "detected": false
+              },
+              "CMC": {
+                  "result": null,
+                  "update": "20230822",
+                  "version": "2.4.2022.1",
+                  "detected": false
+              },
+              "MAX": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "2023.1.4.1",
+                  "detected": false
+              },
+              "Bkav": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "2.0.0.1",
+                  "detected": false
+              },
+              "K7GW": {
+                  "result": "Trojan ( 005513f91 )",
+                  "update": "20231003",
+                  "version": "12.116.49764",
+                  "detected": true
+              },
+              "ALYac": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "1.1.3.1",
+                  "detected": false
+              },
+              "Avast": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "23.9.8494.0",
+                  "detected": false
+              },
+              "Avira": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "8.3.3.16",
+                  "detected": false
+              },
+              "Baidu": {
+                  "result": null,
+                  "update": "20190318",
+                  "version": "1.0.0.2",
+                  "detected": false
+              },
+              "Cynet": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "4.0.0.27",
+                  "detected": false
+              },
+              "Cyren": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "6.5.1.2",
+                  "detected": false
+              },
+              "DrWeb": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "7.0.61.8090",
+                  "detected": false
+              },
+              "GData": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "A:25.36595B:27.33363",
+                  "detected": false
+              },
+              "Panda": {
+                  "result": null,
+                  "update": "20231002",
+                  "version": "4.6.4.2",
+                  "detected": false
+              },
+              "VBA32": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "5.0.0",
+                  "detected": false
+              },
+              "VIPRE": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "6.0.0.35",
+                  "detected": false
+              },
+              "VirIT": {
+                  "result": null,
+                  "update": "20231002",
+                  "version": "9.5.548",
+                  "detected": false
+              },
+              "Zoner": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "2.2.2.0",
+                  "detected": false
+              },
+              "ClamAV": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "1.2.0.0",
+                  "detected": false
+              },
+              "Google": {
+                  "result": "Detected",
+                  "update": "20231003",
+                  "version": "1696330898",
+                  "detected": true
+              },
+              "Ikarus": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "6.2.4.0",
+                  "detected": false
+              },
+              "Lionic": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "7.5",
+                  "detected": false
+              },
+              "McAfee": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "6.0.6.653",
+                  "detected": false
+              },
+              "Rising": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "25.0.0.27",
+                  "detected": false
+              },
+              "Sophos": {
+                  "result": "Andr/SmsThief-A",
+                  "update": "20231003",
+                  "version": "2.3.1.0",
+                  "detected": true
+              },
+              "Yandex": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "5.5.2.24",
+                  "detected": false
+              },
+              "Zillya": {
+                  "result": null,
+                  "update": "20231002",
+                  "version": "2.0.0.4966",
+                  "detected": false
+              },
+              "Acronis": {
+                  "result": null,
+                  "update": "20230828",
+                  "version": "1.2.0.121",
+                  "detected": false
+              },
+              "Alibaba": {
+                  "result": null,
+                  "update": "20190527",
+                  "version": "0.3.0.5",
+                  "detected": false
+              },
+              "Arcabit": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "2022.0.0.18",
+                  "detected": false
+              },
+              "FireEye": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "35.24.1.0",
+                  "detected": false
+              },
+              "Sangfor": {
+                  "result": null,
+                  "update": "20230926",
+                  "version": "2.23.0.0",
+                  "detected": false
+              },
+              "TACHYON": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "2023-10-03.02",
+                  "detected": false
+              },
+              "Tencent": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "1.0.0.1",
+                  "detected": false
+              },
+              "ViRobot": {
+                  "result": null,
+                  "update": "20231002",
+                  "version": "2014.3.20.0",
+                  "detected": false
+              },
+              "Xcitium": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "36052",
+                  "detected": false
+              },
+              "Emsisoft": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "2022.6.0.32461",
+                  "detected": false
+              },
+              "F-Secure": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "18.10.1137.128",
+                  "detected": false
+              },
+              "Fortinet": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "None",
+                  "detected": false
+              },
+              "Jiangmin": {
+                  "result": null,
+                  "update": "20231002",
+                  "version": "16.0.100",
+                  "detected": false
+              },
+              "Kingsoft": {
+                  "result": null,
+                  "update": "20230906",
+                  "version": "2023.8.30.1",
+                  "detected": false
+              },
+              "Symantec": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "1.20.0.0",
+                  "detected": false
+              },
+              "AhnLab-V3": {
+                  "result": "Trojan/Android.SMSstealer.839625",
+                  "update": "20231003",
+                  "version": "3.24.0.10447",
+                  "detected": true
+              },
+              "Antiy-AVL": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "3.0",
+                  "detected": false
+              },
+              "Kaspersky": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "22.0.1.28",
+                  "detected": false
+              },
+              "MaxSecure": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "1.0.0.1",
+                  "detected": false
+              },
+              "Microsoft": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "1.1.23080.2005",
+                  "detected": false
+              },
+              "Trustlook": {
+                  "result": "Android.PUA.DebugKey",
+                  "update": "20231003",
+                  "version": "1.0",
+                  "detected": true
+              },
+              "ZoneAlarm": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "1.0",
+                  "detected": false
+              },
+              "ESET-NOD32": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "28008",
+                  "detected": false
+              },
+              "Gridinsoft": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "1.0.141.174",
+                  "detected": false
+              },
+              "TrendMicro": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "11.0.0.1006",
+                  "detected": false
+              },
+              "BitDefender": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "7.2",
+                  "detected": false
+              },
+              "K7AntiVirus": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "12.116.49764",
+                  "detected": false
+              },
+              "Avast-Mobile": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "231003-00",
+                  "detected": false
+              },
+              "Malwarebytes": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "4.5.5.54",
+                  "detected": false
+              },
+              "CAT-QuickHeal": {
+                  "result": null,
+                  "update": "20231002",
+                  "version": "22.00",
+                  "detected": false
+              },
+              "NANO-Antivirus": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "1.0.146.25796",
+                  "detected": false
+              },
+              "BitDefenderFalx": {
+                  "result": "Android.Trojan.SmsSpy.TA",
+                  "update": "20230921",
+                  "version": "2.0.936",
+                  "detected": true
+              },
+              "BitDefenderTheta": {
+                  "result": null,
+                  "update": "20230928",
+                  "version": "7.2.37796.0",
+                  "detected": false
+              },
+              "MicroWorld-eScan": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "14.0.409.0",
+                  "detected": false
+              },
+              "SUPERAntiSpyware": {
+                  "result": null,
+                  "update": "20231002",
+                  "version": "5.6.0.1032",
+                  "detected": false
+              },
+              "McAfee-GW-Edition": {
+                  "result": null,
+                  "update": "20231002",
+                  "version": "v2021.2.0+4045",
+                  "detected": false
+              },
+              "TrendMicro-HouseCall": {
+                  "result": null,
+                  "update": "20231003",
+                  "version": "10.0.0.1040",
+                  "detected": false
+              }
+          }
+      },
+      "file_info": {
+          "f_md5": "c4d37388e29e01bb0999db4d29ed5f28",
+          "f_name": "test_46jULTX.apk",
+          "f_path": "B:\\est-project\\new_ver_JungSup\\files\\apk\\test_46jULTX.apk",
+          "f_size": 19273,
+          "f_type": "APK",
+          "f_sha256": "a30757a7a3682ffe0f8006937addadc2e0a68b05aec71b827c4ce1e04f1b2eda"
+      },
+      "file_classes": "{\"Classes\": [], \"Associations\": []}",
+      "androguard_data": {
+          "apk": {
+              "icon": "B:\\est-project\\new_ver_JungSup\\files\\apk_icon\\41.png",
+              "name": "CJ 대한통운 택배",
+              "crc32": {
+                  "resources.arsc": 1202855478,
+                  "META-INF/CERT.SF": 3145283663,
+                  "META-INF/CERT.RSA": 1145135673,
+                  "AndroidManifest.xml": 617547502,
+                  "META-INF/MANIFEST.MF": 1968448405,
+                  "res/drawable/icon.png": 327141798,
+                  "res/xml/deviceadmin.xml": 1668646472,
+                  "res/layout/activity_main.xml": 2713666420
+              },
+              "file_list": [
+                  "META-INF/MANIFEST.MF",
+                  "META-INF/CERT.SF",
+                  "META-INF/CERT.RSA",
+                  "AndroidManifest.xml",
+                  "res/drawable/icon.png",
+                  "res/layout/activity_main.xml",
+                  "resources.arsc",
+                  "res/xml/deviceadmin.xml"
+              ]
+          },
+          "sdk": {
+              "max_sdk_ver": null,
+              "min_sdk_ver": "8",
+              "package_name": "skrud999.quddyd99.view",
+              "target_sdk_ver": "19",
+              "android_ver_code": "1"
+          },
+          "signed": {
+              "v1": true,
+              "v2": false,
+              "v3": false
+          },
+          "services": [
+              "skrud999.quddyd99.view..PreodicService"
+          ],
+          "libraries": [],
+          "providers": [],
+          "receivers": [
+              "skrud999.quddyd99.view..DeviceAdmin",
+              "skrud999.quddyd99.view..SMSBroadcastReceiver",
+              "skrud999.quddyd99.view.CallStateReceiver"
+          ],
+          "activities": {
+              "all": [
+                  "skrud999.quddyd99.view..MainActivity",
+                  "skrud999.quddyd99.view..RegDPMActivity"
+              ],
+              "main_activity": "skrud999.quddyd99.view..MainActivity"
+          },
+          "permissions": {
+              "all": [
+                  "android.permission.WRITE_SETTINGS",
+                  "android.permission.CALL_PHONE",
+                  "android.permission.MODIFY_PHONE_STATE",
+                  "android.permission.RECEIVE_SMS",
+                  "android.permission.READ_SMS",
+                  "android.permission.INTERNET",
+                  "android.permission.SEND_SMS",
+                  "android.permission.READ_PHONE_STATE",
+                  "android.permission.RECEIVE_BOOT_COMPLETED"
+              ],
+              "declared": []
+          },
+          "intent_filters": {
+              "action": [
+                  "android.intent.action.MAIN"
+              ],
+              "category": [
+                  "android.intent.category.default",
+                  "android.intent.category.LAUNCHER"
+              ]
+          }
+      }
+  },
+  "r_status": "true",
+  "u_id": "dostwoman",
+  "f_path": "/media/apk/test_46jULTX.apk"
+}

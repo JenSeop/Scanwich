@@ -1,6 +1,4 @@
-import os
 from django.db import models
-from django.conf import settings
 
 class AnalyzeReport(models.Model):
 # Report  

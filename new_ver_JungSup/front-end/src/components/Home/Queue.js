@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Grid,
   Card,
@@ -23,7 +23,9 @@ import { useDropzone } from 'react-dropzone';
 import { isLoggedIn } from '../../utils/getAuth';
 import { getCsrf } from '../../utils/getCsrf.js';
 import { getUidFromCookie } from '../../utils/getAuth.js';
+import setCookie from '../../utils/setCookie';
 import axios from 'axios';
+import { getScore } from '../../utils/getScore.js';
 
 const FileUploadContainer = styled('div')({
   border: '2px dashed #ccc',
@@ -46,10 +48,10 @@ function mapStatusToColor(malwareScore) {
     'radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0.7) 60%, transparent 100%)',
   ];
 
-  return gradientColors[malwareScore - 1] || gradientColors[0];
+  return gradientColors[malwareScore] || gradientColors[0];
 }
 
-function Queue({ data, isMobile }) {
+function Queue({ queue_data, isMobile }) {
   const [openModal, setOpenModal] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [file, setFile] = useState();
@@ -182,9 +184,9 @@ function Queue({ data, isMobile }) {
           </DialogActions>
         </Dialog>
         <Grid container spacing={-1} xs={12}>
-          {data.map((data, index) => (
-            <Grid item xs={12} key={data.id}>
-              <Link to={`/report/${data.id}`} style={{ textDecoration: 'none' }}>
+          {queue_data.sort((a, b) => a.r_id - b.r_id).reverse().map((queue_data, index) => (
+            <Grid item xs={12} key={queue_data.id}>
+              <Link to={`/report/${queue_data.r_id}`} style={{ textDecoration: 'none' }}>
                 <Card
                   style={{
                     marginTop: '5px',
@@ -201,45 +203,42 @@ function Queue({ data, isMobile }) {
                       <Grid container spacing={0} alignItems="center" justifyContent="center">
                         <Grid item xs={2}>
                           <div
-                            style={{
-                              width: '10px',
-                              height: '10px',
-                              borderRadius: '50%',
-                              background: mapStatusToColor(data.analysisScore),
-                            }}
+                          style={{
+                            width: '10px',
+                            height: '10px',
+                            borderRadius: '50%',
+                            background: (queue_data.r_data && queue_data.r_data.vt_data) ? 
+                                      mapStatusToColor(getScore(queue_data.r_data.vt_data.count, queue_data.r_data.vt_data.score)) :
+                                      mapStatusToColor(0),
+                          }}
                           ></div>
                         </Grid>
+                        <Grid item xs>
+                          <Typography variant="body3" color="white">
+                            {queue_data.r_id}
+                          </Typography>
+                        </Grid>
                         <Grid item xs={0} color="white">
-                          {data.apkImage && data.apkImage !== '/path/to/invalid/image' ? (
-                            <FileOpenIcon fontSize="small" />
-                          ) : (
-                            <img
-                              src={data.apkImage}
-                              alt="apkImage"
-                              style={{
-                                width: '10px',
-                                height: '10px',
-                                borderRadius: '50%',
-                              }}
-                            />
-                          )}
+                            <InsertDriveFileIcon fontSize="small" />
                         </Grid>
-                        <Grid item xs={4}>
-                          <Typography variant="body3" color="white">
-                            {data.apkName}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={4}>
-                          <Typography variant="body3" color="white">
-                            {data.analysisDate}
-                          </Typography>
+                        <Grid item xs={7}>
+                          {queue_data.r_data.androguard_data &&
+                            <Typography variant="body3" color="white">
+                              {queue_data.r_data.androguard_data.apk.name}
+                            </Typography>
+                          }
+                          {!queue_data.r_data.androguard_data &&
+                            <Typography variant="body3" color="white">
+                              분석 대기중...
+                            </Typography>
+                          }
                         </Grid>
                         <Grid item xs={0} style={{ color: 'white' }}>
-                          {data.analysisStatus === "false" ? (
+                          {queue_data.r_status === "false" ? (
                             <Grid style={{ color: 'white' }}>
                               <ChangeCircleIcon fontSize="small" />
                             </Grid>
-                          ) : data.analysisStatus === "true" ? (
+                          ) : queue_data.r_status === "true" ? (
                             <Grid style={{ color: '#2AF57B' }}>
                               <CheckCircleIcon fontSize="small" />
                             </Grid>

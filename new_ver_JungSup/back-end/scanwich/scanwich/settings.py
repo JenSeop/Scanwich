@@ -66,8 +66,6 @@ INSTALLED_APPS = [
     # Scanwich APP
     'users_origin',
     'users_social',
-    'users_file',
-    'engine_analysis',
     # KAKAO SOCIAL LOGIN
     'django.contrib.sites',
     'allauth',
