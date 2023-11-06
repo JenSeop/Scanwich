@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import setCookie from '../../utils/setCookie';
-import { Grid, Card, CardContent, Typography, CardActionArea } from '@mui/material';
+import axios from 'axios';
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  CardActionArea,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
-import axios from 'axios';
 import { getScore } from '../../utils/getScore.js';
+import DataLoadingButton from './DataLoadingButton.js';
 
 function mapStatusToColor(malwareScore) {
   const gradientColors = [
@@ -28,18 +34,39 @@ function mapStatusToColor(malwareScore) {
 
 function List({ data, isMobile }) {
   const [list, setList] = useState([]);
-  
-  useEffect(() => {
-    // 페이지 로딩 시 API 호출
-    axios.get('/analyze/report/all/')  // axios.get을 사용하여 API 호출
-      .then(response => {
-        setList(response.data);  // API의 응답을 data 상태에 설정
-      })
-      .catch(error => {
-        console.error('API 호출에서 오류 발생:', error);
-      });
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
 
-    setCookie('prevPage', '/', 365);
+  const fetchData = () => {
+    if (!hasNextPage || loading) {
+      return;
+    }
+
+    setLoading(true);
+    axios
+      .get(`/analyze/get_analyze_reports_re/?page=${page}`)
+      .then((response) => {
+        const newData = response.data.results;
+        setList((prevList) => [...prevList, ...newData]);
+
+        setHasNextPage(!!response.data.next);
+
+        setPage((prevPage) => prevPage + 1);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('API 호출에서 오류 발생:', error);
+        setLoading(false);
+      });
+  };
+
+  const handleLoadMore = () => {
+    fetchData();
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return (
@@ -57,10 +84,10 @@ function List({ data, isMobile }) {
           </Typography>
         </Grid>
         }
-      <Grid container spacing={-1} xs={12}>
-        {list.sort((a, b) => a.r_id - b.r_id).reverse().map((list, index) => (
-          <Grid item xs={12} key={list.r_id}>
-            <Link to={`/report?${list.r_id}`} style={{ textDecoration: 'none' }}>
+      <Grid container spacing={-1}>
+        {list.map((item, index) => (
+          <Grid item xs={12} key={item.r_id}>
+            <Link to={`/report/${item.r_id}`} style={{ textDecoration: 'none' }}>
               <Card
                 style={{
                   marginTop: '5px',
@@ -76,53 +103,48 @@ function List({ data, isMobile }) {
                   <CardContent>
                     <Grid container spacing={0} alignItems="center" justifyContent="center">
                       <Grid item xs={1}>
-                      <div
-                        style={{
-                          width: '10px',
-                          height: '10px',
-                          borderRadius: '50%',
-                          background: (list.r_data && list.r_data.vt_data) ? 
-                                    mapStatusToColor(getScore(list.r_data.vt_data.count, list.r_data.vt_data.score)) :
-                                    mapStatusToColor(0),
-                        }}
-                      ></div>
+                        <div
+                          style={{
+                            width: '10px',
+                            height: '10px',
+                            borderRadius: '50%',
+                            background: item.r_data && item.r_data.vt_data ?
+                              mapStatusToColor(getScore(item.r_data.vt_data.count, item.r_data.vt_data.score)) :
+                              mapStatusToColor(0),
+                          }}
+                        ></div>
                       </Grid>
                       <Grid item xs>
                         <Typography variant="body3" color="white">
-                          {list.r_id}
+                          {item.r_id}
                         </Typography>
                       </Grid>
                       <Grid item xs={0} color="white">
-                        {list.r_data.androguard_data.apk.icon && list.r_data.androguard_data.apk.icon !== '/path/to/invalid/image' ? (
                           <InsertDriveFileIcon fontSize="small" />
-                        ) : (
-                          <img
-                            src={list.r_data.androguard_data.apk.icon}
-                            alt="apkImage"
-                            style={{
-                              width: '10px',
-                              height: '10px',
-                              borderRadius: '50%',
-                            }}
-                          />
-                        )}
                       </Grid>
                       <Grid item xs={3}>
-                        <Typography variant="body3" color="white">
-                          {list.r_data.androguard_data.apk.name}
-                        </Typography>
-                      </Grid>
+                          {item.r_data.androguard_data &&
+                            <Typography variant="body3" color="white">
+                              {item.r_data.androguard_data.apk.name}
+                            </Typography>
+                          }
+                          {!item.r_data.androguard_data &&
+                            <Typography variant="body3" color="white">
+                              분석 대기중...
+                            </Typography>
+                          }
+                        </Grid>
                       <Grid item xs={2}>
                         <Typography variant="body3" color="white">
-                          {list.malwareInfo}
+                          {item.malwareInfo}
                         </Typography>
                       </Grid>
                       <Grid item xs={0} color="white">
-                        {list.userProfile !== '/path/to/invalid/image' ? (
+                        {item.userProfile !== '/path/to/invalid/image' ? (
                           <AccountCircleIcon fontSize="small" />
                         ) : (
                           <img
-                            src={list.userProfile}
+                            src={item.userProfile}
                             alt="UserProfile"
                             style={{
                               width: '20px',
@@ -134,20 +156,20 @@ function List({ data, isMobile }) {
                       </Grid>
                       <Grid item xs={2}>
                         <Typography variant="body3" color="white">
-                          {list.u_id}
+                          {item.u_id}
                         </Typography>
                       </Grid>
                       <Grid item xs={2}>
                         <Typography variant="body3" color="white">
-                          {list.r_date.substring(0, 10)}
+                          {item.r_date.substring(0, 10)}
                         </Typography>
                       </Grid>
                       <Grid item xs={0} style={{ color: 'white' }}>
-                        {list.r_status === "false" ? (
+                        {item.r_status === 'false' ? (
                           <Grid style={{ color: 'white' }}>
                             <ChangeCircleIcon fontSize="small" />
                           </Grid>
-                        ) : list.r_status === "true" ? (
+                        ) : item.r_status === 'true' ? (
                           <Grid style={{ color: '#2AF57B' }}>
                             <CheckCircleIcon fontSize="small" />
                           </Grid>
@@ -165,6 +187,11 @@ function List({ data, isMobile }) {
           </Grid>
         ))}
       </Grid>
+      <DataLoadingButton
+        hasNextPage={hasNextPage}
+        loading={loading}
+        handleLoadMore={handleLoadMore}
+      />
     </>
   );
 }

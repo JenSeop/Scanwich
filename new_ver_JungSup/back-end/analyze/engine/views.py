@@ -65,14 +65,13 @@ def get_analyze_reports(request):
 @permission_classes([AllowAny])
 def get_user_analyze_reports(request, u_id):
       if request.method == 'GET':
-            # r_status 값이 true인 것과 u_id 값으로 필터링
-            reports = AnalyzeReport.objects.filter(u_id=u_id).order_by('-r_date')[:8]
+            reports = AnalyzeReport.objects.filter(u_id=u_id).order_by('-r_date')[:10]
             serializer = AnalyzeReportSerializer(reports, many=True)
             return JsonResponse(serializer.data, safe=False)
 
+# 모든 리포트를 페이징 처리를 통해 불러오기
 class AnalyzeReportPagination(PageNumberPagination):
       page_size = 12
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_analyze_reports_re(request):
@@ -83,8 +82,22 @@ def get_analyze_reports_re(request):
 
       next_link = paginator.get_next_link()
       
-      # 다음 페이지 URL이 있는 경우에만 next 필드에 URL을 포함합니다.
       return Response({
       'results': serializer.data,
       'next': next_link if next_link else None,
       })
+
+def report_detail(request, r_id):
+      try:
+            report = AnalyzeReport.objects.get(r_id=r_id)
+            
+            return JsonResponse({
+            'r_id': report.r_id,
+            'r_date': report.r_date,
+            'r_data': report.r_data,
+            'r_status': report.r_status,
+            'u_id': report.u_id,
+            'f_path': report.f_path.url,
+      })
+      except AnalyzeReport.DoesNotExist:
+            return JsonResponse({'error': '리포트를 찾을 수 없습니다.'}, status=404)

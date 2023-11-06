@@ -10,7 +10,8 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  styled
+  styled,
+  Skeleton,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
@@ -26,6 +27,7 @@ import { getUidFromCookie } from '../../utils/getAuth.js';
 import setCookie from '../../utils/setCookie';
 import axios from 'axios';
 import { getScore } from '../../utils/getScore.js';
+import Refresh from '../../components/Refresh.js';
 
 const FileUploadContainer = styled('div')({
   border: '2px dashed #ccc',
@@ -51,11 +53,27 @@ function mapStatusToColor(malwareScore) {
   return gradientColors[malwareScore] || gradientColors[0];
 }
 
-function Queue({ queue_data, isMobile }) {
+function Queue({ isMobile }) {
   const [openModal, setOpenModal] = useState(false);
-  const [uploadedFile, setUploadedFile] = useState(null);
   const [file, setFile] = useState();
   const isLogin = isLoggedIn();
+  const [queue, setQueue] = useState([]);
+  const [loadingQueue, setLoadingQueue] = useState(true);
+  
+  useEffect(() => {
+    const u_id = getUidFromCookie();
+    axios.get(`/analyze/report/user/${u_id}/`)
+      .then(response => {
+        setQueue(response.data);
+        setLoadingQueue(false);
+      })
+      .catch(error => {
+        console.error('API 호출에서 오류 발생:', error);
+        setLoadingQueue(false);
+      });
+
+    setCookie('prevPage', '/', 365);
+  }, []);
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -72,7 +90,7 @@ function Queue({ queue_data, isMobile }) {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: '.apk', // 업로드 허용 확장자 설정
+    accept: '.apk',
   });
 
   const uploadFile = async () => {
@@ -90,7 +108,8 @@ function Queue({ queue_data, isMobile }) {
         },
       });
       console.log('File uploaded successfully:', response.data);
-      handleCloseModal();  // 파일 업로드 후 모달 닫기
+      handleCloseModal()
+      window.location.reload();
     } catch (error) {
       console.error('Error uploading file:', error);
     }
@@ -184,77 +203,111 @@ function Queue({ queue_data, isMobile }) {
           </DialogActions>
         </Dialog>
         <Grid container spacing={-1} xs={12}>
-          {queue_data.sort((a, b) => a.r_id - b.r_id).reverse().map((queue_data, index) => (
-            <Grid item xs={12} key={queue_data.id}>
-              <Link to={`/report/${queue_data.r_id}`} style={{ textDecoration: 'none' }}>
-                <Card
-                  style={{
-                    marginTop: '5px',
-                    marginBottom: '1px',
-                    marginLeft: '19px',
-                    marginRight: '2px',
-                    width: 'auto',
-                    backgroundColor: '#373531',
-                    border: '1px solid #000',
-                  }}
-                >
-                  <CardActionArea>
-                    <CardContent>
-                      <Grid container spacing={0} alignItems="center" justifyContent="center">
-                        <Grid item xs={2}>
-                          <div
-                          style={{
-                            width: '10px',
-                            height: '10px',
-                            borderRadius: '50%',
-                            background: (queue_data.r_data && queue_data.r_data.vt_data) ? 
-                                      mapStatusToColor(getScore(queue_data.r_data.vt_data.count, queue_data.r_data.vt_data.score)) :
-                                      mapStatusToColor(0),
-                          }}
-                          ></div>
-                        </Grid>
-                        <Grid item xs>
-                          <Typography variant="body3" color="white">
-                            {queue_data.r_id}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={0} color="white">
-                            <InsertDriveFileIcon fontSize="small" />
-                        </Grid>
-                        <Grid item xs={7}>
-                          {queue_data.r_data.androguard_data &&
-                            <Typography variant="body3" color="white">
-                              {queue_data.r_data.androguard_data.apk.name}
-                            </Typography>
-                          }
-                          {!queue_data.r_data.androguard_data &&
-                            <Typography variant="body3" color="white">
-                              분석 대기중...
-                            </Typography>
-                          }
-                        </Grid>
-                        <Grid item xs={0} style={{ color: 'white' }}>
-                          {queue_data.r_status === "false" ? (
-                            <Grid style={{ color: 'white' }}>
-                              <ChangeCircleIcon fontSize="small" />
-                            </Grid>
-                          ) : queue_data.r_status === "true" ? (
-                            <Grid style={{ color: '#2AF57B' }}>
-                              <CheckCircleIcon fontSize="small" />
-                            </Grid>
-                          ) : (
-                            <Grid style={{ color: 'red' }}>
-                              <ErrorIcon fontSize="small" />
-                            </Grid>
-                          )}
-                        </Grid>
+  {loadingQueue ? (
+          Array.from({ length: 10 }).map((_, index) => (
+            <Grid item xs={12} key={index}>
+              <Card
+                style={{
+                  marginTop: '5px',
+                  marginBottom: '1px',
+                  marginLeft: '19px',
+                  marginRight: '2px',
+                  width: 'auto',
+                  backgroundColor: 'rgba(55, 53, 49, 0.9)',
+                  border: '1px solid #000',
+                }}
+              >
+                <CardActionArea>
+                  <CardContent>
+                    <Grid container spacing={0} alignItems="center" justifyContent="center">
+                      <Grid item xs={2}>
+                        <Skeleton variant="circle" width={20} height={20} />
                       </Grid>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Link>
+                      <Grid item xs>
+                        <Skeleton variant="text" width={100} />
+                      </Grid>
+                      <Grid item xs={0} color="white">
+                        <Skeleton variant="circle" width={20} height={20} />
+                      </Grid>
+                    </Grid>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
             </Grid>
-          ))}
+          ))
+        ) : (
+        queue.sort((a, b) => a.r_id - b.r_id).reverse().map((queue, index) => (
+              <Grid item xs={12} key={queue.id}>
+                <Link to={`/report/${queue.r_id}`} style={{ textDecoration: 'none' }}>
+                  <Card
+                    style={{
+                      marginTop: '5px',
+                      marginBottom: '1px',
+                      marginLeft: '19px',
+                      marginRight: '2px',
+                      width: 'auto',
+                      backgroundColor: '#373531',
+                      border: '1px solid #000',
+                    }}
+                  >
+                    <CardActionArea>
+                      <CardContent>
+                        <Grid container spacing={0} alignItems="center" justifyContent="center">
+                          <Grid item xs={2}>
+                            <div
+                              style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                background: (queue.r_data && queue.r_data.vt_data) ? 
+                                          mapStatusToColor(getScore(queue.r_data.vt_data.count, queue.r_data.vt_data.score)) :
+                                          mapStatusToColor(0),
+                              }}
+                            ></div>
+                          </Grid>
+                          <Grid item xs>
+                            <Typography variant="body3" color="white">
+                              {queue.r_id}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={0} color="white">
+                              <InsertDriveFileIcon fontSize="small" />
+                          </Grid>
+                          <Grid item xs={7}>
+                            {queue.r_data.androguard_data &&
+                              <Typography variant="body3" color="white">
+                                {queue.r_data.androguard_data.apk.name}
+                              </Typography>
+                            }
+                            {!queue.r_data.androguard_data &&
+                              <Typography variant="body3" color="white">
+                                분석 대기중...
+                              </Typography>
+                            }
+                          </Grid>
+                          <Grid item xs={0} style={{ color: 'white' }}>
+                            {queue.r_status === "false" ? (
+                              <Grid style={{ color: 'white' }}>
+                                <ChangeCircleIcon fontSize="small" />
+                              </Grid>
+                            ) : queue.r_status === "true" ? (
+                              <Grid style={{ color: '#2AF57B' }}>
+                                <CheckCircleIcon fontSize="small" />
+                              </Grid>
+                            ) : (
+                              <Grid style={{ color: 'red' }}>
+                                <ErrorIcon fontSize="small" />
+                              </Grid>
+                            )}
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Link>
+              </Grid>
+            ))
+          )}
         </Grid>
       </Grid>
     </>

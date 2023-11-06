@@ -45,7 +45,10 @@ function ScoreComment({score, varCode}) {
   }
 
   return (
-    <Typography variant={varCode} color={commentColor}>
+    <Typography
+      variant={varCode}
+      color={commentColor}
+    >
       {commentText}
     </Typography>
   );
