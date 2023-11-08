@@ -72,7 +72,7 @@ function App() {
           <Route path="/email/verif/424" element={<EmailVerif424 />} />
           <Route path="/email/verif/502" element={<EmailVerif502 />} />
           <Route path="/report/:r_id" element={<Report display={display}/>} />
-          <Route path="/loading" element={<Loading status="loading" />} />
+          <Route path="/loading" element={<Loading status={true} />} />
           <Route path="/reportimg" element={<ReportImg paramScore={'1'} iconSize={520} circleSize={520}/>} />
           <Route path="/error/400" element={<Error errorCode="400" />} />
           <Route path="/error/403" element={<Error errorCode="403" />} />

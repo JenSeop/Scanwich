@@ -12,6 +12,7 @@ import {
   DialogActions,
   styled,
   Skeleton,
+  Tooltip
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
@@ -133,21 +134,23 @@ function Queue({ isMobile }) {
           <Typography variant="h6" color="#373531" fontWeight="bold">
             Queue
           </Typography>
-          <Button
-            variant="contained"
-            color="2"
-            onClick={handleOpenModal}
-            startIcon={<AddIcon />}
-            style={{
-              color: 'white',
-              width: '70px',
-              height: '25px',
-              fontSize: '12px',
-              marginRight: '32px',
-            }}
-          >
-            NEW
-          </Button>
+          <Tooltip title="파일 분석" placement='left'>
+            <Button
+              variant="contained"
+              color="2"
+              onClick={handleOpenModal}
+              startIcon={<AddIcon />}
+              style={{
+                color: 'white',
+                width: '70px',
+                height: '25px',
+                fontSize: '12px',
+                marginRight: '32px',
+              }}
+            >
+              NEW
+            </Button>
+          </Tooltip>
         </Grid>
         }
         <Dialog open={openModal} onClose={handleCloseModal}>

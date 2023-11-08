@@ -25,7 +25,7 @@ const ReportNav = ({ reportId }) => {
         <Typography variant="h6" fontWeight="bold" color="#373531">Report #{reportId}</Typography>
       </Grid>
       <Grid item xs={6} style={{ textAlign: 'right' }}>
-        <Tooltip title="공유하기">
+        <Tooltip title="공유">
           <IconButton onClick={handleOpenDialog}>
             <ShareIcon />
           </IconButton>

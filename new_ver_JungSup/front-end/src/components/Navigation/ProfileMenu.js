@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import RestorePageIcon from '@mui/icons-material/RestorePage';
 import PlagiarismIcon from '@mui/icons-material/Plagiarism';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import Tooltip from '@mui/material/Tooltip';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate  } from 'react-router-dom';
@@ -144,7 +145,7 @@ export default function ProfileMenu({userName, userEmail}) {
             <ListItemIcon>
               <AccountBoxIcon />
             </ListItemIcon>
-            <ListItemText primary="프로필" />
+            <ListItemText primary="내 정보" />
           </ListItemButton>
         </ListItem>
         <Divider />
@@ -192,7 +193,11 @@ export default function ProfileMenu({userName, userEmail}) {
                     textDecoration: 'none' 
                 } 
             }}
-          ><PersonIcon /></Button>
+          >
+            <Tooltip title="프로필">
+              <PersonIcon />
+            </Tooltip>
+          </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

@@ -90,11 +90,30 @@ def get_analyze_reports_re(request):
 def report_detail(request, r_id):
       try:
             report = AnalyzeReport.objects.get(r_id=r_id)
-            
+            if report.r_status == 'false':
+                  return JsonResponse({
+                        'r_id': report.r_id,
+                        'r_status': report.r_status,
+                        'u_id': report.u_id,
+                        'f_path': report.f_path.url,
+                  })
             return JsonResponse({
             'r_id': report.r_id,
             'r_date': report.r_date,
             'r_data': report.r_data,
+            'r_status': report.r_status,
+            'u_id': report.u_id,
+            'f_path': report.f_path.url,
+      })
+      except AnalyzeReport.DoesNotExist:
+            return JsonResponse({'error': '리포트를 찾을 수 없습니다.'}, status=404)
+
+def report_status(request, r_id):
+      try:
+            report = AnalyzeReport.objects.get(r_id=r_id)
+            
+            return JsonResponse({
+            'r_id': report.r_id,
             'r_status': report.r_status,
             'u_id': report.u_id,
             'f_path': report.f_path.url,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box, Drawer, Button, List, ListItem, ListItemButton,
-  ListItemText, Divider, Typography, Grid , ListItemIcon
+  ListItemText, Divider, Typography, Grid , ListItemIcon, Tooltip
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import InfoIcon from '@mui/icons-material/Info';
@@ -106,7 +106,11 @@ export default function UserMenu() {
                     textDecoration: 'none' 
                 } 
             }}
-        ><MenuIcon /></Button>
+        >
+          <Tooltip title="메뉴">
+            <MenuIcon />
+          </Tooltip>
+        </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
