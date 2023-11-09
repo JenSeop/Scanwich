@@ -61,11 +61,11 @@ INSTALLED_APPS = [
     'corsheaders',
     # DRF
     'rest_framework',
+    # Django Q
+    'django_q',
     # Scanwich APP
     'users_origin',
     'users_social',
-    'users_file',
-    'engine_analysis',
     # KAKAO SOCIAL LOGIN
     'django.contrib.sites',
     'allauth',
@@ -139,6 +139,16 @@ DATABASES = {
         'HOST': env("HOST"),
         'PORT': env("PORT"),
     }
+}
+
+Q_CLUSTER = {
+    'name': env("Q_NAME"),
+    'workers': env("Q_WORKERS"),
+    'timeout': env("Q_TIMEOUT"),
+    'retry': env("Q_RETRY"),
+    'queue_limit': env("Q_QUEUE_LIMIT"),
+    'bulk': env("Q_BULK"),
+    'orm': env("Q_ORM")
 }
 
 AUTH_PASSWORD_VALIDATORS = [

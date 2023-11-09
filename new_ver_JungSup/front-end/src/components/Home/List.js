@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import setCookie from '../../utils/setCookie';
-import { Grid, Card, CardContent, Typography, CardActionArea } from '@mui/material';
+import axios from 'axios';
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  CardActionArea,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
+import { getScore } from '../../utils/getScore.js';
+import DataLoadingButton from './DataLoadingButton.js';
 
 function mapStatusToColor(malwareScore) {
   const gradientColors = [
@@ -21,13 +29,44 @@ function mapStatusToColor(malwareScore) {
     'radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0.7) 60%, transparent 100%)',
   ];
 
-  return gradientColors[malwareScore - 1] || gradientColors[0];
+  return gradientColors[malwareScore] || gradientColors[0];
 }
 
 function List({ data, isMobile }) {
-  
+  const [list, setList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
+
+  const fetchData = () => {
+    if (!hasNextPage || loading) {
+      return;
+    }
+
+    setLoading(true);
+    axios
+      .get(`/analyze/get_analyze_reports_re/?page=${page}`)
+      .then((response) => {
+        const newData = response.data.results;
+        setList((prevList) => [...prevList, ...newData]);
+
+        setHasNextPage(!!response.data.next);
+
+        setPage((prevPage) => prevPage + 1);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('API 호출에서 오류 발생:', error);
+        setLoading(false);
+      });
+  };
+
+  const handleLoadMore = () => {
+    fetchData();
+  };
+
   useEffect(() => {
-    setCookie('prevPage', '/', 365);
+    fetchData();
   }, []);
 
   return (
@@ -45,10 +84,10 @@ function List({ data, isMobile }) {
           </Typography>
         </Grid>
         }
-      <Grid container spacing={-1} xs={12}>
-        {data.map((data, index) => (
-          <Grid item xs={12} key={data.id}>
-            <Link to={`/report/${data.id}`} style={{ textDecoration: 'none' }}>
+      <Grid container spacing={-1}>
+        {list.map((item, index) => (
+          <Grid item xs={12} key={item.r_id}>
+            <Link to={`/report/${item.r_id}`} style={{ textDecoration: 'none' }}>
               <Card
                 style={{
                   marginTop: '5px',
@@ -69,41 +108,43 @@ function List({ data, isMobile }) {
                             width: '10px',
                             height: '10px',
                             borderRadius: '50%',
-                            background: mapStatusToColor(data.analysisScore),
+                            background: item.r_data && item.r_data.vt_data ?
+                              mapStatusToColor(getScore(item.r_data.vt_data.count, item.r_data.vt_data.score)) :
+                              mapStatusToColor(0),
                           }}
                         ></div>
                       </Grid>
+                      <Grid item xs>
+                        <Typography variant="body3" color="white">
+                          {item.r_id}
+                        </Typography>
+                      </Grid>
                       <Grid item xs={0} color="white">
-                        {data.apkImage && data.apkImage !== '/path/to/invalid/image' ? (
                           <InsertDriveFileIcon fontSize="small" />
-                        ) : (
-                          <img
-                            src={data.apkImage}
-                            alt="apkImage"
-                            style={{
-                              width: '10px',
-                              height: '10px',
-                              borderRadius: '50%',
-                            }}
-                          />
-                        )}
                       </Grid>
                       <Grid item xs={3}>
-                        <Typography variant="body3" color="white">
-                          {data.apkName}
-                        </Typography>
-                      </Grid>
+                          {item.r_data.androguard_data &&
+                            <Typography variant="body3" color="white">
+                              {item.r_data.androguard_data.apk.name}
+                            </Typography>
+                          }
+                          {!item.r_data.androguard_data &&
+                            <Typography variant="body3" color="white">
+                              분석 대기중...
+                            </Typography>
+                          }
+                        </Grid>
                       <Grid item xs={2}>
                         <Typography variant="body3" color="white">
-                          {data.malwareInfo}
+                          {item.malwareInfo}
                         </Typography>
                       </Grid>
                       <Grid item xs={0} color="white">
-                        {data.userProfile !== '/path/to/invalid/image' ? (
+                        {item.userProfile !== '/path/to/invalid/image' ? (
                           <AccountCircleIcon fontSize="small" />
                         ) : (
                           <img
-                            src={data.userProfile}
+                            src={item.userProfile}
                             alt="UserProfile"
                             style={{
                               width: '20px',
@@ -115,20 +156,20 @@ function List({ data, isMobile }) {
                       </Grid>
                       <Grid item xs={2}>
                         <Typography variant="body3" color="white">
-                          {data.userName}
+                          {item.u_id}
                         </Typography>
                       </Grid>
                       <Grid item xs={2}>
                         <Typography variant="body3" color="white">
-                          {data.analysisDate}
+                          {item.r_date.substring(0, 10)}
                         </Typography>
                       </Grid>
                       <Grid item xs={0} style={{ color: 'white' }}>
-                        {data.analysisStatus === "false" ? (
+                        {item.r_status === 'false' ? (
                           <Grid style={{ color: 'white' }}>
                             <ChangeCircleIcon fontSize="small" />
                           </Grid>
-                        ) : data.analysisStatus === "true" ? (
+                        ) : item.r_status === 'true' ? (
                           <Grid style={{ color: '#2AF57B' }}>
                             <CheckCircleIcon fontSize="small" />
                           </Grid>
@@ -146,6 +187,11 @@ function List({ data, isMobile }) {
           </Grid>
         ))}
       </Grid>
+      <DataLoadingButton
+        hasNextPage={hasNextPage}
+        loading={loading}
+        handleLoadMore={handleLoadMore}
+      />
     </>
   );
 }

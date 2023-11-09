@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Button, Box, Typography, InputBase, IconButton, DialogContent, Dialog } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, Typography, InputBase, IconButton, DialogContent, Dialog, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import ProfileMenu from './ProfileMenu';
@@ -81,38 +81,43 @@ const PcNav = ({isMobile}) => {
         </Toolbar>
         <Toolbar sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
           
-          {!isMobile && <Box
-            onClick={handleSearchClick}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #FFF5DC',
-              borderRadius: '10px',
-              marginRight: '50px',
-              cursor: 'pointer',
-            }}
-          >
-            <InputBase
-              placeholder="검색하기"
+          {!isMobile &&
+            <Box
+              onClick={handleSearchClick}
               sx={{
-                color: '#FFF5DC',
-                marginLeft: '8px',
-                flex: 1,
-                '& input': {
-                  '&::placeholder': {
-                    color: '#FFF5DC',
+                display: 'flex',
+                alignItems: 'center',
+                border: '1px solid #FFF5DC',
+                borderRadius: '10px',
+                marginRight: '50px',
+                cursor: 'pointer',
+              }}
+            >
+              
+          <Tooltip title="검색">
+              <InputBase
+                placeholder="검색"
+                sx={{
+                  color: '#FFF5DC',
+                  marginLeft: '8px',
+                  flex: 1,
+                  '& input': {
+                    '&::placeholder': {
+                      color: '#FFF5DC',
+                    },
                   },
-                },
-              }}
-              inputProps={{
-                'aria-label': 'search',
-                readOnly: true,
-              }}
-            />
-            <IconButton type="submit" sx={{ p: '10px', marginLeft: '8px' }} aria-label="search">
-              <SearchIcon sx={{ color: '#FFF5DC' }} />
-            </IconButton>
-          </Box>}
+                }}
+                inputProps={{
+                  'aria-label': 'search',
+                  readOnly: true,
+                }}
+              />
+              <IconButton type="submit" sx={{ p: '10px', marginLeft: '8px' }} aria-label="search">
+                <SearchIcon sx={{ color: '#FFF5DC' }} />
+              </IconButton>
+              </Tooltip>
+            </Box>
+          }
           {isLoggedIn ? (
             <ProfileMenu onLogout={handleLogout} userName={u_id} userEmail={u_email}/>
           ) : (

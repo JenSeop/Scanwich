@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PcNav from './components/Navigation/PcNav';
-import MobTopNav from './components/Navigation/MobTopNav';
 import MobBotNav from './components/Navigation/MobBotNav';
 import RegisterStep1 from './pages/Register/RegisterStep1';
 import RegisterStep2 from './pages/Register/RegisterStep2';
@@ -72,8 +71,8 @@ function App() {
           <Route path="/email/verif/201" element={<EmailVerif201 />} />
           <Route path="/email/verif/424" element={<EmailVerif424 />} />
           <Route path="/email/verif/502" element={<EmailVerif502 />} />
-          <Route path="/report/1" element={<Report display={display}/>} />
-          <Route path="/loading" element={<Loading status="loading" />} />
+          <Route path="/report/:r_id" element={<Report display={display}/>} />
+          <Route path="/loading" element={<Loading status={true} />} />
           <Route path="/reportimg" element={<ReportImg paramScore={'1'} iconSize={520} circleSize={520}/>} />
           <Route path="/error/400" element={<Error errorCode="400" />} />
           <Route path="/error/403" element={<Error errorCode="403" />} />

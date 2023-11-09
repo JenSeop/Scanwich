@@ -24,7 +24,7 @@ const theme = createTheme({
       main: '#8B4513',
     },
     "card": {
-      main: '373531',
+      main: '#373531',
     }
   },
   typography: {

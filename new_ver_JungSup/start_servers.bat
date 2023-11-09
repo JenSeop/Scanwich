@@ -9,7 +9,7 @@ start cmd /k "npm start"
 timeout /t 5
 
 :: back-end 서버 Scanwich 실행
-echo "- Django Server Start"
+echo "- Django Scanwich Server Start"
 cd ..\back-end\scanwich
 start cmd /k "python manage.py runserver 8000"
 
@@ -17,9 +17,16 @@ start cmd /k "python manage.py runserver 8000"
 timeout /t 5
 
 :: back-end 서버 Analyze 실행
-echo "- Django Server Start"
+echo "- Django Analyze Server Start"
 cd ..\analyze
 start cmd /k "python manage.py runserver 8001"
+
+:: back-end 서버 Analyze 실행 대기
+timeout /t 5
+
+:: DjangoQ cluster 실행
+echo "- Django Queue Server Start"
+start cmd /k "python manage.py qcluster"
 
 :: back-end 서버 Analyze 실행 대기
 timeout /t 5

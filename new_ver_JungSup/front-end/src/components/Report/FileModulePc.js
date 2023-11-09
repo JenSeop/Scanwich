@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, IconButton, Grid } from '@mui/material';
+import { Paper, Typography, IconButton, Grid, Tooltip } from '@mui/material';
 import FileIcon from '@mui/icons-material/Description';
 import DownloadIcon from '@mui/icons-material/Download';
 
@@ -18,7 +18,9 @@ const FileModulePc = ({ fileName, fileSize, fileIcon, filePath }) => {
         <Typography variant="body2" color="white">{fileSize}</Typography>
       </Grid>
       <IconButton onClick={filePath} style={{ marginLeft: '5vh',  color: "white" }}>
-        <DownloadIcon />
+        <Tooltip title="다운로드">
+          <DownloadIcon />
+        </Tooltip>
       </IconButton>
     </Paper>
   );

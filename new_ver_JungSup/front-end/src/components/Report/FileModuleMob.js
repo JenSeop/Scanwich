@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, IconButton, Grid, Divider } from '@mui/material';
+import { Paper, Typography, IconButton, Grid, Divider, Tooltip } from '@mui/material';
 import FileIcon from '@mui/icons-material/Description';
 import DownloadIcon from '@mui/icons-material/Download';
 import PersonIcon from '@mui/icons-material/Person'; // 기본 아이콘
@@ -25,7 +25,9 @@ const FileModuleMob = ({ userProfile, userName, requestDate, colorCode, fileName
         <Typography variant="body2" color="#373531">{fileSize}</Typography>
       </Grid>
       <IconButton onClick={filePath} style={{ marginLeft: '5vh',  color: "#373531" }}>
-        <DownloadIcon />
+        <Tooltip title="다운로드">
+          <DownloadIcon />
+        </Tooltip>
       </IconButton>
     </Paper>
   );
