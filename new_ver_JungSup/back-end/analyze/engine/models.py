@@ -14,6 +14,7 @@ class AnalyzeReport(models.Model):
 class AnalyzeQueue(models.Model):
 # Queue
   q_id = models.AutoField(primary_key=True)
+  q_try = models.IntegerField(default=0)
 # Report
   r_id = models.ForeignKey(AnalyzeReport, on_delete=models.CASCADE)
 # User

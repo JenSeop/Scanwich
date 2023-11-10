@@ -2,10 +2,9 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
 from django.db import models
 from django.conf import settings
-import uuid
 from django.utils import timezone
-
-# 추가: _ 함수를 임포트
+from django.db.models import Q
+import uuid
 from django.utils.translation import gettext as _
 
 
@@ -17,9 +16,12 @@ class TokenJWT(models.Model):
     t_limit = models.DateTimeField(                                                 # 토큰 만료시간
         default=timezone.now() + timezone.timedelta(hours=1))
     
-    def is_token_expired(self):
-        # 토큰 만료 확인
-        return self.t_limit <= timezone.now()
+    def is_token_exist(self):
+        try:
+            token = TokenJWT.objects.get(t_key=self.t_key)
+            return False
+        except TokenJWT.DoesNotExist:
+            return True
     
 # 이메일 인증 토큰 모델
 class EmailVerificationToken(models.Model):

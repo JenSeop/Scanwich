@@ -86,9 +86,14 @@ const Loading = ({ data }) => {
             Report #{data.r_id} - {data.u_id}
           </Typography>
         }
-        {data.f_path && 
+        {data.f_path && data.f_path.length < 40 &&
           <Typography variant="body1" sx={{ marginBottom: '16px', color: '#2AF57B' }}>
             {data.f_path.substring(11,)}
+          </Typography>
+        }
+        {data.f_path && data.f_path.length >= 40 &&
+          <Typography variant="body1" sx={{ marginBottom: '16px', color: '#2AF57B' }}>
+            {data.f_path.substring(11, 40)+'~.apk'}
           </Typography>
         }
         <Typography variant="body1" sx={{ marginBottom: '24px', color: 'white' }}>{subMessage}</Typography>

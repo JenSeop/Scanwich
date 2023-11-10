@@ -12,24 +12,24 @@ const FileModuleMob = ({ userProfile, userName, requestDate, colorCode, fileName
     <PersonIcon fontSize="small" style={{ color: colorCode }} />
   );
   return (
-    <Paper elevation={0}
-    style={{
-      padding: '16px',
-      alignItems: 'center',
-      backgroundColor: 'transparent',
-      display: 'flex',
-    }}>
-      <FileIcon fontSize="large" style={{ marginRight: '16px', color: "#373531" }} />
-      <Grid>
-        <Typography variant="h6" color="#373531">{fileName}</Typography>
-        <Typography variant="body2" color="#373531">{fileSize}</Typography>
-      </Grid>
-      <IconButton onClick={filePath} style={{ marginLeft: '5vh',  color: "#373531" }}>
+    <Grid container alignItems="center">
+    <Grid item>
+      <FileIcon fontSize="medium" style={{ marginRight: '16px', color: '#373531' }} />
+    </Grid>
+    <Grid item>
+      <Typography variant="h6" color="#373531">{fileName}</Typography>
+    </Grid>
+    <Grid item>
+      <Typography variant="body2" color="#373531">{fileSize}</Typography>
+    </Grid>
+    <Grid item>
+      <IconButton onClick={filePath} style={{ color: '#373531' }}>
         <Tooltip title="다운로드">
           <DownloadIcon />
         </Tooltip>
       </IconButton>
-    </Paper>
+    </Grid>
+  </Grid>
   );
 };
 

@@ -28,6 +28,8 @@ import FindIDResult from './pages/Auth/FindIdResult'
 import FindPW from './pages/Auth/FindPw'
 import FindPWResult from './pages/Auth/FindPwResult'
 
+import Test from './components/Home/Queue'
+
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600); // 예: 600px 이하가 모바일로 간주
   const [display, setDisplay] = useState(window.innerWidth);
@@ -54,6 +56,7 @@ function App() {
       <div style={{ paddingTop: '70px' }}>
         <Routes>
           <Route path="/" element={<Home isMobile={isMobile}/>} />
+          <Route path="/test" element={<Test />} />
           <Route path="/login" element={<Login />} />
           <Route path="/find/id/step1" element={<FindID/>} />
           <Route path="/find/id/step2" element={<FindIDResult/>} />

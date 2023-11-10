@@ -2,6 +2,7 @@
 
 from rest_framework import serializers
 from .models import CustomUser
+import uuid
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,3 +25,13 @@ class UserSerializer(serializers.ModelSerializer):
 class TokenJWTSerializer(serializers.Serializer):
     u_id = serializers.CharField(max_length=150)
     t_key = serializers.UUIDField()
+    
+    def validate_t_key(self, value):
+        try:
+            # 입력된 값이 UUID 형식인지 확인
+            uuid.UUID(str(value))
+        except ValueError:
+            # UUID 형식이 아닌 경우 예외 발생
+            raise serializers.ValidationError("t_key는 UUID 형식이어야 합니다.")
+        
+        return value

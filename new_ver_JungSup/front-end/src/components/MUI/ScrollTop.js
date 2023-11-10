@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IconButton } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
-function ScrollToTopButton() {
-  // 스크롤 업 버튼을 클릭할 때 호출되는 함수
+function ScrollToTopButton({value}) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -12,23 +29,29 @@ function ScrollToTopButton() {
   };
 
   return (
-    <IconButton
-      onClick={scrollToTop}
-      style={{
-        position: 'fixed', // 화면 상단에 고정
-        bottom: '20px',
-        right: '20px',
-        zIndex: 1000, // 다른 요소보다 우선시
-        backgroundColor: '#373531', // 원하는 배경색 설정
-        borderRadius: '50%', // 원형 버튼으로 만들기
-        padding: '10px', // 내용과 버튼 사이 여백 조절
-        width: '40px', // 버튼의 너비 조절
-        height: '40px', // 버튼의 높이 조절
-        border: '1px solid #000',
-      }}
-    >
-      <ArrowUpwardIcon style={{ color: '#FFF5DC' }} />
-    </IconButton>
+    <>
+      {isVisible && (
+        <IconButton
+          onClick={scrollToTop}
+          style={{
+            position: 'fixed',
+            bottom: value,
+            right: '20px',
+            zIndex: 10000,
+            backgroundColor: '#373531',
+            borderRadius: '50%',
+            padding: '10px',
+            width: '40px',
+            height: '40px',
+            border: '2px solid white',
+            transition: 'opacity 1.0s ease-in-out',
+            opacity: 1,
+          }}
+        >
+          <ArrowUpwardIcon style={{ color: '#FFF5DC' }} />
+        </IconButton>
+      )}
+    </>
   );
 }
 

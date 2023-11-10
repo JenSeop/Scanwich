@@ -9,4 +9,4 @@ class AnalyzeReportSerializer(serializers.ModelSerializer):
 class AnalyzeQueueSerializer(serializers.ModelSerializer):
     class Meta:
         model = AnalyzeQueue
-        fields = ['q_id', 'r_id', 'u_id']
+        fields = ['q_id', 'q_try', 'r_id', 'u_id']

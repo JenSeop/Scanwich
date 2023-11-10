@@ -20,6 +20,9 @@ const theme = createTheme({
     4: {
       main: '#FFF5DC',
     },
+    5: {
+      main: '#E0E0E0'
+    },
     "social": {
       main: '#8B4513',
     },

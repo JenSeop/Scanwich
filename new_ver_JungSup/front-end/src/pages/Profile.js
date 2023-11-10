@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, Avatar, Button, TextField, Grid, Divider } from '@mui/material';
 import { getUidFromCookie, getEmailFromCookie } from '../utils/getAuth.js';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,9 @@ import axios from 'axios';
 import { getCsrf } from '../utils/getCsrf.js';
 import SnackBar from '../components/MUI/SnackBar';
 import { getTokenFromCookie } from '../utils/getAuth.js';
+import setCookie from '../utils/setCookie';
+import { isValidate } from '../utils/getAuth.js';
+import { getCookie } from '../utils/getAuth.js';
 
 const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -16,6 +19,14 @@ const Profile = () => {
   const u_id = getUidFromCookie();
   const u_email = getEmailFromCookie();
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    if(!getCookie('u_token')) {
+      navigate('/error/403')
+    }
+    isValidate();
+    setCookie('prevPage', '/profile', 365);
+  }, [])
 
   const openSnackbar = () => {
     setStatus(true);

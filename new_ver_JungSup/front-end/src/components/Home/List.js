@@ -122,7 +122,7 @@ function List({ data, isMobile }) {
                       <Grid item xs={0} color="white">
                           <InsertDriveFileIcon fontSize="small" />
                       </Grid>
-                      <Grid item xs={3}>
+                      <Grid item xs={4}>
                           {item.r_data.androguard_data &&
                             <Typography variant="body3" color="white">
                               {item.r_data.androguard_data.apk.name}
@@ -134,11 +134,6 @@ function List({ data, isMobile }) {
                             </Typography>
                           }
                         </Grid>
-                      <Grid item xs={2}>
-                        <Typography variant="body3" color="white">
-                          {item.malwareInfo}
-                        </Typography>
-                      </Grid>
                       <Grid item xs={0} color="white">
                         {item.userProfile !== '/path/to/invalid/image' ? (
                           <AccountCircleIcon fontSize="small" />
@@ -191,6 +186,7 @@ function List({ data, isMobile }) {
         hasNextPage={hasNextPage}
         loading={loading}
         handleLoadMore={handleLoadMore}
+        isMobile={isMobile}
       />
     </>
   );

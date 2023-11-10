@@ -16,6 +16,9 @@ function RegisterStep2() {
   const navigate = useNavigate();
   
   useEffect(() => {
+    if(getCookie('u_token')) {
+      navigate('/error/403')
+    }
     if(getCookie('prevPage')!="/register/step1") {
       navigate('/error/403')
     }

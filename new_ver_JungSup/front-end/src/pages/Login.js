@@ -8,10 +8,7 @@ import {
   TextField,
   Button,
   Typography,
-  Avatar,
   Grid,
-  CardHeader,
-  styled 
 } from '@mui/material';
 import { getCsrf } from '../utils/getCsrf.js';
 import { getCookie } from '../utils/getAuth.js';
@@ -24,7 +21,7 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(getCookie('token')) {
+    if(getCookie('u_token')) {
       navigate('/error/403')
     }
     setCookie('prevPage', '/login', 365);

@@ -7,9 +7,10 @@ from .views import (
     UserRegisterView,
     resend_verification_email,
     verify_email,
-# 로그인/로그아웃
+# 로그인/로그아웃/유효성
     JWTLogout,
     JWTLogin,
+    check_token_validity,
 # 아이디/비밀번호 찾기
     find_id_email,
     reset_password_by_email,
@@ -29,6 +30,8 @@ urlpatterns = [
     path('client/user/jwtlogin/', JWTLogin, name='jwtlogin'), # API
     ## JWT 로그아웃
     path('client/user/jwtlogout/', JWTLogout.as_view(), name='jwtlogout'), # API
+    ## JWT 유효성 검사
+    path('client/user/validity/token/<str:t_key>/', check_token_validity, name='check_token_validity'),
 # 아이디/비밀번호 찾기
     ## 아이디 찾기
     path('client/user/find_id/', find_id_email, name='find_id_email'), # API

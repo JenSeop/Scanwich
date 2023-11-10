@@ -1,8 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Container, TextField, Typography, Box } from '@mui/material';
+import { Button, Container, Typography, Box } from '@mui/material';
+import { useNavigate  } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { getCookie } from '../../utils/getAuth.js';
+import setCookie from '../../utils/setCookie.js';
 
 const FindPwResult = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(getCookie('u_token')) {
+      navigate('/error/403')
+    }
+    if(getCookie('prevPage')!="/find/pw/step1") {
+      navigate('/error/403')
+    }
+    setCookie('prevPage', '/find/pw/step2', 365);
+  }, [])
+
   return (
     <Container maxWidth="sm">
       <Box

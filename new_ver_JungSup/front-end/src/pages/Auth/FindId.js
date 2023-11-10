@@ -5,6 +5,7 @@ import SnackBar from '../../components/MUI/SnackBar';
 import { Link } from 'react-router-dom';
 import setCookie from '../../utils/setCookie.js';
 import { getCsrf } from '../../utils/getCsrf.js';
+import { getCookie } from '../../utils/getAuth.js';
 import axios from 'axios';
 
 const FindId = () => {
@@ -12,6 +13,16 @@ const FindId = () => {
   const [emailError, setEmailError] = useState('');
   const [status, setStatus] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(getCookie('u_token')) {
+      navigate('/error/403')
+    }
+    if(getCookie('prevPage')!="/login") {
+      navigate('/error/403')
+    }
+    setCookie('prevPage', '/find/id/step1', 365);
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,7 +1,11 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { Typography, Grid } from '@mui/material';
 
-function ScoreBoard({vtScore, color, varCode}) {
+const shadowStyle = {
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+};
+
+function ScoreBoard({vtScore, vtCount, color, varCode}) {
   let colorCode = '';
 
   switch (color) {
@@ -35,9 +39,11 @@ function ScoreBoard({vtScore, color, varCode}) {
   }
 
   return (
-    <Typography variant={varCode} color={colorCode}>
-      {vtScore}
-    </Typography>
+    <>
+      <Typography variant={varCode} color={colorCode} style={shadowStyle}>
+        {vtScore}
+      </Typography>
+    </>
   );
 }
 

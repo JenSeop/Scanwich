@@ -9,6 +9,7 @@ from .serializers import AnalyzeReportSerializer
 from .serializers import AnalyzeQueueSerializer
 from django.http import JsonResponse
 from rest_framework.pagination import PageNumberPagination
+from django_q.models import OrmQ
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -33,6 +34,17 @@ def queue_analysis(request):
 def process_analysis(r_id):
       try:
             report = AnalyzeReport.objects.get(r_id=r_id)
+            r_queue = AnalyzeQueue.objects.get(r_id=report)
+            r_queue.q_try = r_queue.q_try + 1
+            r_queue.save()
+            
+            if r_queue.q_try > 2:
+                  d_queue = OrmQ.objects.get(id=r_id)
+                  d_queue.delete()
+                  r_queue.delete()
+                  report.r_status = "error"
+                  report.save()
+            
       except AnalyzeReport.DoesNotExist:
             return
       # Analysis Data get from report table
@@ -44,8 +56,7 @@ def process_analysis(r_id):
       try:
             report.r_status = "true"
             report.save()
-            queue_item = AnalyzeQueue.objects.get(r_id=report)
-            queue_item.delete()
+            r_queue.delete()
       # Analysis Error
       except AnalyzeQueue.DoesNotExist:
             pass

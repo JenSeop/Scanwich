@@ -1,6 +1,10 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 
+const shadowStyle = {
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+};
+
 function ScoreComment({score, varCode}) {
   let commentText = '';
   let commentColor = '';
@@ -48,6 +52,7 @@ function ScoreComment({score, varCode}) {
     <Typography
       variant={varCode}
       color={commentColor}
+      style={shadowStyle}
     >
       {commentText}
     </Typography>

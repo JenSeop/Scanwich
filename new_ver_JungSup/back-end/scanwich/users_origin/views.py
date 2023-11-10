@@ -20,7 +20,6 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 import os
 from .serializers import TokenJWTSerializer
-from rest_framework.permissions import IsAuthenticated
 
 User = get_user_model()
 
@@ -96,7 +95,7 @@ def resend_verification_email(request):
     
     return Response({"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST)
 
-## 2-2. JWT 로그인 v2
+## 2-1. JWT 로그인 v2
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def JWTLogin(request):
@@ -134,23 +133,7 @@ def JWTLogin(request):
     else:
         return Response({'error': '유효하지 않은 사용자 정보입니다.'}, status=status.HTTP_401_UNAUTHORIZED)
 
-def JWTValid(request):
-    u_id = request.data.get('u_id')
-
-    try:
-        token = TokenJWT.objects.get(u_id=u_id)
-
-        if token.is_token_expired():
-            logout(request)
-            return JsonResponse({"message": "토큰이 만료되었습니다."})
-        else:
-            return JsonResponse({"message": "토큰이 유효합니다."})
-
-    except TokenJWT.DoesNotExist:
-        return JsonResponse({"message": "토큰을 찾을 수 없습니다."})
-    
-
-## 2-3. JWT 로그아웃
+## 2-2. JWT 로그아웃 v2
 @permission_classes([AllowAny])
 class JWTLogout(APIView):
     def post(self, request):
@@ -171,6 +154,19 @@ class JWTLogout(APIView):
                 return Response({'message': '유효하지 않은 토큰입니다.'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def check_token_validity(request, t_key):
+    if request.method == 'GET':
+        try:
+            token = TokenJWT.objects.get(t_key=t_key)
+            if token.is_token_exist():
+                return Response({'message': 'Token expired'}, status=status.HTTP_401_UNAUTHORIZED)
+            else:
+                return Response({'message': 'Token is valid'}, status=status.HTTP_200_OK)
+        except TokenJWT.DoesNotExist:
+            return Response({'message': 'Token not found'}, status=status.HTTP_404_NOT_FOUND)
 
 # 3. ID/PW 찾기
 

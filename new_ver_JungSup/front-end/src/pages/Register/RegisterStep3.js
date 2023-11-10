@@ -7,6 +7,16 @@ import { Button, Container, Typography, Box } from '@mui/material';
 
 function RegisterStep3() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(getCookie('u_token')) {
+      navigate('/error/403')
+    }
+    if(getCookie('prevPage')!="/register/step2") {
+      navigate('/error/403')
+    }
+    setCookie('prevPage', '/register/step3', 365);
+  }, [])
   
 
   return (

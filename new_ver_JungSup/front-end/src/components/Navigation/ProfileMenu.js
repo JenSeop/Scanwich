@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
+import Avatar from '@mui/material/Avatar';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
@@ -24,6 +25,7 @@ import { getTokenFromCookie } from '../../utils/getAuth.js';
 
 export default function ProfileMenu({userName, userEmail}) {
   const [state, setState] = React.useState({ right: false });
+  const u_id = getUidFromCookie();
   const navigate = useNavigate();
 
   const linkStyle = {
@@ -119,7 +121,11 @@ export default function ProfileMenu({userName, userEmail}) {
             alignItems: 'left', // 가운데 정렬
           }}
         >
-          <PersonIcon sx={{ fontSize: 64 }} /> {/* 프로필 아이콘 */}
+          <Avatar
+            alt={u_id}
+            src={u_id}
+            sx={{ width: 50, height: 50 }}
+        />
         </Box>
         <Box
           sx={{

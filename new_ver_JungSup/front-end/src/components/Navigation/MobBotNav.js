@@ -31,7 +31,7 @@ const MobBotNav = () => {
           }}
         />
         <BottomNavigationAction
-          label="탐색"
+          label="검색"
           icon={<ExploreIcon />}
           component={Link}
           to="/explore"

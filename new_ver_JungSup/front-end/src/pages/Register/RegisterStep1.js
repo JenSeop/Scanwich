@@ -4,6 +4,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import TermsAccordion from '../../components/Register/TermsAccordion';
 import { Link } from 'react-router-dom';
 import setCookie from '../../utils/setCookie';
+import { getCookie } from '../../utils/getAuth.js';
+import { useNavigate  } from 'react-router-dom';
 
 // 추가한 CSS 스타일링
 const accordionItemStyle = {
@@ -11,11 +13,15 @@ const accordionItemStyle = {
   marginBottom: '16px', // 아코디언 아이템 사이의 간격을 조절합니다.
 };
 
-function RegisterStep1() {
+function RegisterStep1({}) {
   const [agreed, setAgreed] = useState(false);
-  const termsOfServiceContent = `...`; // 약관 내용을 여기에 넣으세요.
+  const termsOfServiceContent = `...`;
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if(getCookie('u_token')) {
+      navigate('/error/403')
+    }
     setCookie('prevPage', '/register/step1', 365);
   }, [])
   

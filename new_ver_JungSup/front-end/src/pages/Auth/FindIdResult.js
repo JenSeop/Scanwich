@@ -1,8 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Container, TextField, Typography, Box } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useNavigate  } from 'react-router-dom';
+import setCookie from '../../utils/setCookie';
+import { getCookie } from '../../utils/getAuth.js';
+import { Button, Container, Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const FindIdResult = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(getCookie('u_token')) {
+      navigate('/error/403')
+    }
+    if(getCookie('prevPage')!="/register/step1") {
+      navigate('/error/403')
+    }
+    setCookie('prevPage', '/find/id/step2', 365);
+  }, [])
   return (
     <Container maxWidth="sm">
       <Box

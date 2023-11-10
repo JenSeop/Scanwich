@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, IconButton, Grid, Divider } from '@mui/material';
+import { Paper, Typography, Grid } from '@mui/material';
 import FileIcon from '@mui/icons-material/Description';
 import DownloadIcon from '@mui/icons-material/Download';
 import PersonIcon from '@mui/icons-material/Person'; // 기본 아이콘
@@ -11,23 +11,22 @@ const UserInfoMob = ({ userProfile, userName, requestDate, colorCode }) => {
   ) : (
     <PersonIcon fontSize="small" style={{ color: colorCode }} />
   );
+
+  const requestIcon = (
+    <EventIcon fontSize="small" style={{ color: colorCode }} />
+  );
+
   return (
-    <Paper elevation={0} style={{ padding: '16px', backgroundColor: 'transparent' }}>
-      <Grid container spacing={2} alignItems="center" style={{marginTop: '-3vh', marginBottom: '-1vh'}}>
-        <Grid item xs={4} sm={4} style={{marginRight: '-2vh'}}>
-          {userIcon}
-        </Grid>
-        <Grid item xs={6} sm={8}>
-          <Typography variant="body1" color={colorCode}>{userName}</Typography>
-        </Grid>
-        <Grid item xs={4} sm={4} style={{marginRight: '-2vh'}}>
-          <EventIcon fontSize="small" style={{ color: colorCode }} />
-        </Grid>
-        <Grid item xs={6} sm={8}>
-          <Typography variant="body1" color={colorCode}>{requestDate}</Typography>
-        </Grid>
+    <Grid container spacing={2} alignItems="center" justifyContent="space-evenly">
+      <Grid item  style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        {userIcon}
+        <Typography variant="body1" color={colorCode}>{userName}</Typography>
       </Grid>
-    </Paper>
+      <Grid item  style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        {requestIcon}
+        <Typography variant="body1" color={colorCode}>{requestDate}</Typography>
+      </Grid>
+    </Grid>
   );
 };
 

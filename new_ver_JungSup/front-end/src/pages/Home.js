@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import setCookie from '../utils/setCookie';
+import React, { useEffect } from 'react';
 import { Grid, Divider } from '@mui/material';
 import ScrollTop from '../components/MUI/ScrollTop';
 import Queue from '../components/Home/Queue';
 import List from '../components/Home/List';
-import isLoggedIn from '../utils/getAuth'
-import { getUidFromCookie } from '../utils/getAuth.js';
-import axios from 'axios';
+import setCookie from '../utils/setCookie';
+import { isValidate } from '../utils/getAuth.js';
+import { useNavigate } from 'react-router-dom';
 
 function Home(props) {
   const { isMobile } = props;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isValidate();
+    setCookie('prevPage', '/', 365);
+  }, [])
 
   return (
     <>
@@ -40,7 +45,8 @@ function Home(props) {
           <List isMobile={isMobile}/>
         </Grid>
       </Grid>
-      {isMobile ? true : <ScrollTop />}
+      {isMobile ? true : <ScrollTop value='20px'/>}
+      {!isMobile ? true : <ScrollTop value='100px'/>}
     </>
   );
 }

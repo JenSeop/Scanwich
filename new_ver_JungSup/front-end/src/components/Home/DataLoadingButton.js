@@ -3,15 +3,22 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 
-function DataLoadingButton({ hasNextPage, loading, handleLoadMore }) {
+function DataLoadingButton({ hasNextPage, loading, handleLoadMore, isMobile }) {
+  const marginStyle = isMobile
+    ? {
+        marginTop: '1vh',
+        marginBottom: '12vh',
+      }
+    : {
+        marginTop: '1vh',
+        marginBottom: '1vh',
+      };
+
   return (
     <Grid
       container
       justifyContent="center"
-      style={{
-        marginTop: '1vh',
-        marginBottom: '1vh',
-      }}
+      style={marginStyle}
     >
       {hasNextPage && (
         <Button
