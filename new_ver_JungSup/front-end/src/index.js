@@ -28,6 +28,12 @@ const theme = createTheme({
     },
     "card": {
       main: '#373531',
+    },
+    "primary": {
+      main: '#373531',
+    },
+    "secondary": {
+      main: '#28E070',
     }
   },
   typography: {

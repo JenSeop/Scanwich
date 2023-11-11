@@ -7,7 +7,8 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import FolderTree from './FolderTree';
-import Detection from './Detection';
+import Detection_Grid from './Detection_Grid';
+import Detection_Chart from './Detection_Chart';
 
 export default function LabTabs({data, isSmall}) {
   const [value, setValue] = React.useState('1');
@@ -65,12 +66,18 @@ export default function LabTabs({data, isSmall}) {
             <Grid sx={{marginTop: '-3vh', marginBottom: '10vh'}}>
               {!isSmall &&
                 <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', width: '60%' }}>
-                  <Detection data={data.r_data.vt_data.vendor}/>
+                  <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
+                    <Detection_Chart count={data.r_data.vt_data.count} score={data.r_data.vt_data.score}/>
+                  </Paper>
+                  <Detection_Grid data={data.r_data.vt_data.vendor} name={data.r_data.file_info.f_name}/>
                 </Paper>
               }
               {isSmall &&
                 <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto' }}>
-                  <Detection data={data.r_data.vt_data.vendor}/>
+                  <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
+                    <Detection_Chart count={data.r_data.vt_data.count} score={data.r_data.vt_data.score}/>
+                  </Paper>
+                  <Detection_Grid data={data.r_data.vt_data.vendor} name={data.r_data.file_info.f_name}/>
                 </Paper>
               }
             </Grid>
