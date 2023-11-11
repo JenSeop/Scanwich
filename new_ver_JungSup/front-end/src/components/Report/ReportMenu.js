@@ -10,7 +10,7 @@ import FolderTree from './FolderTree';
 import Detection_Grid from './Detection_Grid';
 import Detection_Chart from './Detection_Chart';
 import { Typography } from '@mui/material';
-import Info from './Info';
+import Information from './Information';
 
 export default function LabTabs({data, isSmall}) {
   const [value, setValue] = React.useState('1');
@@ -62,8 +62,22 @@ export default function LabTabs({data, isSmall}) {
               }}
           />
           <Tab
-            label="Finder"
+            label="Classes"
             value="3"
+            sx={{
+                color: '#373531',
+                '&:hover': {
+                  color: '#373531',
+                },
+                '&.Mui-selected': {
+                  color: '#373531',
+                },
+                marginRight: '5vh',
+              }}
+          />
+          <Tab
+            label="Finder"
+            value="4"
             sx={{
                 color: '#373531',
                 '&:hover': {
@@ -79,9 +93,16 @@ export default function LabTabs({data, isSmall}) {
         <TabPanel value="1">
           {value == "1" && data.r_data &&
             <Grid sx={{marginTop: '-2vh',marginBottom: '10vh'}}>
+            {!isSmall &&
               <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', width: '60%' }}>
-                <Info f_data={data.r_data.file_info} a_data={data.r_data.androguard_data} />
+                <Information data={data.r_data} />
               </Paper>
+            }
+            {isSmall &&
+              <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto' }}>
+                <Information data={data.r_data} />
+              </Paper>
+            }
             </Grid>
           }
         </TabPanel>
@@ -115,6 +136,18 @@ export default function LabTabs({data, isSmall}) {
         </TabPanel>
         <TabPanel value="3">
           {value == "3" && data.r_data &&
+            <Grid sx={{marginBottom: '10vh'}}>
+              {!isSmall &&
+                <></>
+              }
+              {isSmall &&
+                <></>
+              }
+            </Grid>
+          }
+        </TabPanel>
+        <TabPanel value="4">
+          {value == "4" && data.r_data &&
             <Grid sx={{marginBottom: '10vh'}}>
               {!isSmall &&
                 <Paper
