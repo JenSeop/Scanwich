@@ -2,8 +2,6 @@ import * as React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 
 export default function Detection_Chart({count, score}) {
-  console.log(count);
-  console.log(score);
   const data = [
     { id: 0, value: `${score}`, label: 'Detected', color: '#ED3E37' },
     { id: 1, value: `${count}`, label: 'Undetected', color: '#01CB44' },
