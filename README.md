@@ -10,7 +10,7 @@ The <strong>Scanwich</strong> service of the <strong>This World Bakery</strong> 
 <a href="https://react.dev/" onClick=""><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/></a>
 <a href="https://mui.com/" onClick=""><img src="https://img.shields.io/badge/MUI-007FFF?style=flat-square&logo=MUI&logoColor=white"/></a>
 <a href="https://www.djangoproject.com/" onClick=""><img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=white"/></a>
-<a href="https://docs.celeryq.dev/en/stable/index.html" onClick=""><img src="https://img.shields.io/badge/Celery-37814A?style=flat-square&logo=Celery&logoColor=white"/></a>
+<a href="https://docs.celeryq.dev/en/stable/index.html" onClick=""><img src="https://img.shields.io/badge/DjangoQ-37814A?style=flat-square&logo=Django&logoColor=white"/></a>
 <a href="https://www.postgresql.org/" onClick=""><img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=PostgreSQL&logoColor=white"/></a>
 <a href="https://www.nginx.com/" onClick=""><img src="https://img.shields.io/badge/NGINX-009639?style=flat-square&logo=NGINX&logoColor=white"/></a>
 <a href="https://aws.amazon.com/ko/?nc2=h_lg" onClick=""><img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=Amazon AWS&logoColor=white"/></a>
@@ -19,7 +19,7 @@ The <strong>Scanwich</strong> service of the <strong>This World Bakery</strong> 
 <a href="https://aws.amazon.com/ko/?nc2=h_lg" onClick=""><img src="https://img.shields.io/badge/Dexofuzzy-0.0.0-black"/></a>
 <a href="https://aws.amazon.com/ko/?nc2=h_lg" onClick=""><img src="https://img.shields.io/badge/VirusTotal-API-red"/></a>
 # Service 🪄
-- https://www.scanwich.com
+- https://www.scanwich.co.kr
 
 # Team : This World Bakery 🍞
 |**김정섭**|**장한길**|**최유정**|
