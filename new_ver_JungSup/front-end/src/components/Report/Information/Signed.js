@@ -12,7 +12,7 @@ const Signed = ({ data }) => {
         </Grid>
         <Grid item xs>
           <Typography>
-            
+            {data.v1.toString()}
           </Typography>
         </Grid>
       </Grid>
@@ -24,7 +24,7 @@ const Signed = ({ data }) => {
         </Grid>
         <Grid item xs>
           <Typography>
-            
+            {data.v2.toString()}
           </Typography>
         </Grid>
       </Grid>
@@ -36,7 +36,7 @@ const Signed = ({ data }) => {
         </Grid>
         <Grid item xs>
           <Typography>
-            
+            {data.v3.toString()}
           </Typography>
         </Grid>
       </Grid>

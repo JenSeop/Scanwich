@@ -6,6 +6,7 @@ import CRC32 from './Information/CRC32';
 import Android from './Information/Android';
 import Signed from './Information/Signed';
 import Activities from './Information/Activities';
+import Permissions from './Information/Permissions';
 
 export default function Info({data}) {
   console.log(data)
@@ -44,7 +45,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Android</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Android />
+          <Android data={data.androguard_data}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
@@ -56,7 +57,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Signed</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Signed />
+          <Signed data={data.androguard_data.signed}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
@@ -68,7 +69,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Activities</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Activities />
+          <Activities data={data.androguard_data.activities}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
@@ -80,10 +81,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Permissions</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <Permissions />
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>

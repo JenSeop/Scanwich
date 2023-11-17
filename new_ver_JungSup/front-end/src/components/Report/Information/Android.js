@@ -12,7 +12,7 @@ const Android = ({ data }) => {
         </Grid>
         <Grid item xs>
           <Typography>
-            
+            {data.sdk.package_name}
           </Typography>
         </Grid>
       </Grid>
@@ -24,31 +24,31 @@ const Android = ({ data }) => {
         </Grid>
         <Grid item xs>
           <Typography>
-            
+            {data.sdk.min_sdk_ver}
           </Typography>
         </Grid>
       </Grid>
       <Grid container>
         <Grid item xs={2}>
           <Typography fontWeight='bold'>
-            SHA256
+            Max Version
           </Typography>
         </Grid>
         <Grid item xs>
           <Typography>
-            
+            {data.sdk.max_sdk_ver}
           </Typography>
         </Grid>
       </Grid>
       <Grid container>
         <Grid item xs={2}>
           <Typography fontWeight='bold'>
-            SIZE
+            Target Version
           </Typography>
         </Grid>
         <Grid item xs>
           <Typography>
-            
+            {data.sdk.target_sdk_ver}
           </Typography>
         </Grid>
       </Grid>

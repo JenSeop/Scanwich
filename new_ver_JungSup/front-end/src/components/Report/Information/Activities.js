@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Grid } from '@mui/material';
+import All_Activities from './All_Activities';
 
 const Activities = ({ data }) => {
   return (
@@ -7,26 +8,22 @@ const Activities = ({ data }) => {
       <Grid container>
         <Grid item xs={2}>
           <Typography fontWeight='bold'>
-            Main Activity
+            Main
           </Typography>
         </Grid>
         <Grid item xs>
           <Typography>
-            
+            {data.main_activity}
           </Typography>
         </Grid>
       </Grid>
       <Grid container>
         <Grid item xs={2}>
           <Typography fontWeight='bold'>
-            All Activity
+            All
           </Typography>
         </Grid>
-        <Grid item xs>
-          <Typography>
-            
-          </Typography>
-        </Grid>
+        <All_Activities data={data.all}/>
       </Grid>
     </>
   );
