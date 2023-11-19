@@ -81,7 +81,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Permissions</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Permissions />
+          <Permissions data={data.androguard_data.permissions}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>

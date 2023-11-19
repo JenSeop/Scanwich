@@ -12,8 +12,14 @@ const File = ({ data }) => {
             Declared
           </Typography>
         </Grid>
-        <Grid item xs>
-        </Grid>
+          {data.declared.length == 0 &&
+            <Typography>
+              EMPTY
+            </Typography>
+          }
+          {data.declared.length != 0 &&
+            <Permissions_declared data={data.declared}/>
+          }
       </Grid>
       <Grid container>
         <Grid item xs={2}>
@@ -21,8 +27,14 @@ const File = ({ data }) => {
             ALL
           </Typography>
         </Grid>
-        <Grid item xs>
-        </Grid>
+          {data.all.length == 0 &&
+            <Typography>
+              EMPTY
+            </Typography>
+          }
+          {data.all.length != 0 &&
+            <Permissions_all data={data.all}/>
+          }
       </Grid>
     </>
   );

@@ -20,7 +20,7 @@ const Activities = ({ data }) => {
       <Grid container>
         <Grid item xs={2}>
           <Typography fontWeight='bold'>
-            All
+            ALL
           </Typography>
         </Grid>
         <All_Activities data={data.all}/>

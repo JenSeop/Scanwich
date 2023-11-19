@@ -12,13 +12,13 @@ import MenuItem from '@mui/material/MenuItem';
 
 const columns = [
   {
-    field: 'field',
-    headerName: 'FILE NAME',
-    flex:1
+    field: 'id',
+    headerName: 'ID',
+    width: 60
   },
   {
     field: 'value',
-    headerName: 'CRC32',
+    headerName: 'Permissions',
     flex:1
   },
 ];
@@ -26,7 +26,6 @@ const columns = [
 function PermissionsGrid({ data, name }) {
   const rows = Object.entries(data).map(([field, value], index) => ({
     id: index,
-    field,
     value,
   }));
 
@@ -100,7 +99,7 @@ function PermissionsGrid({ data, name }) {
   }
   const sortModel = [
     {
-      field: 'field',
+      field: 'id',
       sort: 'asc',
     },
   ];

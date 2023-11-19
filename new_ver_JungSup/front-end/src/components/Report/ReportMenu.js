@@ -11,6 +11,7 @@ import Detection_Grid from './Detection_Grid';
 import Detection_Chart from './Detection_Chart';
 import { Typography } from '@mui/material';
 import Information from './Information';
+import Classes from './Diagramclass';
 
 export default function LabTabs({data, isSmall}) {
   const [value, setValue] = React.useState('1');
@@ -138,10 +139,14 @@ export default function LabTabs({data, isSmall}) {
           {value == "3" && data.r_data &&
             <Grid sx={{marginBottom: '10vh'}}>
               {!isSmall &&
-                <></>
+                <>
+                  <Classes data={data.r_data.file_classes}/>
+                </>
               }
               {isSmall &&
-                <></>
+                <>
+                  <Classes data={data.r_data.file_classes}/>
+                </>
               }
             </Grid>
           }
