@@ -15,16 +15,14 @@ function FolderTree({ data }) {
   const [isSearchBarFixed, setIsSearchBarFixed] = useState(false);
 
   useEffect(() => {
-    // 검색어가 변경될 때마다 해당 노드 열기
     if (searchKeyword) {
-      // 1초 후에 노드를 열도록 함
       const timeoutId = setTimeout(() => {
         const nodesToOpen = findNodesToOpen(data, searchKeyword);
         setExpandedNodes(nodesToOpen);
       }, 1000);
 
       return () => {
-        clearTimeout(timeoutId); // 이전 타이머가 있다면 클리어
+        clearTimeout(timeoutId);
       };
     } else {
       setExpandedNodes([]);
@@ -32,17 +30,14 @@ function FolderTree({ data }) {
   }, [searchKeyword, data]);
 
   useEffect(() => {
-    // 스크롤 이벤트 리스너 등록
     window.addEventListener('scroll', handleScroll);
 
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const handleScroll = () => {
-    // 페이지를 스크롤할 때 검색창을 고정 또는 해제
     if (window.scrollY > 50) {
       setIsSearchBarFixed(true);
     } else {
@@ -125,7 +120,6 @@ function FolderTree({ data }) {
 
     searchInNodes(nodes, '');
 
-    // 검색 결과에 해당하는 모든 노드의 상위 노드도 열도록 처리
     result.forEach((node) => {
       const keys = node.split('-');
       for (let i = 1; i < keys.length; i++) {
@@ -141,7 +135,7 @@ function FolderTree({ data }) {
 
   return (
     <>
-      <CssBaseline /> {/* 페이지 스크롤을 제어하기 위해 사용 */}
+      <CssBaseline />
       <Paper
         elevation={0}
         sx={{
@@ -155,7 +149,7 @@ function FolderTree({ data }) {
           alignItems: 'center',
           justifyContent: 'center',
           marginBottom: '2vh',
-          border: '1px solid #E0E0E0', // 테두리 스타일 설정
+          border: '1px solid #E0E0E0',
         }}
       >
         <Input

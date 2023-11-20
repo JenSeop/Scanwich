@@ -149,21 +149,6 @@ export default function Info({data}) {
           <Library data={data.androguard_data.services} name={data.file_info.f_name}/>
         </AccordionDetails>
       </Accordion>
-      <Accordion elevation={0} sx={{}}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography variant='h6' fontWeight='bold'>Dexofuzzy</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
     </Paper>
   );
 }

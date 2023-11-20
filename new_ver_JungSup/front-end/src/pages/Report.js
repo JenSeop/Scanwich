@@ -88,6 +88,8 @@ export default function Report({ display }) {
                   <Typography variant='h5' color='white' style={{ marginLeft: '3vh', marginBottom: '-2vh' }}>파일</Typography>
                   {!isLoading && reportData &&
                     <FileModulePc
+                      reportId={r_id}
+                      fullName={reportData.r_data.file_info.f_name}
                       fileName={reportData.r_data.file_info.f_name.substring(0,10)+'...'}
                       fileSize={Math.floor(reportData.r_data.file_info.f_size/1024)+" KB"}
                       fileIcon={reportData.r_data.androguard_data.apk.icon}
@@ -213,9 +215,8 @@ export default function Report({ display }) {
             
         </>
       )}
-      <ReportMenu data={reportData} isSmall={isSmall}/>
+      {isLoading ? true : <ReportMenu data={reportData} isSmall={isSmall}/>}
       </Box>
-      
       {isMobile ? true : <ScrollTop value='20px'/>}
       {!isMobile ? true : <ScrollTop value='100px'/>}
     </>

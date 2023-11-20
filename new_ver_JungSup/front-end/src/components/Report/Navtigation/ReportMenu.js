@@ -35,7 +35,7 @@ export default function LabTabs({data, isSmall}) {
           }}
         >
           <Tab
-            label="Details"
+            label="Overview"
             value="1"
             sx={{
                 color: '#373531',
@@ -49,7 +49,7 @@ export default function LabTabs({data, isSmall}) {
               }}
           />
           <Tab
-            label="Detection"
+            label="Details"
             value="2"
             sx={{
                 color: '#373531',
@@ -63,7 +63,7 @@ export default function LabTabs({data, isSmall}) {
               }}
           />
           <Tab
-            label="Classes"
+            label="Detection"
             value="3"
             sx={{
                 color: '#373531',
@@ -77,8 +77,22 @@ export default function LabTabs({data, isSmall}) {
               }}
           />
           <Tab
-            label="Finder"
+            label="Classes"
             value="4"
+            sx={{
+                color: '#373531',
+                '&:hover': {
+                  color: '#373531',
+                },
+                '&.Mui-selected': {
+                  color: '#373531',
+                },
+                marginRight: '5vh',
+              }}
+          />
+          <Tab
+            label="Finder"
+            value="5"
             sx={{
                 color: '#373531',
                 '&:hover': {
@@ -91,24 +105,47 @@ export default function LabTabs({data, isSmall}) {
           />
         </TabList>
       </Box>
+      {/* Overview */}
         <TabPanel value="1">
           {value == "1" && data.r_data &&
             <Grid sx={{marginTop: '-2vh',marginBottom: '10vh'}}>
             {!isSmall &&
               <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', width: '60%' }}>
-                <Information data={data.r_data} />
               </Paper>
             }
             {isSmall &&
               <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto' }}>
-                <Information data={data.r_data} />
               </Paper>
             }
             </Grid>
           }
         </TabPanel>
+      {/* Details */}
         <TabPanel value="2">
           {value == "2" && data.r_data &&
+            <Grid sx={{marginTop: '-2vh',marginBottom: '10vh'}}>
+            {!isSmall &&
+              <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', width: '60%' }}>
+                <Information data={data.r_data} />
+                <Typography align='right' color='#E0E0E0' fontWeight='fontWeightLight'>
+                  Powered by Scanwich, Androguard
+                </Typography>
+              </Paper>
+            }
+            {isSmall &&
+              <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto' }}>
+                <Information data={data.r_data} />
+                <Typography align='right' color='#E0E0E0' fontWeight='fontWeightLight'>
+                  Powered by Scanwich, Androguard
+                </Typography>
+              </Paper>
+            }
+            </Grid>
+          }
+        </TabPanel>
+      {/* Detection */}
+        <TabPanel value="3">
+          {value == "3" && data.r_data &&
             <Grid sx={{marginTop: '-2vh',marginBottom: '10vh'}}>
               {!isSmall &&
                 <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', width: '60%' }}>
@@ -135,8 +172,9 @@ export default function LabTabs({data, isSmall}) {
             </Grid>
           }
         </TabPanel>
-        <TabPanel value="3">
-          {value == "3" && data.r_data &&
+      {/* Classes */}
+        <TabPanel value="4">
+          {value == "4" && data.r_data &&
             <Grid sx={{marginBottom: '10vh'}}>
               {!isSmall &&
                 <>
@@ -151,8 +189,9 @@ export default function LabTabs({data, isSmall}) {
             </Grid>
           }
         </TabPanel>
-        <TabPanel value="4">
-          {value == "4" && data.r_data &&
+      {/* Finder */}
+        <TabPanel value="5">
+          {value == "5" && data.r_data &&
             <Grid sx={{marginBottom: '10vh'}}>
               {!isSmall &&
                 <Paper
@@ -164,6 +203,9 @@ export default function LabTabs({data, isSmall}) {
                     border: '1px solid #E0E0E0',
                   }}>
                   <FolderTree data={data.r_data.structure_data}/>
+                  <Typography align='right' color='#E0E0E0' fontWeight='fontWeightLight'>
+                    Powered by Scanwich
+                  </Typography>
                 </Paper>
               }
               {isSmall &&
@@ -175,6 +217,9 @@ export default function LabTabs({data, isSmall}) {
                     border: '1px solid #E0E0E0',
                   }}>
                   <FolderTree data={data.r_data.structure_data}/>
+                  <Typography align='right' color='#E0E0E0' fontWeight='fontWeightLight'>
+                    Powered by Scanwich
+                  </Typography>
                 </Paper>
               }
             </Grid>

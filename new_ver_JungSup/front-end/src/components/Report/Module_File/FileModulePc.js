@@ -2,8 +2,9 @@ import React from 'react';
 import { Paper, Typography, IconButton, Grid, Tooltip } from '@mui/material';
 import FileIcon from '@mui/icons-material/Description';
 import DownloadIcon from '@mui/icons-material/Download';
+import Download from './Download';
 
-const FileModulePc = ({ fileName, fileSize, fileIcon, filePath }) => {
+const FileModulePc = ({ reportId, fullName, fileName, fileSize, fileIcon, filePath }) => {
   return (
     <Paper elevation={0}
     style={{
@@ -17,11 +18,9 @@ const FileModulePc = ({ fileName, fileSize, fileIcon, filePath }) => {
         <Typography variant="h6" color="white">{fileName}</Typography>
         <Typography variant="body2" color="white">{fileSize}</Typography>
       </Grid>
-      <IconButton onClick={filePath} style={{ marginLeft: '5vh',  color: "white" }}>
-        <Tooltip title="다운로드">
-          <DownloadIcon />
-        </Tooltip>
-      </IconButton>
+      <Grid style={{ marginLeft: '5vh'}}>
+        <Download reportId={reportId} fullName={fullName} fileName={fileName}/>
+      </Grid>
     </Paper>
   );
 };
