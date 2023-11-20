@@ -3,7 +3,7 @@ export function getScore(maxScore, evalScore) {
   {
     throw new Error('Maximum score cannot be zero.');
   }
-  if (evalScore == 0)
+  if (evalScore === 0)
   {
     return '0';
   }

@@ -266,7 +266,7 @@ function Queue({ isMobile }) {
                                 borderRadius: '50%',
                                 background: (queue.r_data && queue.r_data.vt_data) ? 
                                           mapStatusToColor(getScore(queue.r_data.vt_data.count, queue.r_data.vt_data.score)) :
-                                          mapStatusToColor(0),
+                                          mapStatusToColor(9),
                               }}
                             ></div>
                           </Grid>

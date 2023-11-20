@@ -144,6 +144,12 @@ function List({ data, isMobile }) {
                     </Grid>
                   </>
                 }
+                {item.r_status == 'false' &&
+                  <Typography color="inherit">분석 대기중...</Typography>
+                }
+                {item.r_status == 'error' &&
+                  <Typography color="inherit">분석 오류 발생</Typography>
+                }
               </React.Fragment>
             }
           >
@@ -171,7 +177,7 @@ function List({ data, isMobile }) {
                               borderRadius: '50%',
                               background: item.r_data && item.r_data.vt_data ?
                                 mapStatusToColor(getScore(item.r_data.vt_data.count, item.r_data.vt_data.score)) :
-                                mapStatusToColor(0),
+                                mapStatusToColor(9),
                             }}
                           ></div>
                         </Grid>
@@ -181,7 +187,24 @@ function List({ data, isMobile }) {
                           </Typography>
                         </Grid>
                         <Grid item xs={0} color="white">
-                            <InsertDriveFileIcon fontSize="small" />
+                          {item.r_data.androguard_data &&
+                          <>
+                            <img
+                              src={`/files/apk_icon/${item.r_id}.png`}
+                              alt={item.r_data.androguard_data.apk.name}
+                              style={{
+                                width: '15px',
+                                height: '15px',
+                                borderRadius: '30%',
+                                marginTop: '0.3vh',
+                                marginRight: '1vh'
+                              }}
+                            />
+                          </>
+                          }
+                          {!item.r_data.androguard_data &&
+                            <InsertDriveFileIcon fontSize="small" sx={{marginTop: '0.2vh', marginRight: '0.6vh'}}/>
+                          }
                         </Grid>
                         <Grid item xs={4}>
                             {item.r_data.androguard_data &&
