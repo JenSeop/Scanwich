@@ -5,6 +5,8 @@ const ReportImg = ({ paramScore, iconSize ,circleSize }) => {
 
   const getImagePath = (paramScore) => {
     switch (paramScore) {
+      case '0':
+        return '/images/remaster/1.png';
       case '1':
         return '/images/remaster/1.png';
       case '2':

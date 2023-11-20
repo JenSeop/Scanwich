@@ -10,8 +10,12 @@ function ScoreComment({score, varCode}) {
   let commentColor = '';
 
   switch (score) {
-    case '1':
+    case '0':
       commentText = '안전 (Safe)';
+      commentColor = '#00ff00';
+      break;
+    case '1':
+      commentText = '정상 (Normal)';
       commentColor = '#00ff00';
       break;
     case '2':

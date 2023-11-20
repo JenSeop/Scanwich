@@ -1,6 +1,11 @@
 export function getScore(maxScore, evalScore) {
-  if (maxScore === 0) {
+  if (maxScore === 0)
+  {
     throw new Error('Maximum score cannot be zero.');
+  }
+  if (evalScore == 0)
+  {
+    return '0';
   }
 
   const percentage = (evalScore / maxScore) * 100;

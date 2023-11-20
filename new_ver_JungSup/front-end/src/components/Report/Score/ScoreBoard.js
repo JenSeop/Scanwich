@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Grid } from '@mui/material';
+import { Typography } from '@mui/material';
 
 const shadowStyle = {
   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
@@ -9,6 +9,9 @@ function ScoreBoard({vtScore, vtCount, color, varCode}) {
   let colorCode = '';
 
   switch (color) {
+    case '0':
+      colorCode = '#00ff00';
+      break;
     case '1':
       colorCode = '#00ff00';
       break;
