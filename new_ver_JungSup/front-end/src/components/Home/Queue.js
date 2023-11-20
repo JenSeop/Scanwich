@@ -50,6 +50,8 @@ function mapStatusToColor(malwareScore) {
     'radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0.7) 60%, transparent 100%)',
     'radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0.7) 60%, transparent 100%)',
   ];
+  if(malwareScore=='0')
+    return gradientColors[1];
 
   return gradientColors[malwareScore] || gradientColors[0];
 }

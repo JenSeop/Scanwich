@@ -115,13 +115,19 @@ export default function Report({ display }) {
                       color={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)}
                       vtScore={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)*10+"%"}
                       varCode={'h4'}
+                      shadow={false}
                     />
                   }
                 </Grid>
                 <Grid style={{marginLeft: '17vh', marginBottom: '2vh'}}>
                   <Typography variant='h5' color='white' style={{marginTop: '1vh', marginBottom: '1vh'}}>등급</Typography>
                   {!isLoading && reportData.r_data.vt_data &&
-                    <ScoreComment score={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)} varCode={'h4'} />
+                    <ScoreComment
+                      score={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)}
+                      color={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)}
+                      varCode={'h4'}
+                      shadow={false}
+                    />
                   }
                 </Grid>
               </Grid>
@@ -161,6 +167,7 @@ export default function Report({ display }) {
                           color={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)}
                           vtScore={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)*10+"%"}
                           varCode={'h5'}
+                          shadow={true}
                         />
                       </Grid>
                     }
@@ -170,7 +177,12 @@ export default function Report({ display }) {
                     <Typography variant='h5' color='#373531'>등급</Typography>
                     {!isLoading && reportData.r_data.vt_data &&
                       <Grid item>
-                        <ScoreComment score={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)} varCode={'h5'} />
+                        <ScoreComment
+                          score={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)}
+                          color={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)}
+                          varCode={'h5'}
+                          shadow={true}
+                        />
                       </Grid>
                     }
                   </Grid>

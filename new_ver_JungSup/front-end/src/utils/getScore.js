@@ -17,5 +17,5 @@ export function getScore(maxScore, evalScore) {
   else if (percentage <= 62.5) return '5';
   else if (percentage <= 75) return '6';
   else if (percentage <= 87.5) return '7';
-  else return '8'; // Anything above 87.5%
+  else return '8';
 }
