@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Grid } from '@mui/material';
 import All_Activities from './All_Activities';
 
-const Activities = ({ data }) => {
+const Activities = ({ data, name }) => {
   return (
     <>
       <Grid container>
@@ -23,7 +23,7 @@ const Activities = ({ data }) => {
             ALL
           </Typography>
         </Grid>
-        <All_Activities data={data.all}/>
+        <All_Activities data={data.all} name={name}/>
       </Grid>
     </>
   );

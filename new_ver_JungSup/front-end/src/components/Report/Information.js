@@ -5,8 +5,13 @@ import File from './Information/File';
 import CRC32 from './Information/CRC32';
 import Android from './Information/Android';
 import Signed from './Information/Signed';
-import Activities from './Information/Activities';
-import Permissions from './Information/Permissions';
+import Activities from './Information/Activities/Activities';
+import Permissions from './Information/Permissions/Permissions';
+import Service from './Information/Service';
+import Reciver from './Information/Reciver';
+import IntentFilters from './Information/Intent_Filters';
+import Provider from './Information/Provider';
+import Library from './Information/Library';
 
 export default function Info({data}) {
   console.log(data)
@@ -69,7 +74,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Activities</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Activities data={data.androguard_data.activities}/>
+          <Activities data={data.androguard_data.activities} name={data.file_info.f_name}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
@@ -81,7 +86,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Permissions</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Permissions data={data.androguard_data.permissions}/>
+          <Permissions data={data.androguard_data.permissions} name={data.file_info.f_name}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
@@ -93,10 +98,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Service</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <Service data={data.androguard_data.services} name={data.file_info.f_name}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
@@ -108,10 +110,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Receivers</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <Reciver data={data.androguard_data.services} name={data.file_info.f_name}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
@@ -123,10 +122,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Intent Filters</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <IntentFilters data={data.androguard_data.services} name={data.file_info.f_name}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
@@ -138,10 +134,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Provider</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <Provider data={data.androguard_data.services} name={data.file_info.f_name}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
@@ -153,10 +146,7 @@ export default function Info({data}) {
           <Typography variant='h6' fontWeight='bold'>Library</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <Library data={data.androguard_data.services} name={data.file_info.f_name}/>
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>

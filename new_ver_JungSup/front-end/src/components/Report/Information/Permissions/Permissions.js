@@ -3,7 +3,7 @@ import { Typography, Grid } from '@mui/material';
 import Permissions_all from './permissions_all';
 import Permissions_declared from './permissions_declared';
 
-const File = ({ data }) => {
+const File = ({ data, name }) => {
   return (
     <>
       <Grid container>
@@ -18,7 +18,7 @@ const File = ({ data }) => {
             </Typography>
           }
           {data.declared.length != 0 &&
-            <Permissions_declared data={data.declared}/>
+            <Permissions_declared data={data.declared} name={name}/>
           }
       </Grid>
       <Grid container>
@@ -33,7 +33,7 @@ const File = ({ data }) => {
             </Typography>
           }
           {data.all.length != 0 &&
-            <Permissions_all data={data.all}/>
+            <Permissions_all data={data.all} name={name}/>
           }
       </Grid>
     </>
