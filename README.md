@@ -15,9 +15,9 @@ The <strong>Scanwich</strong> service of the <strong>This World Bakery</strong> 
 <a href="https://www.nginx.com/" onClick=""><img src="https://img.shields.io/badge/NGINX-009639?style=flat-square&logo=NGINX&logoColor=white"/></a>
 <a href="https://aws.amazon.com/ko/?nc2=h_lg" onClick=""><img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=Amazon AWS&logoColor=white"/></a>
 
-<a href="https://aws.amazon.com/ko/?nc2=h_lg" onClick=""><img src="https://img.shields.io/badge/Androguard-3.3.5-green"/></a>
-<a href="https://aws.amazon.com/ko/?nc2=h_lg" onClick=""><img src="https://img.shields.io/badge/Dexofuzzy-0.0.0-black"/></a>
-<a href="https://aws.amazon.com/ko/?nc2=h_lg" onClick=""><img src="https://img.shields.io/badge/VirusTotal-API-red"/></a>
+<a href="https://pypi.org/project/androguard/" onClick=""><img src="https://img.shields.io/badge/Androguard-3.3.5-green"/></a>
+<a href="https://pypi.org/project/dexofuzzy/" onClick=""><img src="https://img.shields.io/badge/Dexofuzzy-23.3.1-black"/></a>
+<a href="https://docs.virustotal.com/reference/overview" onClick=""><img src="https://img.shields.io/badge/VirusTotal-API-red"/></a>
 # Service 🪄
 - https://www.scanwich.co.kr
 
