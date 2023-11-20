@@ -119,7 +119,7 @@ export default function Report({ display }) {
                   }
                 </Grid>
                 <Grid style={{marginLeft: '17vh', marginBottom: '2vh'}}>
-                  <Typography variant='h5' color='white' style={{marginBottom: '1vh'}}>등급</Typography>
+                  <Typography variant='h5' color='white' style={{marginTop: '1vh', marginBottom: '1vh'}}>등급</Typography>
                   {!isLoading && reportData.r_data.vt_data &&
                     <ScoreComment score={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)} varCode={'h4'} />
                   }

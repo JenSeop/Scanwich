@@ -45,7 +45,6 @@ export default function LabTabs({data, isSmall}) {
                 '&.Mui-selected': {
                   color: '#373531',
                 },
-                marginRight: '5vh',
               }}
           />
           <Tab
@@ -59,7 +58,6 @@ export default function LabTabs({data, isSmall}) {
                 '&.Mui-selected': {
                   color: '#373531',
                 },
-                marginRight: '5vh',
               }}
           />
           <Tab
@@ -73,7 +71,6 @@ export default function LabTabs({data, isSmall}) {
                 '&.Mui-selected': {
                   color: '#373531',
                 },
-                marginRight: '5vh',
               }}
           />
           <Tab
@@ -87,7 +84,6 @@ export default function LabTabs({data, isSmall}) {
                 '&.Mui-selected': {
                   color: '#373531',
                 },
-                marginRight: '5vh',
               }}
           />
           <Tab

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Paper, Typography, IconButton, Grid, Tooltip } from '@mui/material';
 import FileIcon from '@mui/icons-material/Description';
-import DownloadIcon from '@mui/icons-material/Download';
 import Download from './Download';
 
 const FileModulePc = ({ reportId, fullName, fileName, fileSize, fileIcon, filePath }) => {
