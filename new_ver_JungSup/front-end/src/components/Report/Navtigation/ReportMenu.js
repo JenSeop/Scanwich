@@ -6,12 +6,12 @@ import Paper from '@mui/material/Paper';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import FolderTree from './FolderTree';
-import Detection_Grid from './Detection_Grid';
-import Detection_Chart from './Detection_Chart';
+import FolderTree from '../FolderTree';
+import Detection_Grid from '../Detection/Detection_Grid';
+import Detection_Chart from '../Detection/Detection_Chart';
 import { Typography } from '@mui/material';
-import Information from './Information';
-import Classes from './Diagramclass';
+import Information from '../Details';
+import Classes from '../Diagramclass';
 
 export default function LabTabs({data, isSmall}) {
   const [value, setValue] = React.useState('1');

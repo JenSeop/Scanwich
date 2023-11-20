@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Grid, Box, Typography, Paper, Divider } from '@mui/material';
-import ReportImgLender from '../components/Report/ReportImgLender';
-import ReportNav from '../components/Report/ReportNav';
-import ScoreComment from '../components/Report/ScoreComment';
-import ScoreBoard from '../components/Report/ScoreBoard';
-import FileModulePc from '../components/Report/FileModulePc';
-import UserInfoPc from '../components/Report/UserInfoPc';
-import UserInfoMob from '../components/Report/UserInfoMob';
+import ReportImgLender from '../components/Report/ReportIMG/ReportImgLender.js';
+import ReportNav from '../components/Report/Navtigation/ReportNav.js';
+import ScoreComment from '../components/Report/Score/ScoreComment.js';
+import ScoreBoard from '../components/Report/Score/ScoreBoard.js';
+import FileModulePc from '../components/Report/Module_File/FileModulePc.js';
+import UserInfoPc from '../components/Report/Module_Info/UserInfoPc.js';
+import UserInfoMob from '../components/Report/Module_Info/UserInfoMob.js';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../components/Report/Loading';
 import { getScore } from '../utils/getScore';
-import ReportMenu from '../components/Report/ReportMenu'
+import ReportMenu from '../components/Report/Navtigation/ReportMenu.js'
 import ScrollTop from '../components/MUI/ScrollTop'
 import { isValidate } from '../utils/getAuth.js';
 import setCookie from '../utils/setCookie';

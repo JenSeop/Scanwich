@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { Typography, Accordion, AccordionSummary, AccordionDetails, Paper, Grid, TextField } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import File from './Information/File';
-import CRC32 from './Information/CRC32';
-import Android from './Information/Android';
-import Signed from './Information/Signed';
-import Activities from './Information/Activities/Activities';
-import Permissions from './Information/Permissions/Permissions';
-import Service from './Information/Service';
-import Reciver from './Information/Reciver';
-import IntentFilters from './Information/Intent_Filters';
-import Provider from './Information/Provider';
-import Library from './Information/Library';
+import File from './Details/File';
+import CRC32 from './Details/CRC32';
+import Android from './Details/Android';
+import Signed from './Details/Signed';
+import Activities from './Details/Activities/Activities';
+import Permissions from './Details/Permissions/Permissions';
+import Service from './Details/Service';
+import Reciver from './Details/Reciver';
+import IntentFilters from './Details/Intent_Filters';
+import Provider from './Details/Provider';
+import Library from './Details/Library';
 
 export default function Info({data}) {
   console.log(data)

@@ -10,7 +10,6 @@ import RegisterStep3 from './pages/Register/RegisterStep3';
 import EmailVerif201 from './pages/Verification/EmailVerif201';
 import EmailVerif424 from './pages/Verification/EmailVerif424';
 import EmailVerif502 from './pages/Verification/EmailVerif502';
-import ReportImg from './components/Report/ReportImg';
 import Loading from './components/Report/Loading';
 import Error from './pages/Error';
 import Report from './pages/Report';
@@ -76,7 +75,6 @@ function App() {
           <Route path="/email/verif/502" element={<EmailVerif502 />} />
           <Route path="/report/:r_id" element={<Report display={display}/>} />
           <Route path="/loading" element={<Loading status={true} />} />
-          <Route path="/reportimg" element={<ReportImg paramScore={'1'} iconSize={520} circleSize={520}/>} />
           <Route path="/error/400" element={<Error errorCode="400" />} />
           <Route path="/error/403" element={<Error errorCode="403" />} />
           <Route path="/error/404" element={<Error errorCode="404" />} />
