@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Tooltip from '@mui/material/Tooltip';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
@@ -35,7 +36,11 @@ export default function LabTabs({data, isSmall}) {
           }}
         >
           <Tab
-            label="Overview"
+            label={
+              <Tooltip title="개요">
+                <span>Overview</span>
+              </Tooltip>
+            }
             value="1"
             sx={{
                 color: '#373531',
@@ -48,7 +53,11 @@ export default function LabTabs({data, isSmall}) {
               }}
           />
           <Tab
-            label="Details"
+            label={
+              <Tooltip title="세부 정보">
+                <span>Details</span>
+              </Tooltip>
+            }
             value="2"
             sx={{
                 color: '#373531',
@@ -61,7 +70,11 @@ export default function LabTabs({data, isSmall}) {
               }}
           />
           <Tab
-            label="Detection"
+            label={
+              <Tooltip title="탐지 정보">
+                <span>Detection</span>
+              </Tooltip>
+            }
             value="3"
             sx={{
                 color: '#373531',
@@ -74,7 +87,11 @@ export default function LabTabs({data, isSmall}) {
               }}
           />
           <Tab
-            label="Classes"
+            label={
+              <Tooltip title="클래스 정보">
+                <span>Classes</span>
+              </Tooltip>
+            }
             value="4"
             sx={{
                 color: '#373531',
@@ -87,7 +104,11 @@ export default function LabTabs({data, isSmall}) {
               }}
           />
           <Tab
-            label="Finder"
+            label={
+              <Tooltip title="파일 구조">
+                <span>Finder</span>
+              </Tooltip>
+            }
             value="5"
             sx={{
                 color: '#373531',

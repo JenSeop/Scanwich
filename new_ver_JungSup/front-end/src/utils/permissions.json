@@ -1,0 +1,124 @@
+{
+  "permissions": [
+      {
+          "id": "READ_CALENDAR",
+          "name": "캘린더 읽기 권한",
+          "description": "앱이 달력 정보를 읽을 수 있도록 허용합니다."
+      },
+      {
+          "id": "WRITE_CALENDAR",
+          "name": "캘린더 쓰기 권한",
+          "description": "앱이 달력에 정보를 쓸 수 있도록 허용합니다."
+      },
+      {
+          "id": "CAMERA",
+          "name": "카메라 접근 권한",
+          "description": "앱이 카메라를 사용할 수 있도록 허용합니다."
+      },
+      {
+          "id": "READ_CONTACTS",
+          "name": "주소록 읽기 권한",
+          "description": "앱이 주소록 정보를 읽을 수 있도록 허용합니다."
+      },
+      {
+          "id": "WRITE_CONTACTS",
+          "name": "주소록 쓰기 권한",
+          "description": "앱이 주소록에 정보를 쓸 수 있도록 허용합니다."
+      },
+      {
+          "id": "GET_ACCOUNTS",
+          "name": "계정 접근 권한",
+          "description": "앱이 계정 정보에 액세스할 수 있도록 허용합니다."
+      },
+      {
+          "id": "ACCESS_FINE_LOCATION",
+          "name": "정확한 위치 접근 권한",
+          "description": "앱이 정확한 위치 정보에 액세스할 수 있도록 허용합니다."
+      },
+      {
+          "id": "ACCESS_COARSE_LOCATION",
+          "name": "대략적인 위치 접근 권한",
+          "description": "앱이 대략적인 위치 정보에 액세스할 수 있도록 허용합니다."
+      },
+      {
+          "id": "RECORD_AUDIO",
+          "name": "마이크 접근 권한",
+          "description": "앱이 마이크를 사용할 수 있도록 허용합니다."
+      },
+      {
+          "id": "READ_PHONE_STATE",
+          "name": "전화 상태 읽기 권한",
+          "description": "앱이 전화 상태 및 식별 정보를 읽을 수 있도록 허용합니다."
+      },
+      {
+          "id": "CALL_PHONE",
+          "name": "전화 걸기 권한",
+          "description": "앱이 전화를 걸 수 있도록 허용합니다."
+      },
+      {
+          "id": "READ_CALL_LOG",
+          "name": "통화 기록 읽기 권한",
+          "description": "앱이 통화 기록을 읽을 수 있도록 허용합니다."
+      },
+      {
+          "id": "WRITE_CALL_LOG",
+          "name": "통화 기록 쓰기 권한",
+          "description": "앱이 통화 기록에 정보를 쓸 수 있도록 허용합니다."
+      },
+      {
+          "id": "ADD_VOICEMAIL",
+          "name": "음성 메일 추가 권한",
+          "description": "앱이 음성 메일을 추가할 수 있도록 허용합니다."
+      },
+      {
+          "id": "USE_SIP",
+          "name": "SIP 통화 권한",
+          "description": "앱이 SIP (Session Initiation Protocol) 통화를 사용할 수 있도록 허용합니다."
+      },
+      {
+          "id": "PROCESS_OUTGOING_CALLS",
+          "name": "발신 통화 처리 권한",
+          "description": "앱이 발신 통화를 처리할 수 있도록 허용합니다."
+      },
+      {
+          "id": "BODY_SENSORS",
+          "name": "신체 센서 접근 권한",
+          "description": "앱이 신체 센서 데이터에 접근할 수 있도록 허용합니다."
+      },
+      {
+          "id": "SEND_SMS",
+          "name": "SMS 전송 권한",
+          "description": "앱이 SMS를 전송할 수 있도록 허용합니다."
+      },
+      {
+          "id": "RECEIVE_SMS",
+          "name": "SMS 수신 권한",
+          "description": "앱이 SMS를 수신할 수 있도록 허용합니다."
+      },
+      {
+          "id": "READ_SMS",
+          "name": "SMS 읽기 권한",
+          "description": "앱이 SMS를 읽을 수 있도록 허용합니다."
+      },
+      {
+          "id": "RECEIVE_WAP_PUSH",
+          "name": "WAP PUSH 수신 권한",
+          "description": "앱이 WAP PUSH 메시지를 수신할 수 있도록 허용합니다."
+      },
+      {
+          "id": "RECEIVE_MMS",
+          "name": "MMS 수신 권한",
+          "description": "앱이 MMS를 수신할 수 있도록 허용합니다."
+      },
+      {
+          "id": "READ_EXTERNAL_STORAGE",
+          "name": "외부 저장소 읽기 권한",
+          "description": "앱이 외부 저장소의 파일을 읽을 수 있도록 허용합니다."
+      },
+      {
+          "id": "WRITE_EXTERNAL_STORAGE",
+          "name": "외부 저장소 쓰기 권한",
+          "description": "앱이 외부 저장소에 파일을 쓸 수 있도록 허용합니다."
+      }
+  ]
+}
