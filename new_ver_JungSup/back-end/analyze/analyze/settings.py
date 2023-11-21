@@ -16,6 +16,8 @@ SECRET_KEY = env("SECRET_KEY")
 VIRUSTOTAL_API_KEY = env("VIRUSTOTAL_API_KEY")
 VIRUSTOTAL_API_KEY_SPAIR = env("VIRUSTOTAL_API_KEY_SPAIR")
 
+SESSION_ENGINE = "django.contrib.sessions.backends.cache" 
+SESSION_COOKIE_NAME = "scanwich"
 
 DEBUG = True
 

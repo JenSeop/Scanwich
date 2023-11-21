@@ -89,8 +89,6 @@ function List({ data, isMobile }) {
     fetchData();
   }, []);
 
-  console.log(list)
-
   return (
     <>
       {isMobile ? true : 
@@ -128,7 +126,6 @@ function List({ data, isMobile }) {
                         width: '100%',
                       }}
                     />
-                    
                     <Grid container>
                       <Grid item xs>
                         <ScoreBoard
@@ -143,12 +140,6 @@ function List({ data, isMobile }) {
                       </Grid>
                     </Grid>
                   </>
-                }
-                {item.r_status == 'false' &&
-                  <Typography color="inherit">분석 대기중...</Typography>
-                }
-                {item.r_status == 'error' &&
-                  <Typography color="inherit">분석 오류 발생</Typography>
                 }
               </React.Fragment>
             }

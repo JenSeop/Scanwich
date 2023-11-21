@@ -12,8 +12,9 @@ import {
   DialogActions,
   styled,
   Skeleton,
-  Tooltip
+  Divider
 } from '@mui/material';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { Link } from 'react-router-dom';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
@@ -28,7 +29,19 @@ import { getUidFromCookie } from '../../utils/getAuth.js';
 import setCookie from '../../utils/setCookie';
 import axios from 'axios';
 import { getScore } from '../../utils/getScore.js';
-import Refresh from '../../components/Refresh.js';
+
+const HtmlTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }}/>
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: 'white',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 200,
+    fontSize: theme.typography.pxToRem(12),
+    border: '1px solid #373531',
+    zIndex: 9999
+  },
+}));
 
 const FileUploadContainer = styled('div')({
   border: '2px dashed #ccc',
@@ -77,6 +90,48 @@ function Queue({ isMobile }) {
 
     setCookie('prevPage', '/', 365);
   }, []);
+
+  const handleRetryClick = async(report_id) => {
+    const r_id = report_id;
+    const csrfToken = getCsrf();
+    const data = {
+      r_id: r_id,
+      csrfToken : csrfToken,
+    };
+
+    try {
+      const response = await axios.post('/analyze/engine/retry/', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Success', response.data);
+      window.location.reload();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleDeleteClick = async(report_id) => {
+    const r_id = report_id;
+    const csrfToken = getCsrf();
+    const data = {
+      r_id: r_id,
+      csrfToken : csrfToken,
+    };
+
+    try {
+      const response = await axios.post('/analyze/report/delete/', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Success', response.data);
+      window.location.reload();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -159,20 +214,20 @@ function Queue({ isMobile }) {
           <DialogTitle style={{ textAlign: 'center' }}>파일 업로드</DialogTitle>
             <DialogContent>
               {isLogin &&
-              <FileUploadContainer {...getRootProps()}>
+              <FileUploadContainer {...getRootProps()} style={{minWidth:'31vh', maxWidth: '31vh'}}>
                 <input {...getInputProps()} />
                 {file ? (
                   <>
                     <InsertDriveFileIcon style={{ fontSize: 48 }}/>
                     <Typography variant="body2" color="textSecondary">
-                      {file.name}
+                      {file.name.substring(50)}
                     </Typography>
                   </>
                 ) : (
                   <>
                     <FileOpenIcon style={{ fontSize: 48 }}/>
                     <Typography variant="body2" color="textSecondary">
-                      파일을 드래그 앤 드랍 하거나 클릭
+                      파일을 드래그 앤 드랍 또는 클릭
                     </Typography>
                   </>
                 )}
@@ -275,8 +330,25 @@ function Queue({ isMobile }) {
                               {queue.r_id}
                             </Typography>
                           </Grid>
-                          <Grid item xs={0} color="white">
-                              <InsertDriveFileIcon fontSize="small" />
+                            <Grid item xs={0} color="white">
+                            {queue.r_data.androguard_data &&
+                            <>
+                              <img
+                                src={`/files/apk_icon/${queue.r_id}.png`}
+                                alt={queue.r_data.androguard_data.apk.name}
+                                style={{
+                                  width: '15px',
+                                  height: '15px',
+                                  borderRadius: '30%',
+                                  marginTop: '0.3vh',
+                                  marginRight: '1vh'
+                                }}
+                              />
+                            </>
+                            }
+                            {!queue.r_data.androguard_data &&
+                              <InsertDriveFileIcon fontSize="small" sx={{marginTop: '0.2vh', marginRight: '0.6vh'}}/>
+                            }
                           </Grid>
                           <Grid item xs={7}>
                             {queue.r_data.androguard_data &&
@@ -284,10 +356,58 @@ function Queue({ isMobile }) {
                                 {queue.r_data.androguard_data.apk.name}
                               </Typography>
                             }
-                            {!queue.r_data.androguard_data &&
-                              <Typography variant="body3" color="white">
-                                분석 대기중...
-                              </Typography>
+                            {queue.r_status == 'false' &&
+                              <Typography color="grey">분석 대기중</Typography>
+                            }
+                            {queue.r_status == 'error' &&
+                              <HtmlTooltip
+                                title={
+                                  <React.Fragment>
+                                    <Grid
+                                      container
+                                      alignItems="center"
+                                      justifyContent="center"
+                                    >
+                                      <Grid container>
+                                        <Grid item>
+                                          <Typography variant='body1' fontWeight='bold'>Queue #{queue.r_id}</Typography>
+                                          <Typography variant='body2'>분석중 오류가 발생하였습니다.</Typography>
+                                        </Grid>
+                                      </Grid>
+                                      <Divider
+                                        sx={{
+                                          width: '100%',
+                                          marginTop: '1vh',
+                                          marginBottom: '0.5vh'
+                                        }}
+                                      />
+                                      <Grid container>
+                                        <Grid item xs>
+                                          <Button variant='outlined' color='secondary' sx={{width: '95%'}}
+                                          onClick={
+                                            (event) => {
+                                              event.preventDefault();
+                                              handleRetryClick(queue.r_id);
+                                            }}
+                                          >재시도</Button>
+                                        </Grid>
+                                        <Grid item xs>
+                                          <Button
+                                          variant='outlined' color='error' sx={{width: '95%'}}
+                                          onClick={
+                                            (event) => {
+                                              event.preventDefault();
+                                              handleDeleteClick(queue.r_id);
+                                            }}
+                                          >기록 삭제</Button>
+                                        </Grid>
+                                      </Grid>
+                                    </Grid>
+                                  </React.Fragment>
+                                }
+                              >
+                                <Typography color="red">분석 오류 발생</Typography>
+                              </HtmlTooltip>
                             }
                           </Grid>
                           <Grid item xs={0} style={{ color: 'white' }}>

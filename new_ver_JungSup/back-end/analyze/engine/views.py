@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from rest_framework.pagination import PageNumberPagination
 from django_q.models import OrmQ
 
+# Scanwich 분석 요청
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def queue_analysis(request):
@@ -31,6 +32,7 @@ def queue_analysis(request):
 
       return Response({"success": True, "message": "File uploaded and analysis queued."}, status=status.HTTP_201_CREATED)
 
+# Scanwich 분석 요청 처리 함수
 def process_analysis(r_id):
       try:
             report = AnalyzeReport.objects.get(r_id=r_id)
@@ -60,6 +62,47 @@ def process_analysis(r_id):
       # Analysis Error
       except AnalyzeQueue.DoesNotExist:
             pass
+      
+# 요청 리포트 분석 재시도
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def retry_analysis(request):
+      r_id = request.POST.get('r_id')
+      
+      try:
+            report = AnalyzeReport.objects.get(r_id=r_id, r_status='error')
+            queue_item = AnalyzeQueue(r_id=report, u_id=report.u_id)
+            queue_item.save()
+            
+            report.r_status = "false"
+            report.save()
+      except AnalyzeReport.DoesNotExist:
+            return JsonResponse({"detail": "No error report found with the provided r_id."}, status=400)
+
+      # Django Q Call
+      async_task("engine.views.process_analysis", report.r_id)
+
+      return JsonResponse({"success": True, "message": "Retry analysis initiated."}, status=200)
+
+# 요청 리포트 지우기
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def delete_error_report(request):
+      r_id = request.POST.get('r_id')
+
+      try:
+            report = AnalyzeReport.objects.get(r_id=r_id, r_status='error')
+      except AnalyzeReport.DoesNotExist:
+            return Response("No error report found with the provided r_id.", status=400)
+
+      try:
+            r_queue = AnalyzeQueue.objects.get(r_id=report)
+            r_queue.delete()
+      except AnalyzeQueue.DoesNotExist:
+            pass
+
+      report.delete()
+      return Response("Error report deleted successfully.", status=200)
 
 # 모든 리포트 불러오기
 @api_view(['GET'])
@@ -87,7 +130,7 @@ class AnalyzeReportPagination(PageNumberPagination):
 @permission_classes([AllowAny])
 def get_analyze_reports_re(request):
       paginator = AnalyzeReportPagination()
-      reports = AnalyzeReport.objects.all().order_by('-r_date')
+      reports = AnalyzeReport.objects.all().filter(r_status="true").order_by('-r_date')
       page = paginator.paginate_queryset(reports, request)
       serializer = AnalyzeReportSerializer(page, many=True)
 
