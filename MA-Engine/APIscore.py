@@ -1,5 +1,41 @@
 import json
 
+def apply_threat_score(api_name, category_counts):
+    threat_scores = {
+        'getDeviceId': 4,
+        'getSimSerialNumber': 6,
+        'getSubscriberId': 5,
+        'sendTextMessage': 9,
+        'getMessageBody': 9,
+        'delete': 3,
+        'createFromPdu': 3,
+        'getLineNumber': 6,
+        'getRunningTasks': 7,
+        'getSimOperator': 6,
+        'getSimOperatorName': 6,
+        'connect': 3,
+        'notify': 3,
+        'killBackgroundProcesses': 3,
+        'registerContentObserver': 3,
+        'encode': 3,
+        'getURL': 3,
+    }
+    return threat_scores.get(api_name, 1)  # Default score is 1 if not found
+
+def print_threat_scores(category_counts):
+    for category, api_count in category_counts.items():
+        print(f"{category} API:")
+        for api, count in api_count.items():
+            threat_score = apply_threat_score(api, category_counts[category])
+            category_counts[category][api] *= threat_score
+            print(f'The Threat score for "{api}" is {category_counts[category][api]}')
+        print()
+
+def print_category_scores(category, category_counts):
+    device_sum = sum(category_counts[category].values())
+    category_score = min(device_sum, 100)
+    print(f"'{category}' category Score is {category_score}")
+
 # JSON 파일 경로를 직접 지정
 json_file_path = 'APKtoJson.json'
 
@@ -19,9 +55,8 @@ api_categories = {
     'Network': ['encode', 'getURL']
 }
 
-# 각 API 카테고리의 호출 횟수 저장할 딕셔너리 초기화
+# 각 API 카테고리의 호출 횟수 저장할 딕셔너리 초기화. 각 key를 0으로 초기화.
 category_counts = {category: {api: 0 for api in apis} for category, apis in api_categories.items()}
-
 
 # 각 클래스의 메서드를 확인하여 특정 API 호출 횟수를 세기
 for class_info in json_data['Classes']:
@@ -33,53 +68,41 @@ for class_info in json_data['Classes']:
             if api_name in apis:
                 category_counts[category][api_name] += 1
 
-# 결과 출력 및 딕셔너리에 반영
-for category, api_count in category_counts.items():
-    print(f"{category} API:")
-    for api, count in api_count.items():
-        # API 위험도에 따른 가중치 곱셈 및 딕셔너리에 반영함
-        if api == 'getDeviceId':
-            category_counts[category][api] *= 4
-        elif api == 'getSimSerialNumber':
-            category_counts[category][api] *= 6
-        elif api == 'getSubscriberId':
-            category_counts[category][api] *= 5
-        elif api == 'sendTextMessage' or api == 'getMessageBody':
-            category_counts[category][api] *= 9
-        elif api == 'delete' or api == 'createFromPdu':
-            category_counts[category][api] *= 3
-        elif api == 'getLineNumber':
-            category_counts[category][api] *= 6
-        elif api == 'getRunningTasks':
-            category_counts[category][api] *= 7
-        elif api in ['getSimOperator', 'getSimOperatorName']:
-            category_counts[category][api] *= 6
-        elif api in ['connect']:
-            category_counts[category][api] *= 3
-        elif api in ['notify', 'killBackgroundProcesses', 'registerContentObserver']:
-            category_counts[category][api] *= 3
-        elif api in ['encode', 'getURL']:
-            category_counts[category][api] *= 3
-        print(f'The Threat score for this "{api}" is {category_counts[category][api]}')
-    print()
+# api 호출 횟수를 출력하고 위험도에 따라 가중치를 곱함.
+print_threat_scores(category_counts)
 
+# Privacy 카테고리에 속하는 값들을 모두 더해서 Privacy_score에 저장
+privacy_category = 'Privacy'
+privacy_sum = sum(category_counts[privacy_category].values())
+Privacy_score = min(privacy_sum, 100)
+print(f"'{privacy_category}' category Score is {Privacy_score}")
 
-# 각 카테고리에 속하는 값들을 모두 더함
-print("The total scores for each category are as follows: ")
-device_sum = sum(category_counts['Privacy'].values())
-print(f"'Privacy' category Score is {device_sum}")
+# SMS 카테고리에 속하는 값들을 모두 더해서 SMS_score에 저장
+sms_category = 'SMS'
+sms_sum = sum(category_counts[sms_category].values())
+SMS_score = min(sms_sum, 100)
+print(f"'{sms_category}' category Score is {SMS_score}")
 
-device_sum = sum(category_counts['SMS'].values())
-print(f"'SMS' category Score is {device_sum}")
+# Linux 카테고리에 속하는 값들을 모두 더해서 Linux_score 저장
+linux_category = 'Linux'
+linux_sum = sum(category_counts[linux_category].values())
+Linux_score = min(linux_sum, 100)
+print(f"'{linux_category}' category Score is {Linux_score}")
 
-device_sum = sum(category_counts['Linux'].values())
-print(f"'Linux' category Score is {device_sum}")
+# FileAccess 카테고리에 속하는 값들을 모두 더해서 Privacy_score에 저장
+fileAcess_category = 'FileAccess'
+fileAcess_sum = sum(category_counts[fileAcess_category].values())
+FileAcess_score = min(fileAcess_sum, 100)
+print(f"'{fileAcess_category}' category Score is {FileAcess_score}")
 
-device_sum = sum(category_counts['FileAccess'].values())
-print(f"'FileAccess' category Score is {device_sum}")
+# Device 카테고리에 속하는 값들을 모두 더해서 Device_score에 저장
+device_category = 'Device'
+device_sum = sum(category_counts[device_category].values())
+Device_score = min(device_sum, 100)
+print(f"'{device_category}' category Score is {Device_score}")
 
-device_sum = sum(category_counts['Device'].values())
-print(f"'Device' category Score is {device_sum}")
-
-device_sum = sum(category_counts['Network'].values())
-print(f"'Network' category Score is {device_sum}")
+# Network 카테고리에 속하는 값들을 모두 더해서 Network_score 저장
+network_category = 'Network'
+network_sum = sum(category_counts[network_category].values())
+Network_score = min(network_sum, 100)
+print(f"'{network_category}' category Score is {Network_score}")
