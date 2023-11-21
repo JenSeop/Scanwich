@@ -60,25 +60,26 @@ for category, api_count in category_counts.items():
             category_counts[category][api] *= 3
         elif api in ['encode', 'getURL']:
             category_counts[category][api] *= 3
-        print(f'The API "{api}" was called {category_counts[category][api]} times.')
+        print(f'The Threat score for this "{api}" is {category_counts[category][api]}')
     print()
 
 
 # 각 카테고리에 속하는 값들을 모두 더함
+print("The total scores for each category are as follows: ")
 device_sum = sum(category_counts['Privacy'].values())
-print(f"The sum of values in 'Privacy' category is: {device_sum}")
+print(f"'Privacy' category Score is {device_sum}")
 
 device_sum = sum(category_counts['SMS'].values())
-print(f"The sum of values in 'SMS' category is: {device_sum}")
+print(f"'SMS' category Score is {device_sum}")
 
 device_sum = sum(category_counts['Linux'].values())
-print(f"The sum of values in 'Linux' category is: {device_sum}")
+print(f"'Linux' category Score is {device_sum}")
 
 device_sum = sum(category_counts['FileAccess'].values())
-print(f"The sum of values in 'FileAccess' category is: {device_sum}")
+print(f"'FileAccess' category Score is {device_sum}")
 
 device_sum = sum(category_counts['Device'].values())
-print(f"The sum of values in 'Device' category is: {device_sum}")
+print(f"'Device' category Score is {device_sum}")
 
 device_sum = sum(category_counts['Network'].values())
-print(f"The sum of values in 'Network' category is: {device_sum}")
+print(f"'Network' category Score is {device_sum}")
