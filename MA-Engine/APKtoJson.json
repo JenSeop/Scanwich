@@ -6484,33 +6484,8 @@
     ],
     "Associations": [
         {
-            "from": "moe/shizuku/api/BinderContainer;",
-            "to": "java/lang/Object;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/BuildConfig;",
-            "to": "java/lang/Object;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/R;",
-            "to": "java/lang/Object;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/RemoteProcess;",
-            "to": "java/lang/Process;",
-            "type": "dependency"
-        },
-        {
             "from": "moe/shizuku/api/RemoteProcess;",
             "to": "moe/shizuku/server/IRemoteProcess;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/RemoteProcess;",
-            "to": "java/lang/RuntimeException;",
             "type": "dependency"
         },
         {
@@ -6519,13 +6494,13 @@
             "type": "dependency"
         },
         {
-            "from": "moe/shizuku/api/ShizukuApiConstants;",
-            "to": "java/lang/Object;",
+            "from": "moe/shizuku/api/ShizukuBinderReceiveProvider;",
+            "to": "java/lang/IllegalStateException;",
             "type": "dependency"
         },
         {
             "from": "moe/shizuku/api/ShizukuBinderReceiveProvider;",
-            "to": "java/lang/IllegalStateException;",
+            "to": "moe/shizuku/api/ShizukuService;",
             "type": "dependency"
         },
         {
@@ -6535,17 +6510,7 @@
         },
         {
             "from": "moe/shizuku/api/ShizukuBinderReceiveProvider;",
-            "to": "java/lang/Class;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/ShizukuBinderReceiveProvider;",
             "to": "java/lang/String;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/ShizukuBinderReceiveProvider;",
-            "to": "moe/shizuku/api/ShizukuService;",
             "type": "dependency"
         },
         {
@@ -6554,17 +6519,7 @@
             "type": "dependency"
         },
         {
-            "from": "moe/shizuku/api/ShizukuBinderWrapper;",
-            "to": "java/lang/Object;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/ShizukuBinderWrapper;",
-            "to": "java/util/Objects;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/ShizukuBinderWrapper;",
+            "from": "moe/shizuku/api/ShizukuBinderReceiveProvider;",
             "to": "java/lang/Class;",
             "type": "dependency"
         },
@@ -6575,22 +6530,17 @@
         },
         {
             "from": "moe/shizuku/api/ShizukuBinderWrapper;",
+            "to": "java/lang/Class;",
+            "type": "dependency"
+        },
+        {
+            "from": "moe/shizuku/api/ShizukuBinderWrapper;",
             "to": "moe/shizuku/api/ShizukuService;",
             "type": "dependency"
         },
         {
             "from": "moe/shizuku/api/ShizukuClientHelper;",
-            "to": "java/lang/Object;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/ShizukuClientHelper;",
             "to": "java/util/UUID;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/ShizukuMultiProcessHelper;",
-            "to": "java/lang/Object;",
             "type": "dependency"
         },
         {
@@ -6610,22 +6560,17 @@
         },
         {
             "from": "moe/shizuku/api/ShizukuMultiProcessHelper;",
-            "to": "moe/shizuku/api/ShizukuClientHelper;",
+            "to": "java/lang/Class;",
             "type": "dependency"
         },
         {
             "from": "moe/shizuku/api/ShizukuMultiProcessHelper;",
-            "to": "java/lang/Class;",
+            "to": "moe/shizuku/api/ShizukuClientHelper;",
             "type": "dependency"
         },
         {
             "from": "moe/shizuku/api/ShizukuService;",
             "to": "moe/shizuku/server/IShizukuService;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/ShizukuService;",
-            "to": "java/lang/Object;",
             "type": "dependency"
         },
         {
@@ -6640,16 +6585,6 @@
         },
         {
             "from": "moe/shizuku/api/SystemServiceHelper;",
-            "to": "java/util/HashMap;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/SystemServiceHelper;",
-            "to": "java/lang/Object;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/SystemServiceHelper;",
             "to": "java/util/Map;",
             "type": "dependency"
         },
@@ -6660,22 +6595,12 @@
         },
         {
             "from": "moe/shizuku/api/SystemServiceHelper;",
-            "to": "java/lang/StringBuilder;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/SystemServiceHelper;",
-            "to": "java/lang/ReflectiveOperationException;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/SystemServiceHelper;",
-            "to": "java/lang/Class;",
-            "type": "dependency"
-        },
-        {
-            "from": "moe/shizuku/api/SystemServiceHelper;",
             "to": "java/lang/String;",
+            "type": "dependency"
+        },
+        {
+            "from": "moe/shizuku/api/SystemServiceHelper;",
+            "to": "java/lang/StringBuilder;",
             "type": "dependency"
         },
         {
@@ -6685,7 +6610,12 @@
         },
         {
             "from": "moe/shizuku/api/SystemServiceHelper;",
-            "to": "java/util/Objects;",
+            "to": "java/lang/Class;",
+            "type": "dependency"
+        },
+        {
+            "from": "moe/shizuku/api/SystemServiceHelper;",
+            "to": "java/lang/ReflectiveOperationException;",
             "type": "dependency"
         },
         {
