@@ -13,7 +13,7 @@ function Search({}) {
 
   useEffect(() => {
     isValidate();
-    setCookie('prevPage', '/', 365);
+    setCookie('prevPage', '/search', 365);
   }, [])
 
   return (

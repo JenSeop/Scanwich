@@ -64,7 +64,7 @@ function SearchList({ isMobile, type, keyword }) {
     }
     setLoading(true);
     axios
-      .get(`/analyze/get_analyze_reports_keyword/?keyword=${keyword}&page=${page}`)
+      .get(`/analyze/get_analyze_reports_keyword/?type=${type}&keyword=${keyword}&page=${page}`)
       .then((response) => {
         const newData = response.data.results;
         setList((prevList) => [...prevList, ...newData]);

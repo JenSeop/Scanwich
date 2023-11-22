@@ -52,7 +52,7 @@ const ReportImg = ({ paramScore, iconSize ,circleSize }) => {
           width: circleSize,
           height: circleSize,
           borderRadius: '50%',
-          background: gradientColors[paramScore - 1],
+          background: paramScore == 0 ? gradientColors[0] : gradientColors[paramScore - 1],
           overflow: 'hidden',
         }}
       >

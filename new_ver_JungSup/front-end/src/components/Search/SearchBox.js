@@ -3,12 +3,13 @@ import { Grid, Box, TextField, Card, CardContent, Typography, IconButton, Paper,
 import SearchIcon from '@mui/icons-material/Search';
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SearchBox = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState([]);
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
+  const navigate = useNavigate();
 
   const handleSearch = () => {
     const types = [
@@ -19,7 +20,16 @@ const SearchBox = () => {
   };
 
   const handleChange = (e) => {
-    const newValue = e.target.value;
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, '')
+        .replace(/</g, '')
+        .replace(/>/g, '')
+        .replace(/"/g, '')
+        .replace(/'/g, '');
+    }
+
+    const newValue = escapeHtml(e.target.value);
     setSearchTerm(newValue);
     handleSearch();
   };
@@ -30,6 +40,15 @@ const SearchBox = () => {
 
   const handleCardMouseLeave = () => {
     setHoveredCardIndex(null);
+  };
+
+  const handleSubmit = (keyword) => {
+    if (keyword === 'Name') {
+      navigate(`/search/${"name"}/${searchTerm}`);
+    } else if (keyword === 'Hash') {
+      navigate(`/search/${"hash"}/${searchTerm}`);
+    }
+    window.location.reload();
   };
 
   return (
@@ -51,32 +70,33 @@ const SearchBox = () => {
           marginBottom: '-0.5vh',
         }}
       >
-        <TextField
-          id="search_box"
-          placeholder="검색하기"
-          value={searchTerm}
-          onChange={handleChange}
-          InputProps={{
-            endAdornment: (
-              <IconButton
-                type="submit"
-                sx={{ p: '8px' }}
-                aria-label="search"
-              >
-                <SearchIcon />
-              </IconButton>
-            ),
-          }}
-          sx={{
-            width: '48vh',
-            height: '8vh',
-          }}
-          autoFocus
-        />
+        <form onSubmit={(e) => handleSubmit('Name')}>
+          <TextField
+            id="search_box"
+            placeholder="검색하기"
+            value={searchTerm}
+            onChange={handleChange}
+            InputProps={{
+              endAdornment: (
+                <IconButton
+                  type="submit"
+                  sx={{ p: '8px' }}
+                  aria-label="search"
+                >
+                  <SearchIcon />
+                </IconButton>
+              ),
+            }}
+            sx={{
+              width: '48vh',
+              height: '8vh',
+            }}
+            autoFocus
+          />
+        </form>
       </Box>
       {searchTerm && (
         searchType.map((type, index) => (
-          <Link to={type.keyword === 'Name' ? `/search/${"name"}/${searchTerm}` : `/search/${"hash"}/${searchTerm}`} style={{ textDecoration: 'none', width: '95%' }}>
             <Card
               key={index}
               elevation={0}
@@ -85,9 +105,11 @@ const SearchBox = () => {
                 cursor: 'pointer',
                 border: '1px solid #E0E0E0',
                 backgroundColor: hoveredCardIndex === index ? '#EFEFEF' : 'white',
+                width: '95%'
               }}
               onMouseEnter={() => handleCardMouseEnter(index)}
               onMouseLeave={handleCardMouseLeave}
+              onClick={() => handleSubmit(type.keyword)}
             >
               <CardContent>
                 <Grid container>
@@ -117,7 +139,6 @@ const SearchBox = () => {
                 </Grid>
               </CardContent>
             </Card>
-          </Link>
         ))
       )}
       {!searchTerm && (
