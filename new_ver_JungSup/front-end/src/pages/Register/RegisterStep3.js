@@ -17,7 +17,6 @@ function RegisterStep3() {
     }
     setCookie('prevPage', '/register/step3', 365);
   }, [])
-  
 
   return (
     <Container maxWidth="sm">
@@ -38,7 +37,7 @@ function RegisterStep3() {
             marginBottom: '-2vh'
           }}
         />
-        <Typography variant="h3" align="center" fontWeight="bold" gutterBottom>
+        <Typography variant="h3" align="center" fontWeight="bold" gutterBottom color='secondary'>
           Welcome!
         </Typography>
         <Typography variant="h6" paragraph>

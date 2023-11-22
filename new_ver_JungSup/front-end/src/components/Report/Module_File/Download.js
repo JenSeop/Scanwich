@@ -56,7 +56,8 @@ const Download = ({ reportId, fullName, fileName }) => {
                 justifyContent: 'center',
                 border: '1px solid #E0E0E0',
                 width: '25vh',
-                marginBottom: '-2vh'
+                marginBottom: '-2vh',
+                minWidth: '25vh'
               }}
             >
               <img

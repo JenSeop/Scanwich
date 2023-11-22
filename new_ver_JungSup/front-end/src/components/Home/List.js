@@ -20,6 +20,7 @@ import { getScore } from '../../utils/getScore.js';
 import DataLoadingButton from './DataLoadingButton.js';
 import ScoreBoard from '../Report/Score/ScoreBoard.js';
 import ScoreComment from '../Report/Score/ScoreComment.js';
+import LoadingProgress from '../MUI/loadingProgress.js';
 
 const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} followCursor/>
@@ -264,6 +265,7 @@ function List({ data, isMobile }) {
         handleLoadMore={handleLoadMore}
         isMobile={isMobile}
       />
+      {loading && !isMobile && <LoadingProgress/>}
     </>
   );
 }

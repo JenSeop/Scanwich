@@ -1,4 +1,4 @@
-from django_q.models import OrmQ
 from django.contrib import admin
-
-# Register your models here.
+from django.contrib.auth.admin import UserAdmin
+from .models import AnalyzeReport, AnalyzeQueue
+from django_q.models import OrmQ

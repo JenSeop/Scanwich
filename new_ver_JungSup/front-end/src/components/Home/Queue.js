@@ -74,19 +74,24 @@ function Queue({ isMobile }) {
   const [file, setFile] = useState();
   const isLogin = isLoggedIn();
   const [queue, setQueue] = useState([]);
-  const [loadingQueue, setLoadingQueue] = useState(true);
+  const [loadingQueue, setLoadingQueue] = useState(false);
   
+
   useEffect(() => {
-    const u_id = getUidFromCookie();
-    axios.get(`/analyze/report/user/${u_id}/`)
-      .then(response => {
-        setQueue(response.data);
-        setLoadingQueue(false);
-      })
-      .catch(error => {
-        console.error('API 호출에서 오류 발생:', error);
-        setLoadingQueue(false);
-      });
+    if(isLogin)
+    {
+      const u_id = getUidFromCookie();
+      setLoadingQueue(true);
+      axios.get(`/analyze/report/user/${u_id}/`)
+        .then(response => {
+          setQueue(response.data);
+          setLoadingQueue(false);
+        })
+        .catch(error => {
+          console.error('API 호출에서 오류 발생:', error);
+          setLoadingQueue(false);
+        });
+    }
 
     setCookie('prevPage', '/', 365);
   }, []);

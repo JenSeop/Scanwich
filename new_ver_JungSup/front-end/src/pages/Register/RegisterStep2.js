@@ -4,6 +4,7 @@ import { useNavigate  } from 'react-router-dom';
 import { getCookie } from '../../utils/getAuth.js';
 import setCookie from '../../utils/setCookie.js';
 import { getCsrf } from '../../utils/getCsrf.js';
+import LoadingProgress from '../../components/MUI/loadingProgress.js';
 import axios from 'axios';
 
 function RegisterStep2() {
@@ -13,6 +14,7 @@ function RegisterStep2() {
   const [idError, setIdError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -72,6 +74,7 @@ function RegisterStep2() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const csrfToken = getCsrf();
       const userData = {
@@ -181,6 +184,7 @@ function RegisterStep2() {
           </Button>
         </form>
       </Box>
+      {loading && <LoadingProgress />}
     </Container>
   );
 }

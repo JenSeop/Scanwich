@@ -45,6 +45,7 @@ function Login() {
         password: password,
         csrfToken : csrfToken,
       };
+
       const apiUrl = '/client/user/jwtlogin/';
       const response = await axios.post(apiUrl, userData);
       const token = response.data.token;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -22,9 +22,11 @@ import { useNavigate  } from 'react-router-dom';
 import { getUidFromCookie } from '../../utils/getAuth.js';
 import { getCsrf } from '../../utils/getCsrf.js';
 import { getTokenFromCookie } from '../../utils/getAuth.js';
+import LoadingProgress from '../MUI/loadingProgress.js';
 
 export default function ProfileMenu({userName, userEmail}) {
   const [state, setState] = React.useState({ right: false });
+  const [loading, setLoading] = useState(false);
   const u_id = getUidFromCookie();
   const navigate = useNavigate();
 
@@ -46,6 +48,7 @@ export default function ProfileMenu({userName, userEmail}) {
         t_key: u_token,
         csrfToken: csrfToken,
       };
+      setLoading(true);
 
       const response = await axios.post(apiUrl, data);
       if (response.status === 200) {
@@ -59,6 +62,7 @@ export default function ProfileMenu({userName, userEmail}) {
         localStorage.removeItem('u_token');
         localStorage.removeItem('u_id');
         localStorage.removeItem('u_email');
+        setLoading(false);
   
         // 로그아웃 후 홈 페이지로 이동
         navigate('/');
@@ -66,9 +70,11 @@ export default function ProfileMenu({userName, userEmail}) {
       } else {
         // 로그아웃 실패
         console.error('로그아웃 실패:', response.data);
+        setLoading(false);
       }
     } catch (error) {
       console.error('로그아웃 오류:', error);
+      setLoading(false);
     }
   };
 
@@ -213,6 +219,7 @@ export default function ProfileMenu({userName, userEmail}) {
           </Drawer>
         </React.Fragment>
       ))}
+      {loading && <LoadingProgress/>}
     </div>
   );
 }
