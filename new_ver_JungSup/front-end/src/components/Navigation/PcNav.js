@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import ProfileMenu from './ProfileMenu';
 import SearchIcon from '@mui/icons-material/Search';
-import Search from './Search.js';
+import Search from '../Search/SearchBox.js';
 import { getTokenFromCookie, getUidFromCookie, getEmailFromCookie } from '../../utils/getAuth.js';
 
 const PcNav = ({isMobile}) => {

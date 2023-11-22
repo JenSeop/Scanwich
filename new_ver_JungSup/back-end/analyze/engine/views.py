@@ -10,6 +10,7 @@ from .serializers import AnalyzeQueueSerializer
 from django.http import JsonResponse
 from rest_framework.pagination import PageNumberPagination
 from django_q.models import OrmQ
+from django.db.models import Q
 
 # Scanwich 분석 요청
 @api_view(['POST'])
@@ -139,6 +140,36 @@ def get_analyze_reports_re(request):
       return Response({
       'results': serializer.data,
       'next': next_link if next_link else None,
+      })
+      
+# 특정 리포트를 타입과 키워드를 통해 불러오기
+class AnalyzeReportPagination(PageNumberPagination):
+      page_size = 12
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_analyze_reports_keyword(request):
+      keyword = request.GET.get('keyword')
+      type = request.GET.get('type')
+
+      query_condition = Q(r_status="true")
+
+      if keyword and type=="name":
+            query_condition &= Q(r_data__androguard_data__apk__name__icontains=keyword)
+      else:
+            query_condition &= Q(r_data__file_info__f_sha256__icontains=keyword)
+
+      reports = AnalyzeReport.objects.filter(query_condition).order_by('-r_date')
+
+      paginator = AnalyzeReportPagination()
+      page = paginator.paginate_queryset(reports, request)
+      serializer = AnalyzeReportSerializer(page, many=True)
+
+      next_link = paginator.get_next_link()
+
+      return Response({
+            'results': serializer.data,
+            'next': next_link if next_link else None,
       })
 
 def report_detail(request, r_id):

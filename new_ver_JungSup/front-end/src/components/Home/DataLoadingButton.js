@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 
-function DataLoadingButton({ hasNextPage, loading, handleLoadMore, isMobile }) {
+function DataLoadingButton({ hasNextPage, loading, handleLoadMore, isMobile, isSearch }) {
   const marginStyle = isMobile
     ? {
         marginTop: '1vh',
@@ -48,7 +48,7 @@ function DataLoadingButton({ hasNextPage, loading, handleLoadMore, isMobile }) {
           )}
         </Button>
       )}
-      {!hasNextPage && (
+      {!hasNextPage && !isSearch && (
         <Button
           variant="text"
           disabled
@@ -60,6 +60,20 @@ function DataLoadingButton({ hasNextPage, loading, handleLoadMore, isMobile }) {
           }}
         >
           추가 데이터가 존재하지 않습니다.
+        </Button>
+      )}
+      {!hasNextPage && isSearch && (
+        <Button
+          variant="text"
+          disabled
+          color="3"
+          style={{
+            width: '97.5%',
+            height: '7vh',
+            marginLeft: '1vh',
+          }}
+        >
+          데이터가 존재하지 않습니다.
         </Button>
       )}
     </Grid>
