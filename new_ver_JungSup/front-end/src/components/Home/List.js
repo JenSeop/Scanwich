@@ -104,7 +104,7 @@ function List({ data, isMobile }) {
             List
           </Typography>
         </Grid>
-        }
+      }
       <Grid container spacing={-1}>
         {list.map((item, index) => (
           <HtmlTooltip

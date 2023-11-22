@@ -21,6 +21,7 @@ import Guide from './pages/Guide';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Licenses from './pages/Licenses';
+import SearchResult from './pages/SearchResult';
 
 import FindID from './pages/Auth/FindId'
 import FindIDResult from './pages/Auth/FindIdResult'
@@ -28,20 +29,17 @@ import FindPW from './pages/Auth/FindPw'
 import FindPWResult from './pages/Auth/FindPwResult'
 
 function App() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600); // 예: 600px 이하가 모바일로 간주
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
   const [display, setDisplay] = useState(window.innerWidth);
 
   useEffect(() => {
-    // 화면 크기 변화 감지
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
       setDisplay(window.innerWidth);
     };
 
-    // 리스너 등록
     window.addEventListener('resize', handleResize);
 
-    // 언마운트 시 리스너 제거
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -72,6 +70,7 @@ function App() {
           <Route path="/email/verif/502" element={<EmailVerif502 />} />
           <Route path="/report/:r_id" element={<Report display={display}/>} />
           <Route path="/loading" element={<Loading status={true} />} />
+          <Route path="/search/result" element={<SearchResult/>} />
           <Route path="/error/400" element={<Error errorCode="400" />} />
           <Route path="/error/403" element={<Error errorCode="403" />} />
           <Route path="/error/404" element={<Error errorCode="404" />} />

@@ -225,7 +225,7 @@ function Queue({ isMobile }) {
                   <>
                     <InsertDriveFileIcon style={{ fontSize: 48 }}/>
                     <Typography variant="body2" color="textSecondary">
-                      {file.name.substring(50)}
+                      {file.name.substring(0,30)}
                     </Typography>
                   </>
                 ) : (

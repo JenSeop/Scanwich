@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Button, Box, Typography, InputBase, IconButton, DialogContent, Dialog, Tooltip } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, Typography, InputBase, IconButton, Tooltip, Popover } from '@mui/material';
 import { Link } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import ProfileMenu from './ProfileMenu';
 import SearchIcon from '@mui/icons-material/Search';
-import Search from '../Search';
+import Search from './Search.js';
 import { getTokenFromCookie, getUidFromCookie, getEmailFromCookie } from '../../utils/getAuth.js';
 
 const PcNav = ({isMobile}) => {
-  // 로그인 상태
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isSearchModalOpen, setSearchModalOpen] = useState(false);
-  const u_token = getTokenFromCookie();
+  const [anchorEl, setAnchorEl] = useState(null);
   const u_id = getUidFromCookie();
   const u_email = getEmailFromCookie();
 
@@ -28,33 +26,25 @@ const PcNav = ({isMobile}) => {
       }
     };
 
-    // 검사
     const interval = setInterval(() => {
       checkAuthStatus();
     });
 
-    // 컴포넌트 언마운트 시 interval 클리어
     return () => {
       clearInterval(interval);
     };
-
-    // 처음 컴포넌트가 마운트될 때도 검사 실행
-    checkAuthStatus();
   });
 
-  // 로그아웃 버튼
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
 
-  // 검색 아이콘 클릭
-  const handleSearchClick = () => {
-    setSearchModalOpen(true);
+  const handleSearchClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  // 검색 모달 닫기
-  const handleCloseSearchModal = () => {
-    setSearchModalOpen(false);
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -93,8 +83,7 @@ const PcNav = ({isMobile}) => {
                 cursor: 'pointer',
               }}
             >
-              
-          <Tooltip title="검색">
+              <Tooltip title="검색">
               <InputBase
                 placeholder="검색"
                 sx={{
@@ -132,11 +121,24 @@ const PcNav = ({isMobile}) => {
           )}
         </Toolbar>
       </Toolbar>
-      <Dialog open={isSearchModalOpen} onClose={handleCloseSearchModal}>
-        <DialogContent>
-          <Search />
-        </DialogContent>
-      </Dialog>
+      <Popover
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={handlePopoverClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        sx={{
+          marginTop: '-1vh',
+        }}
+      >
+        <Search/>
+      </Popover>
     </AppBar>
   );
 };
