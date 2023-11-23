@@ -28,9 +28,8 @@ def calculate_threat_scores(category_counts):
             category_counts[category][api] *= threat_score
     return category_counts
 
-def main():
-    # Json 파일 경로를 직접 설정함.
-    json_file_path = 'APKtoJson.json'
+
+def main(json_file_path): # Json 파일 경로
 
     with open(json_file_path, 'r') as json_file:
         # JSON 파일을 읽어서 데이터를 json_data에 저장함.
@@ -63,9 +62,6 @@ def main():
     # 위협 점수를 적용한 API 카운트를 계산함
     modified_category_counts = calculate_threat_scores(category_counts)
 
-    # 각 카테고리에 대한 총 점수를 계산하여 출력함
+    # 각 카테고리 별로 함계 점수를 계산하여 딕셔너리로 리턴함
     category_scores = calculate_category_score(modified_category_counts)
-    print("Category Score Sum:", category_scores)
-
-if __name__ == "__main__":
-    main()
+    return category_scores
