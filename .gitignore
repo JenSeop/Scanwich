@@ -154,4 +154,11 @@ psd
 thumb
 sketch
 
-/new_ver_JungSup/files/
+# Scanwich
+files/
+venv/
+third_party/
+users_social/
+users_file/
+engine_analysis/
+.env

@@ -29,6 +29,7 @@ export default function Report({ display }) {
   }, [display]);
 
   useEffect(() => {
+    isValidate();
     axios
       .get(`/analyze/report/${r_id}/`)
       .then((response) => {
@@ -42,7 +43,6 @@ export default function Report({ display }) {
         console.error('리포트 데이터를 가져오는 중 오류 발생:', error);
         setIsLoading(false);
       });
-    isValidate();
     setCookie('prevPage', `/analyze/report/${r_id}/`, 365);
   },[r_id])
 

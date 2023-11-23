@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getCsrf } from './getCsrf.js';
 
 export async function isValidate() {
   const u_id = getUidFromCookie();
