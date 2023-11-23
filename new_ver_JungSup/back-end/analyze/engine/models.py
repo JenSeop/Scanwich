@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
 class AnalyzeReport(models.Model):
 # Report  
@@ -20,3 +19,5 @@ class AnalyzeQueue(models.Model):
   r_id = models.ForeignKey(AnalyzeReport, on_delete=models.CASCADE)
 # User
   u_id = models.CharField(max_length=255, default='')
+# ormQ
+  o_id = models.CharField(max_length=255, default='')

@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 const columns = [
   {
     field: 'id',
-    headerName: 'ID',
+    headerName: '#',
     width: 60
   },
   {

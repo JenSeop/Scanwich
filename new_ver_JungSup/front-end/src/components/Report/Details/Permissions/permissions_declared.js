@@ -14,7 +14,7 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 const columns = [
   {
     field: 'id',
-    headerName: 'ID',
+    headerName: '#',
     width: 60
   },
   {

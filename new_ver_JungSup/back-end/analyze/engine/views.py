@@ -26,10 +26,10 @@ def queue_analysis(request):
       report.save()
 
       queue_item = AnalyzeQueue(r_id=report, u_id=u_id)
+      # Django Q Call
+      queue_item.o_id = async_task("engine.views.process_analysis", report.r_id)
       queue_item.save()
 
-      # Django Q Call
-      async_task("engine.views.process_analysis", report.r_id)
 
       return Response({"success": True, "message": "File uploaded and analysis queued."}, status=status.HTTP_201_CREATED)
 
@@ -42,7 +42,7 @@ def process_analysis(r_id):
             r_queue.save()
             
             if r_queue.q_try > 2:
-                  d_queue = OrmQ.objects.get(id=r_id)
+                  d_queue = OrmQ.objects.get(id=r_queue.q_id)
                   d_queue.delete()
                   r_queue.delete()
                   report.r_status = "error"

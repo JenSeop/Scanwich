@@ -13,6 +13,7 @@ import Detection_Chart from '../Detection/Detection_Chart';
 import { Typography } from '@mui/material';
 import Information from '../Details';
 import Classes from '../Diagramclass';
+import Overview from '../Overview';
 
 export default function LabTabs({data, isSmall}) {
   const [value, setValue] = React.useState('1');
@@ -128,10 +129,12 @@ export default function LabTabs({data, isSmall}) {
             <Grid sx={{marginTop: '-2vh',marginBottom: '10vh'}}>
             {!isSmall &&
               <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', width: '60%' }}>
+                <Overview />
               </Paper>
             }
             {isSmall &&
               <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto' }}>
+                <Overview />
               </Paper>
             }
             </Grid>
@@ -193,6 +196,7 @@ export default function LabTabs({data, isSmall}) {
         <TabPanel value="4">
           {value == "4" && data.r_data &&
             <Grid sx={{marginBottom: '10vh'}}>
+              {/* 
               {!isSmall &&
                 <>
                   <Classes data={data.r_data.file_classes}/>
@@ -203,6 +207,7 @@ export default function LabTabs({data, isSmall}) {
                   <Classes data={data.r_data.file_classes}/>
                 </>
               }
+              */}
             </Grid>
           }
         </TabPanel>
