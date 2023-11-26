@@ -28,8 +28,8 @@ def calculate_threat_scores(category_counts):
             category_counts[category][api] *= threat_score
     return category_counts
 
-
-def main(json_file_path): # Json 파일 경로
+def main(json_file_path):
+    # Json 파일 경로를 직접 설정함.
 
     with open(json_file_path, 'r') as json_file:
         # JSON 파일을 읽어서 데이터를 json_data에 저장함.
@@ -50,7 +50,7 @@ def main(json_file_path): # Json 파일 경로
     # 각 카테고리에 속하는 API들의 호출 횟수를 0으로 초기화함.
     category_counts = {category: {api: 0 for api in apis} for category, apis in api_categories.items()}
 
-    # JSON 데이터에서 클래스 정보를 추출하고 API가 호출될 때마다 API를 카테고리에 매핑하여 카운트를 1씩 증가시킴.
+    # API가 호출될 때마다 API를 카테고리에 매핑하여 카운트를 1씩 증가시킴.
     for class_info in json_data['Classes']:
         methods = class_info.get('method', [])
         for method in methods:
@@ -59,9 +59,14 @@ def main(json_file_path): # Json 파일 경로
                 if api_name in apis:
                     category_counts[category][api_name] += 1
 
-    # 위협 점수를 적용한 API 카운트를 계산함
+    # 각 API의 이름과 호출 횟수를 딕셔너리에 담아서 출력함 (호출 횟수가 0보다 클 때만 출력)
+    api_counts_dict = {category: {api: count for api, count in api_count.items() if count > 0} for category, api_count in category_counts.items()}
+
+    # 위협 점수를 적용한 각 API의 점수를 계산함
     modified_category_counts = calculate_threat_scores(category_counts)
 
-    # 각 카테고리 별로 함계 점수를 계산하여 딕셔너리로 리턴함
+    # 각 카테고리에 대한 총 점수를 계산함
     category_scores = calculate_category_score(modified_category_counts)
-    return category_scores
+
+    # 반환값 api_counts_dict과 category_scores을 튜플로 묶어서 반환
+    return api_counts_dict, category_scores
