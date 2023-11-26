@@ -161,18 +161,18 @@ const Diagramclass = ({classes}) => {
 
   return (
     <div style={{width: '100%', height: '90vh', zIndex: 1}}> 
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      defaultViewport={Viewport}
-      style={{ zIndex: 1 }}
-    >
-      <MiniMap nodeStrokeWidth={3} zoomable pannable />
-      <Background variant="dots" gap={12} size={1} />
-    </ReactFlow>
-    {loading && <LoadingProgress/>}  
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        defaultViewport={Viewport}
+        style={{ zIndex: 1 }}
+      >
+        <MiniMap nodeStrokeWidth={3} zoomable pannable />
+        <Background variant="dots" gap={12} size={1} />
+      </ReactFlow>
+      {loading && <LoadingProgress/>}  
     </div>
   );
 };
