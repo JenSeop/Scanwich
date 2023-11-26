@@ -12,8 +12,9 @@ import Detection_Grid from '../Detection/Detection_Grid';
 import Detection_Chart from '../Detection/Detection_Chart';
 import { Typography } from '@mui/material';
 import Information from '../Details';
-import Classes from '../Diagramclass';
+import Classes from '../Classes/Diagramclass';
 import Overview from '../Overview';
+import ClassesDetail from '../Classes/classesDetail';
 
 export default function LabTabs({data, isSmall}) {
   const [value, setValue] = React.useState('1');
@@ -197,35 +198,56 @@ export default function LabTabs({data, isSmall}) {
           {value == "4" && data.r_data && data.r_data.file_classes &&
             <Grid sx={{marginBottom: '10vh'}}>
               {!isSmall &&
-                <Paper
-                  elevation = {0}
-                  style={{
-                    padding: '16px',
-                    margin: '0 auto',
-                    width: '60%',
-                    border: '1px solid #E0E0E0',
-                  }}
-                >
-                  <Classes classes={data.r_data.file_classes}/>
-                  <Typography align='right' color='#E0E0E0' fontWeight='fontWeightLight'>
-                    Powered by Scanwich
-                  </Typography>
-                </Paper>
+                <>
+                  <Paper
+                    elevation = {0}
+                    style={{
+                      padding: '16px',
+                      margin: '0 auto',
+                      width: '60%',
+                      border: '1px solid #E0E0E0',
+                    }}
+                  >
+                    <Classes classes={data.r_data.file_classes}/>
+                  </Paper>
+                  <Paper
+                    elevation = {0}
+                    style={{
+                      padding: '16px',
+                      margin: '0 auto',
+                      width: '60%',
+                      border: '1px solid #E0E0E0',
+                      marginTop: '1vh',
+                      marginBottom: '1vh',
+                    }}
+                  >
+                    <ClassesDetail data={data.r_data.file_classes} name={data.r_data.file_info.f_name}/>
+                  </Paper>
+                </>
               }
               {isSmall &&
-                <Paper
-                  elevation = {0}
-                  style={{
-                    padding: '16px',
-                    margin: '0 auto', 
-                    border: '1px solid #E0E0E0',
-                  }}
-                >
-                  <Classes classes={data.r_data.file_classes}/>
-                  <Typography align='right' color='#E0E0E0' fontWeight='fontWeightLight'>
-                    Powered by Scanwich
-                  </Typography>
-                </Paper>
+                <>
+                  <Paper
+                    elevation = {0}
+                    style={{
+                      padding: '16px',
+                      margin: '0 auto', 
+                      border: '1px solid #E0E0E0',
+                      marginBottom: '1vh',
+                    }}
+                  >
+                  </Paper>
+                  <Paper
+                    elevation = {0}
+                    style={{
+                      padding: '16px',
+                      margin: '0 auto', 
+                      border: '1px solid #E0E0E0',
+                    }}
+                  >
+                    <Classes classes={data.r_data.file_classes}/>
+                  </Paper>
+                </>
               }
               
             </Grid>

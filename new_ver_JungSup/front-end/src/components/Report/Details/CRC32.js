@@ -23,7 +23,7 @@ const columns = [
   },
 ];
 
-function Detection_Grid({ data, name }) {
+function CRC32Grid({ data, name }) {
   const rows = Object.entries(data).map(([field, value], index) => ({
     id: index,
     field,
@@ -80,7 +80,7 @@ function Detection_Grid({ data, name }) {
     );
   }
 
-  const csvOptions = { fileName: `(${name})_scanwich_crc32_data` };
+  const csvOptions = { fileName: `scanwich_(${name})_crc32_data` };
 
   function CustomExportButton(props) {
     return (
@@ -125,4 +125,4 @@ function Detection_Grid({ data, name }) {
   );
 }
 
-export default Detection_Grid;
+export default CRC32Grid;
