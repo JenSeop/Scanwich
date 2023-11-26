@@ -76,7 +76,7 @@ class Diagram_Arrow {
   }
 }
 
-const Diagramclass = ({classes}) => {
+const Diagramclass = ({classes, width}) => {
   const [data, setData]= useState(null);
   
   useEffect(() => {
@@ -155,7 +155,7 @@ const Viewport = {
   }, [data, setNodes, setEdges]);
 
   return (
-    <div style={{ width: '90vw', height: '90vh' }}> 
+    <div style={{ width: '100%', height: '90vh' }}> 
     <ReactFlow
       nodes={nodes}
       edges={edges}

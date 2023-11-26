@@ -197,14 +197,29 @@ export default function LabTabs({data, isSmall}) {
           {value == "4" && data.r_data && data.r_data.file_classes &&
             <Grid sx={{marginBottom: '10vh'}}>
               {!isSmall &&
-                <>
+                <Paper
+                  elevation = {0}
+                  style={{
+                    padding: '16px',
+                    margin: '0 auto',
+                    width: '60%',
+                    border: '1px solid #E0E0E0',
+                  }}
+                >
                   <Classes classes={data.r_data.file_classes}/>
-                </>
+                </Paper>
               }
               {isSmall &&
-                <>
+                <Paper
+                  elevation = {0}
+                  style={{
+                    padding: '16px',
+                    margin: '0 auto', 
+                    border: '1px solid #E0E0E0',
+                  }}
+                >
                   <Classes classes={data.r_data.file_classes}/>
-                </>
+                </Paper>
               }
               
             </Grid>
