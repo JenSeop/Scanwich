@@ -21,6 +21,14 @@ const columns = [
     },
   },
   {
+    field: 'score',
+    headerName: 'Score',
+    width: 75,
+    renderCell: (params) => {
+      return <span style={{ fontWeight: 'bold' }}>{params.value}</span>;
+    },
+  },
+  {
     field: 'detected',
     headerName: 'Detected',
     renderCell: (params) => {
@@ -40,18 +48,20 @@ const columns = [
   },
 ];
 
-function Score_Grid({ data }) {
+function Score_Grid({ data, scores }) {
+  console.log(scores)
   const rows = Object?.keys(data)?.map((category) => ({
     id: data && category,
     category: data && category,
     result: data[category] && data[category]?.length > 0 ? data[category].join(', ') : '',
     detected: data[category] && data[category]?.length > 0 ? 'Detected' : 'Undetected',
+    score: scores[category], // 각 카테고리에 해당하는 점수
   }));
 
   const sortModel = [
     {
-      field: 'detected',
-      sort: 'asc',
+      field: 'score',
+      sort: 'desc',
     },
   ];
 

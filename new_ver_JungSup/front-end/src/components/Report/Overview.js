@@ -22,7 +22,7 @@ export default function Info({data}) {
         <Grid item xs={6}>
           <Typography variant='body1' fontWeight='bold'>Elements</Typography>
           <Divider width='90%' sx={{marginTop: '1vh', marginBottom: '1vh'}}/>
-          {data && data?.detections && <Score_Grid data={data.detections}/>}
+          {data && data?.detections && data?.category_scores && <Score_Grid data={data?.detections} scores={data?.category_scores}/>}
         </Grid>
       </Grid>
     </Paper>
