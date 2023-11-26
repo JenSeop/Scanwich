@@ -207,6 +207,9 @@ export default function LabTabs({data, isSmall}) {
                   }}
                 >
                   <Classes classes={data.r_data.file_classes}/>
+                  <Typography align='right' color='#E0E0E0' fontWeight='fontWeightLight'>
+                    Powered by Scanwich
+                  </Typography>
                 </Paper>
               }
               {isSmall &&
@@ -219,6 +222,9 @@ export default function LabTabs({data, isSmall}) {
                   }}
                 >
                   <Classes classes={data.r_data.file_classes}/>
+                  <Typography align='right' color='#E0E0E0' fontWeight='fontWeightLight'>
+                    Powered by Scanwich
+                  </Typography>
                 </Paper>
               }
               

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import ReactFlow, {
   useNodesState,
   useEdgesState,
   Background,
   MiniMap,
   MarkerType,
-} from 'reactflow'
-import 'reactflow/dist/style.css'
+} from 'reactflow';
+import 'reactflow/dist/style.css';
+import LoadingProgress from '../MUI/loadingProgress';
 
 class Diagram {
   static nodeIdCounter = 1
@@ -78,6 +79,7 @@ class Diagram_Arrow {
 
 const Diagramclass = ({classes, width}) => {
   const [data, setData]= useState(null);
+  const [loading, setLoading]= useState(true);
   
   useEffect(() => {
     setData(classes);
@@ -152,6 +154,8 @@ const Viewport = {
       setEdges(edgeUpdate);
     }
 
+    if(nodes && edges)
+      setLoading(false);
   }, [data, setNodes, setEdges]);
 
   return (
@@ -165,7 +169,8 @@ const Viewport = {
     >
       <MiniMap nodeStrokeWidth={3} zoomable pannable />
       <Background variant="dots" gap={12} size={1} />
-    </ReactFlow>    
+    </ReactFlow>
+    {loading && <LoadingProgress/>}  
     </div>
   );
 };
