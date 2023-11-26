@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
@@ -15,9 +15,27 @@ import Information from '../Details';
 import Classes from '../Classes/Diagramclass';
 import Overview from '../Overview';
 import ClassesDetail from '../Classes/classesDetail';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+import CloseIcon from '@mui/icons-material/Close';
+import DialogContent from '@mui/material/DialogContent';
 
 export default function LabTabs({data, isSmall}) {
   const [value, setValue] = React.useState('1');
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -206,9 +224,95 @@ export default function LabTabs({data, isSmall}) {
                       margin: '0 auto',
                       width: '60%',
                       border: '1px solid #E0E0E0',
+                      marginBottom: '1vh',
                     }}
                   >
-                    <Classes classes={data.r_data.file_classes}/>
+                    <Grid container justifyContent="space-between">
+                      <Grid item>
+                        <Grid container>
+                          <Grid item xs={0}>
+                            <Typography variant='body2' fontWeight='bold'>Dependency</Typography>
+                          </Grid>
+                          <Grid item xs={0} sx={{marginLeft: '1vh'}}>
+                            <Typography variant='body2'>line </Typography>
+                          </Grid>
+                          <Grid item xs={0}>
+                            <MoreHorizIcon/>
+                          </Grid>
+                          <Grid item xs={0} sx={{marginLeft: '1vh'}}>
+                            <Typography variant='body2'>arrow </Typography>
+                          </Grid>
+                          <Grid item xs={0}>
+                          <ArrowDropDownIcon/>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Grid container>
+                          <Grid item xs={0}>
+                            <Typography variant='body2' fontWeight='bold'>Extend</Typography>
+                          </Grid>
+                          <Grid item xs={0} sx={{marginLeft: '1vh'}}>
+                            <Typography variant='body2'>line </Typography>
+                          </Grid>
+                          <Grid item xs={0}>
+                        <HorizontalRuleIcon/>
+                          </Grid>
+                          <Grid item xs={0} sx={{marginLeft: '1vh'}}>
+                            <Typography variant='body2'>arrow </Typography>
+                          </Grid>
+                          <Grid item xs={0}>
+                        <KeyboardArrowDownIcon/>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Button variant="text" color="primary" size="small" onClick={handleClickOpen} startIcon={<OpenInFullIcon/>}>
+                          Full-Screen
+                        </Button>
+                        <Dialog
+                          open={open}
+                          onClose={handleClose}
+                          fullWidth
+                          maxWidth="md"
+                          fullScreen
+                          aria-labelledby="dialog-title"
+                        >
+                          <DialogContent>
+                            <Grid container justifyContent="space-between" sx={{zIndex: 9999, marginBottom: '-5vh'}}>
+                              <Grid item>
+                                <img
+                                  src="/images/remaster/10.png"
+                                  alt="Scanwich"
+                                  width={40}
+                                  height={40}
+                                  style={{ marginRight: '10px' }}
+                                />
+                              </Grid>
+                              <Grid item>
+                                <Button onClick={handleClose} color="primary" variant="text">
+                                  <CloseIcon/>
+                                </Button>
+                              </Grid>
+                            </Grid>
+                            <Grid container>
+                              {open && <Classes classes={data.r_data.file_classes}/>}
+                            </Grid>
+                          </DialogContent>
+                        </Dialog>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                  <Paper
+                    elevation = {0}
+                    style={{
+                      padding: '16px',
+                      margin: '0 auto',
+                      width: '60%',
+                      border: '1px solid #E0E0E0',
+                    }}
+                  >
+                    {!open && <Classes classes={data.r_data.file_classes}/>}
                   </Paper>
                   <Paper
                     elevation = {0}
@@ -221,7 +325,7 @@ export default function LabTabs({data, isSmall}) {
                       marginBottom: '1vh',
                     }}
                   >
-                    <ClassesDetail data={data.r_data.file_classes} name={data.r_data.file_info.f_name}/>
+                    <ClassesDetail data={data.r_data.file_classes}/>
                   </Paper>
                 </>
               }
@@ -236,6 +340,46 @@ export default function LabTabs({data, isSmall}) {
                       marginBottom: '1vh',
                     }}
                   >
+                    <Grid container>
+                      <Grid item>
+                        <Grid container>
+                          <Grid item xs={0}>
+                            <Typography variant='body2' fontWeight='bold'>Dependency</Typography>
+                          </Grid>
+                          <Grid item xs={0} sx={{marginLeft: '1vh'}}>
+                            <Typography variant='body2'>line </Typography>
+                          </Grid>
+                          <Grid item xs={0}>
+                            <MoreHorizIcon/>
+                          </Grid>
+                          <Grid item xs={0} sx={{marginLeft: '1vh'}}>
+                            <Typography variant='body2'>arrow </Typography>
+                          </Grid>
+                          <Grid item xs={0}>
+                          <ArrowDropDownIcon/>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Grid container>
+                          <Grid item xs={0}>
+                            <Typography variant='body2' fontWeight='bold'>Extend</Typography>
+                          </Grid>
+                          <Grid item xs={0} sx={{marginLeft: '1vh'}}>
+                            <Typography variant='body2'>line </Typography>
+                          </Grid>
+                          <Grid item xs={0}>
+                        <HorizontalRuleIcon/>
+                          </Grid>
+                          <Grid item xs={0} sx={{marginLeft: '1vh'}}>
+                            <Typography variant='body2'>arrow </Typography>
+                          </Grid>
+                          <Grid item xs={0}>
+                        <KeyboardArrowDownIcon/>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid>
                   </Paper>
                   <Paper
                     elevation = {0}
@@ -246,6 +390,18 @@ export default function LabTabs({data, isSmall}) {
                     }}
                   >
                     <Classes classes={data.r_data.file_classes}/>
+                  </Paper>
+                  <Paper
+                    elevation = {0}
+                    style={{
+                      padding: '16px',
+                      margin: '0 auto', 
+                      border: '1px solid #E0E0E0',
+                      marginTop: '1vh',
+                      marginBottom: '1vh',
+                    }}
+                  >
+                    <ClassesDetail data={data.r_data.file_classes}/>
                   </Paper>
                 </>
               }
