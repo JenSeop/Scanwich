@@ -194,20 +194,19 @@ export default function LabTabs({data, isSmall}) {
         </TabPanel>
       {/* Classes */}
         <TabPanel value="4">
-          {value == "4" && data.r_data &&
+          {value == "4" && data.r_data && data.r_data.file_classes &&
             <Grid sx={{marginBottom: '10vh'}}>
-              {/* 
               {!isSmall &&
                 <>
-                  <Classes data={data.r_data.file_classes}/>
+                  <Classes classes={data.r_data.file_classes}/>
                 </>
               }
               {isSmall &&
                 <>
-                  <Classes data={data.r_data.file_classes}/>
+                  <Classes classes={data.r_data.file_classes}/>
                 </>
               }
-              */}
+              
             </Grid>
           }
         </TabPanel>

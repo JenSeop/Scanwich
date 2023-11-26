@@ -8,8 +8,6 @@ import ReactFlow, {
 } from 'reactflow'
 import 'reactflow/dist/style.css'
 
-
-
 class Diagram {
   static nodeIdCounter = 1
   
@@ -40,7 +38,6 @@ class Diagram {
     }
   }
 }
-
 
 class Diagram_Arrow {
   static nodeArrowCounter = 1
@@ -79,27 +76,12 @@ class Diagram_Arrow {
   }
 }
 
-
-
-
-
-
-const Diagramclass = () => {
+const Diagramclass = ({classes}) => {
   const [data, setData]= useState(null);
   
   useEffect(() => {
-    const ajax = async () => {
-      try {
-        const url= 'https://raw.githubusercontent.com/scriptfetish/scriptfetish.github.io/main/11_21_apk.json'
-        const response = await fetch(url); 
-        const jayson = await response.json();
-        setData(jayson);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-    ajax();
-  }, []);
+    setData(classes);
+  }, [classes]);
 
 
 const Viewport = { 
@@ -149,17 +131,22 @@ const Viewport = {
             x: (filteredJavaClasses.length % nodesPerRow) * horizontalGap + 500,
             y: Math.floor(filteredJavaClasses.length / nodesPerRow) * verticalGap + 500
           },
-          type: 'output'
+          type: 'output',
+          animated: false,
         },
         ...filteredJavaClasses.map((node, index) => ({
           ...node,
           position: {
             x: (index % nodesPerRow) * horizontalGap,
             y: Math.floor(index / nodesPerRow) * verticalGap
-          }
+          },
+          animated: false,
         }))
       ];
-      const edgeUpdate = filteredAssociations.map((e) => new Diagram_Arrow(e));
+      const edgeUpdate = filteredAssociations.map((e) => ({
+        ...new Diagram_Arrow(e),
+        animated: false,
+      }));
 
       setNodes(nodeUpdate);
       setEdges(edgeUpdate);
