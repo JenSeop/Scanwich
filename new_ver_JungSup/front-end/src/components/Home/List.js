@@ -231,9 +231,11 @@ function List({ data, isMobile }) {
                           </Typography>
                         </Grid>
                         <Grid item xs={2}>
-                          <Typography variant="body3" color="white">
-                            {item.r_date.substring(0, 10)}
-                          </Typography>
+                          {!isMobile &&
+                            <Typography variant="body3" color="white">
+                              {item.r_date.substring(0, 10)}
+                            </Typography>
+                          }
                         </Grid>
                         <Grid item xs={0} style={{ color: 'white' }}>
                           {item.r_status === 'false' ? (

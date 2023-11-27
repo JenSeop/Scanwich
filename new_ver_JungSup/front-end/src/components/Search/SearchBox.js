@@ -3,7 +3,7 @@ import { Grid, Box, TextField, Card, CardContent, Typography, IconButton, Paper,
 import SearchIcon from '@mui/icons-material/Search';
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBox = () => {
   const [searchTerm, setSearchTerm] = useState('');

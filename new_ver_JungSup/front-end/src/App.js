@@ -5,6 +5,8 @@ import PcNav from './components/Navigation/PcNav';
 import MobBotNav from './components/Navigation/MobBotNav';
 /* Default Component */
 import Home from './pages/Home';
+/* Mobile Component */
+import Explore from './pages/Explore';
 /* Authentication Component */
 import Login from './pages/Login';
 import FindID from './pages/Auth/FindId'
@@ -57,6 +59,8 @@ function App() {
         <Routes>
           {/* Default Page */}
           <Route path="/" element={<Home isMobile={isMobile}/>} />
+          {/* Only Mobile Pages */}
+          <Route path="/explore" element={<Explore/>} />
           {/* Authentication Pages */}
           <Route path="/login" element={<Login />} />
           <Route path="/find/id/step1" element={<FindID/>} />
