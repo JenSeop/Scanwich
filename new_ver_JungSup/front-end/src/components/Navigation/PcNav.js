@@ -70,7 +70,6 @@ const PcNav = ({isMobile}) => {
           </Link>
         </Toolbar>
         <Toolbar sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
-          
           {!isMobile &&
             <Box
               onClick={handleSearchClick}
@@ -114,9 +113,11 @@ const PcNav = ({isMobile}) => {
               <Button variant="outlined" color="1" component={Link} to="/login">
                 로그인
               </Button>
-              <Button variant="outlined" color="1" component={Link} to="/register/step1">
-                회원가입
-              </Button>
+              {!isMobile &&
+                <Button variant="outlined" color="1" component={Link} to="/register/step1">
+                  회원가입
+                </Button>
+              }
             </Box>
           )}
         </Toolbar>

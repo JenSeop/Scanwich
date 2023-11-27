@@ -38,8 +38,6 @@ const ReportNav = ({ reportId, data, isSmall }) => {
       <Grid item xs>
         <Typography variant="h6" fontWeight="bold" color="#373531">Report #{reportId}</Typography>
       </Grid>
-      <Grid item xs>
-      </Grid>
       <Grid item xs style={{ textAlign: 'right' }}>
         <Tooltip title="리포트 다운로드">
           <IconButton onClick={handleClickOpen}>
