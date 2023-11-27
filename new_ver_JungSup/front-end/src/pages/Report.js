@@ -159,33 +159,38 @@ export default function Report({ display }) {
             }}
           >
             {/* 상단 1 */}
-            <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: '1.5vh' }}>
+            <>
               <Paper elevation={0}
                 style={{
-                    width: '92%',
+                    width: '78%',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     flexDirection: 'column',
                     backgroundColor: 'transparent',
+                    border: '1px solid #E0E0E0',
+                    padding: '1vh', // 스페이싱 크기 조절
+                    marginTop: '4vh',
+                    marginLeft: '1.5vh'
                   }}>
                     <Grid container justifyContent="space-evenly" alignItems="center">
                   {/* 점수 그리드 */}
-                  <Grid item xs={6} sm={6} md={6} lg={6} xl={6} container direction="column" alignItems="center">
+                  <Grid item xs container direction="column" alignItems="center">
                     <Typography variant="h5" color="#373531">결과</Typography>
                     {!isLoading && reportData.r_data.vt_data &&
-                      <Grid item>
+                      <Grid item xs>
                         <ScoreBoard
                           color={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)}
                           vtScore={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)*10+"%"}
                           varCode={'h5'}
-                          shadow={true}
+                          shadow={false}
                         />
                       </Grid>
                     }
                   </Grid>
+                  <Divider orientation="vertical" flexItem/>
                   {/* 등급 그리드 */}
-                  <Grid item xs={6} sm={6} md={6} lg={6} xl={6} container direction="column" alignItems="center">
+                  <Grid item xs container direction="column" alignItems="center">
                     <Typography variant='h5' color='#373531'>등급</Typography>
                     {!isLoading && reportData.r_data.vt_data &&
                       <Grid item>
@@ -193,14 +198,14 @@ export default function Report({ display }) {
                           score={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)}
                           color={getScore(reportData.r_data.vt_data.count, reportData.r_data.vt_data.score)}
                           varCode={'h5'}
-                          shadow={true}
+                          shadow={false}
                         />
                       </Grid>
                     }
                   </Grid>
                 </Grid>
               </Paper>
-            </Grid>
+            </>
             <Divider
               variant="middle"
               sx={{
