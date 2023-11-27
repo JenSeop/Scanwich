@@ -1,18 +1,27 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Paper, Grid, Typography, Divider } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import Score from './API/Score';
 import Score_Grid from './API/Score_Grid';
 import DexoComp from './Dexofuzzy/DexoComp';
 
-export default function Info({data, dexo}) {
+export default function Info({data, dexo, exFile, isSmall}) {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const scores = [
     {
       name: 'Score',
       data: [data?.category_scores?.SMS, data?.category_scores?.Linux, data?.category_scores?.Device, data?.category_scores?.Network, data?.category_scores?.Privacy, data?.category_scores?.FileAccess],
     },
   ];
-
-  console.log(dexo)
 
   return (
     <>

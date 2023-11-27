@@ -49,7 +49,7 @@ export default function Report({ display }) {
   return (
     <>
       <Container maxWidth="md">
-        <ReportNav reportId={r_id} />
+        <ReportNav reportId={r_id} data={reportData}/>
       </Container>
       <Box
         component="div"

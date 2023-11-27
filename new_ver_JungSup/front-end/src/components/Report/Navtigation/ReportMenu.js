@@ -30,16 +30,16 @@ export default function LabTabs({data, isSmall}) {
   const [value, setValue] = React.useState('1');
   const [open, setOpen] = useState(false);
 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
   };
 
   return (
@@ -148,12 +148,12 @@ export default function LabTabs({data, isSmall}) {
           <Grid sx={{marginTop: '-2vh',marginBottom: '10vh'}}>
           {!isSmall &&
             <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', width: '60%' }}>
-              <Overview data={data?.r_data?.file_classes_score} dexo={data?.r_data?.dexo_comp}/>
+              <Overview data={data?.r_data?.file_classes_score} dexo={data?.r_data?.dexo_comp} exFile={data} isSmall={isSmall}/>
             </Paper>
           }
           {isSmall &&
             <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto' }}>
-              <Overview data={data?.r_data?.file_classes_score} dexo={data?.r_data?.dexo_comp}/>
+              <Overview data={data?.r_data?.file_classes_score} dexo={data?.r_data?.dexo_comp} exFile={data} isSmall={isSmall}/>
             </Paper>
           }
           </Grid>
