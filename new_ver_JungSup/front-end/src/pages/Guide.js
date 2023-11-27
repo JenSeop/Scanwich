@@ -12,7 +12,7 @@ const Guide = () => {
 
   return (
     <Container maxWidth="md" style={{ marginTop: '2rem' }}>
-      <Paper elevation={0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '2rem' }}>
+      <Paper elevation={0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '10vh' }}>
         <div style={{ textAlign: 'center' }}>
           <img
             src="/images/remaster/11.png"

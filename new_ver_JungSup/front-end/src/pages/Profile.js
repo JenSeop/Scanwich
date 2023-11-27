@@ -135,116 +135,120 @@ const Profile = () => {
   };
 
   return (
-    <Container maxWidth="md" style={{ marginBottom: '14vh' }}>
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        marginTop="2vh"
-        padding="1rem"
-        boxShadow="0px 0px 10px rgba(0, 0, 0, 0.1)"
-        borderRadius="8px"
-        bgcolor="#fff"
-      >
-        <Avatar
-          alt={u_id}
-          src={u_id}
-          sx={{ width: 120, height: 120, marginBottom: '1rem' }}
-        />
-        <Typography variant="h5" fontWeight="bold">
-          {u_id}
-        </Typography>
-        <Typography variant="subtitle1" color="textSecondary">
-          {u_email}
-        </Typography>
-      </Box>
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        marginTop="2vh"
-        padding="1rem"
-        boxShadow="0px 0px 10px rgba(0, 0, 0, 0.1)"
-        borderRadius="8px"
-        bgcolor="#fff"
-      >
-        <Typography variant="h6" fontWeight="bold" marginBottom="2vh">
-          정보 수정
-        </Typography>
-        <Grid container spacing={2} flexDirection="column" alignItems="center">
-          <Divider
-            variant="middle"
-            sx={{
-              width: '80%',
-              marginTop: '2vh',
-              marginBottom: '2vh',
-              borderBottom: '1px solid #e0e0e0',
-            }}
-          />
-          <Grid item xs={12} sm={4}>
-            <TextField
-              id="password"
-              variant="outlined"
-              color="2"
-              label="현재 비밀번호"
-              fullWidth
-              type="password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
+    <>
+      {u_id &&
+        <Container maxWidth="md" style={{ marginBottom: '14vh' }}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            marginTop="2vh"
+            padding="1rem"
+            boxShadow="0px 0px 10px rgba(0, 0, 0, 0.1)"
+            borderRadius="8px"
+            bgcolor="#fff"
+          >
+            <Avatar
+              alt={u_id}
+              src={u_id}
+              sx={{ width: 120, height: 120, marginBottom: '1rem' }}
             />
-            <TextField
-              id="new_pw"
-              variant="outlined"
-              color="2"
-              label="새로운 비밀번호"
-              fullWidth
-              type="password"
-              value={newPassword}
-              onChange={handlePasswordChange}
-              error={!!passwordError}
-              helperText={passwordError}
-            />
-            <Button
-              variant="outlined"
-              color="2"
-              size="large"
-              style={{
-                marginTop: '1vh',
-                marginBottom: '2vh',
-                width: '100%'
-              }}
-              onClick={handlePassword}
-            >
-              비밀번호 변경
-            </Button>
-          </Grid>
-          <Divider
-            variant="middle"
-            sx={{
-              width: '80%',
-              marginTop: '2vh',
-              marginBottom: '2vh',
-              borderBottom: '1px solid #e0e0e0',
-            }}
-          />
-          <Grid item xs={12} sm={4}>
-            <Button
-              variant="outlined"
-              color="error"
-              size="large"
-              style={{
-                marginBottom: '2vh',
-                width: '100%'
-              }}
-              onClick={handleDeleteID}
-            >
-              회원 탈퇴
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-      {status && <SnackBar type={'error'} message={statusMsg}/>}
-    </Container>
+            <Typography variant="h5" fontWeight="bold">
+              {u_id}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">
+              {u_email}
+            </Typography>
+          </Box>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            marginTop="2vh"
+            padding="1rem"
+            boxShadow="0px 0px 10px rgba(0, 0, 0, 0.1)"
+            borderRadius="8px"
+            bgcolor="#fff"
+          >
+            <Typography variant="h6" fontWeight="bold" marginBottom="2vh">
+              정보 수정
+            </Typography>
+            <Grid container spacing={2} flexDirection="column" alignItems="center">
+              <Divider
+                variant="middle"
+                sx={{
+                  width: '80%',
+                  marginTop: '2vh',
+                  marginBottom: '2vh',
+                  borderBottom: '1px solid #e0e0e0',
+                }}
+              />
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  id="password"
+                  variant="outlined"
+                  color="2"
+                  label="현재 비밀번호"
+                  fullWidth
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                />
+                <TextField
+                  id="new_pw"
+                  variant="outlined"
+                  color="2"
+                  label="새로운 비밀번호"
+                  fullWidth
+                  type="password"
+                  value={newPassword}
+                  onChange={handlePasswordChange}
+                  error={!!passwordError}
+                  helperText={passwordError}
+                />
+                <Button
+                  variant="outlined"
+                  color="2"
+                  size="large"
+                  style={{
+                    marginTop: '1vh',
+                    marginBottom: '2vh',
+                    width: '100%'
+                  }}
+                  onClick={handlePassword}
+                >
+                  비밀번호 변경
+                </Button>
+              </Grid>
+              <Divider
+                variant="middle"
+                sx={{
+                  width: '80%',
+                  marginTop: '2vh',
+                  marginBottom: '2vh',
+                  borderBottom: '1px solid #e0e0e0',
+                }}
+              />
+              <Grid item xs={12} sm={4}>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  size="large"
+                  style={{
+                    marginBottom: '2vh',
+                    width: '100%'
+                  }}
+                  onClick={handleDeleteID}
+                >
+                  회원 탈퇴
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
+          {status && <SnackBar type={'error'} message={statusMsg}/>}
+        </Container>
+      }
+    </>
   );
 };
 
