@@ -51,7 +51,7 @@ const ReportNav = ({ reportId, data }) => {
       </Grid>
       
       <Dialog open={open} onClose={handleClose} fullScreen>
-        <DialogActions>
+        <DialogActions sx={{marginBottom: '-2vh'}}>
           <Grid container justifyContent="space-between">
             <Grid item>
               <img

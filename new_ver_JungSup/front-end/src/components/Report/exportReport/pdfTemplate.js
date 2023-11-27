@@ -142,14 +142,14 @@ export default function Template({data}) {
   const renderDexoComp = () => {
     if(dexo_comp)
     {
-      const divStyle = {
+      const spanStyle = {
         fontSize: render_font_size,
       };
       const dataArray = Object.values(dexo_comp);
       const limitedDataArray = dataArray.slice(0, 5);
   
       return limitedDataArray.map((item, index) => (
-        <div key={index} style={divStyle}>({index+1}, {item?.r_data?.androguard_data?.apk?.name}, {item.result}%)</div>
+        <span key={index} style={spanStyle}>({index+1}, {item?.r_data?.androguard_data?.apk?.name}, {item.result}%) </span>
       ));
     }
   };
@@ -384,11 +384,22 @@ export default function Template({data}) {
             <Grid item xs={12}>
               <Typography variant='body2' fontWeight='bold'>Dexofuzzy</Typography>
               <Grid container>
-                <Grid item xs={12}>
-                  <Typography variant='caption'>{dexo_hash}</Typography>
+                <Grid item xs={1}>
+                  <Typography variant='caption' fontWeight='bold'>Hash</Typography>
+                </Grid>
+                <Grid container xs style={{ flexDirection: 'column' }}>
+                  <Grid item>
+                    <Typography variant='caption'>{dexo_hash?.substring(0, 60)}</Typography>
+                  </Grid>
+                  <Grid item sx={{marginTop: '-1vh'}}>
+                    <Typography variant='caption'>{dexo_hash?.substring(60,)}</Typography>
+                  </Grid>
                 </Grid>
               </Grid>
               <Grid container>
+                <Grid item xs={1}>
+                  <Typography variant='caption' fontWeight='bold'>Comp</Typography>
+                </Grid>
                 <Grid item xs>
                   {renderDexoComp()}
                 </Grid>
