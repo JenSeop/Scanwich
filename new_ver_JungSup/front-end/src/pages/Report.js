@@ -176,7 +176,7 @@ export default function Report({ display }) {
                     <Grid container justifyContent="space-evenly" alignItems="center">
                   {/* 점수 그리드 */}
                   <Grid item xs container direction="column" alignItems="center">
-                    <Typography variant="h5" color="#373531">결과</Typography>
+                    <Typography variant="h5" color="#373531" fontWeight='bold'>결과</Typography>
                     {!isLoading && reportData.r_data.vt_data &&
                       <Grid item xs>
                         <ScoreBoard
@@ -191,7 +191,7 @@ export default function Report({ display }) {
                   <Divider orientation="vertical" flexItem/>
                   {/* 등급 그리드 */}
                   <Grid item xs container direction="column" alignItems="center">
-                    <Typography variant='h5' color='#373531'>등급</Typography>
+                    <Typography variant='h5' color='#373531' fontWeight='bold'>등급</Typography>
                     {!isLoading && reportData.r_data.vt_data &&
                       <Grid item>
                         <ScoreComment

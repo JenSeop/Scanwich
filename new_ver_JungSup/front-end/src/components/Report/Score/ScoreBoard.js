@@ -49,7 +49,7 @@ function ScoreBoard({vtScore, vtCount, color, varCode, shadow}) {
         </Typography>
       }
       {shadow == false &&
-        <Typography variant={varCode} color={colorCode}>
+        <Typography variant={varCode} color={colorCode} fontWeight='bold'>
           {vtScore}
         </Typography>
       }

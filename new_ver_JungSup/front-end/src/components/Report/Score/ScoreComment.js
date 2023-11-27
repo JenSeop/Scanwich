@@ -89,6 +89,7 @@ function ScoreComment({score, color, varCode, shadow}) {
         <Typography
           variant={varCode}
           color={commentColor}
+          fontWeight='bold'
         >
           {commentText}
         </Typography>
