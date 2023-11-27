@@ -42,7 +42,6 @@ export default function LabTabs({data, isSmall}) {
     setValue(newValue);
   };
 
-
   return (
     <Box sx={{ width: '100%', marginTop: '2vh' }}>
       <TabContext value={value}>
@@ -149,12 +148,12 @@ export default function LabTabs({data, isSmall}) {
           <Grid sx={{marginTop: '-2vh',marginBottom: '10vh'}}>
           {!isSmall &&
             <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', width: '60%' }}>
-              <Overview data={data?.r_data?.file_classes_score} />
+              <Overview data={data?.r_data?.file_classes_score} dexo={data?.r_data?.dexo_comp}/>
             </Paper>
           }
           {isSmall &&
             <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto' }}>
-              <Overview data={data?.r_data?.file_classes_score} />
+              <Overview data={data?.r_data?.file_classes_score} dexo={data?.r_data?.dexo_comp}/>
             </Paper>
           }
           </Grid>

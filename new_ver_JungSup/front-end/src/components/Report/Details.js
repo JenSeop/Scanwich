@@ -14,7 +14,6 @@ import Provider from './Details/Provider';
 import Library from './Details/Library';
 
 export default function Info({data}) {
-  console.log(data)
   return (
     <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
       <Accordion elevation={0} sx={{}}>

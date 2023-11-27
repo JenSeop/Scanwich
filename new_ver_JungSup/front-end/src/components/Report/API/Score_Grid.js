@@ -49,13 +49,12 @@ const columns = [
 ];
 
 function Score_Grid({ data, scores }) {
-  console.log(scores)
   const rows = Object?.keys(data)?.map((category) => ({
     id: data && category,
     category: data && category,
     result: data[category] && data[category]?.length > 0 ? data[category].join(', ') : '',
     detected: data[category] && data[category]?.length > 0 ? 'Detected' : 'Undetected',
-    score: scores[category], // 각 카테고리에 해당하는 점수
+    score: scores[category],
   }));
 
   const sortModel = [

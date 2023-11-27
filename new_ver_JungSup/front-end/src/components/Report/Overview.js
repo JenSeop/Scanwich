@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Paper, Grid, Typography, Divider } from '@mui/material';
 import Score from './API/Score';
 import Score_Grid from './API/Score_Grid';
+import DexoComp from './Dexofuzzy/DexoComp';
 
-export default function Info({data}) {
+export default function Info({data, dexo}) {
   const scores = [
     {
       name: 'Score',
@@ -11,20 +12,33 @@ export default function Info({data}) {
     },
   ];
 
+  console.log(dexo)
+
   return (
-    <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
-      <Grid container>
-        <Grid item xs={6}>
-          <Typography variant='body1' fontWeight='bold'>Score</Typography>
-          <Divider width='90%' sx={{marginTop: '1vh', marginBottom: '1vh'}}/>
-          {data && scores && <Score data={scores}/>}
+    <>
+      <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant='body1' fontWeight='bold'>Dexofuzzy</Typography>
+            <Divider width='99%' sx={{marginTop: '1vh', marginBottom: '2vh'}}/>
+            <DexoComp dexo={dexo}/>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Typography variant='body1' fontWeight='bold'>Elements</Typography>
-          <Divider width='90%' sx={{marginTop: '1vh', marginBottom: '1vh'}}/>
-          {data && data?.detections && data?.category_scores && <Score_Grid data={data?.detections} scores={data?.category_scores}/>}
+      </Paper>
+      <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant='body1' fontWeight='bold'>API Score</Typography>
+            <Divider width='99%' sx={{marginTop: '1vh', marginBottom: '1vh'}}/>
+          </Grid>
+          <Grid item xs={6}>
+            {data && scores && <Score data={scores}/>}
+          </Grid>
+          <Grid item xs={6}>
+            {data && data?.detections && data?.category_scores && <Score_Grid data={data?.detections} scores={data?.category_scores}/>}
+          </Grid>
         </Grid>
-      </Grid>
-    </Paper>
+      </Paper>
+    </>
   );
 }
