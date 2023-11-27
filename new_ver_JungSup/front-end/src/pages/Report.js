@@ -49,7 +49,7 @@ export default function Report({ display }) {
   return (
     <>
       <Container maxWidth="md">
-        <ReportNav reportId={r_id} data={reportData}/>
+        <ReportNav reportId={r_id} data={reportData} isSmall={isSmall}/>
       </Container>
       <Box
         component="div"
@@ -62,6 +62,18 @@ export default function Report({ display }) {
           height: '42vh',
         }}
       >
+      {isSmall &&
+        <UserInfoMob
+          userName={reportData?.u_id}
+          requestDate={reportData?.r_date?.substring(0,10)}
+          colorCode={'#28E070'}
+          fileName="FileName"
+          fileSize="16.0MB"
+          fileIcon
+          onDownloadClick
+        />
+      }
+      </Box>
         {isLoading ? (
           <Loading data={reportData}/>
         ) : (
@@ -135,8 +147,6 @@ export default function Report({ display }) {
           </Grid>
         )}
         {isSmall && !isLoading && (
-        <>
-          {/* 모바일용 */}
           <Grid
             container
             spacing={2}
@@ -145,6 +155,7 @@ export default function Report({ display }) {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              marginTop: '0.1vh',
             }}
           >
             {/* 상단 1 */}
@@ -156,6 +167,7 @@ export default function Report({ display }) {
                     justifyContent: 'center',
                     alignItems: 'center',
                     flexDirection: 'column',
+                    backgroundColor: 'transparent',
                   }}>
                     <Grid container justifyContent="space-evenly" alignItems="center">
                   {/* 점수 그리드 */}
@@ -198,37 +210,9 @@ export default function Report({ display }) {
                 borderBottom: '1px solid #e0e0e0',
               }}
             />
-              {/* 상단 2 */}
-              <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                <Paper elevation={0} style={{ width: '92%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                  {!isLoading && reportData &&
-                        <UserInfoMob
-                          userName={reportData.u_id}
-                          requestDate={reportData.r_date.substring(0,10)}
-                          colorCode={'black'}
-                          fileName="FileName"
-                          fileSize="16.0MB"
-                          fileIcon
-                          onDownloadClick
-                        />
-                      }
-                </Paper>
-              </Grid>
-              <Divider
-                variant="middle"
-                sx={{
-                  width: '100%',
-                  marginTop: '2vh',
-                  marginBottom: '-2vh',
-                  borderBottom: '1px solid #e0e0e0',
-                }}
-              />
             </Grid>
-            
-        </>
       )}
       {isLoading ? true : <ReportMenu data={reportData} isSmall={isSmall}/>}
-      </Box>
       {isMobile ? true : <ScrollTop value='20px'/>}
       {!isMobile ? true : <ScrollTop value='100px'/>}
     </>

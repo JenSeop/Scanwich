@@ -6,8 +6,9 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import PdfDownloader from "../exportReport/pdfDownloader";
 import PdfTemplate from "../exportReport/pdfTemplate";
 import CloseIcon from '@mui/icons-material/Close';
+import UserInfoMob from '../Module_Info/UserInfoMob.js';
 
-const ReportNav = ({ reportId, data }) => {
+const ReportNav = ({ reportId, data, isSmall }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [open, setOpen] = useState(false);
   const [sharedLink, setSharedLink] = useState(`https://www.scanwich.co.kr/report/${reportId}`);
@@ -33,11 +34,13 @@ const ReportNav = ({ reportId, data }) => {
   };
 
   return (
-    <Grid container spacing={2} alignItems="center">
-      <Grid item xs={6}>
+    <Grid container spacing={2} justifyContent="space-evenly">
+      <Grid item xs>
         <Typography variant="h6" fontWeight="bold" color="#373531">Report #{reportId}</Typography>
       </Grid>
-      <Grid item xs={6} style={{ textAlign: 'right' }}>
+      <Grid item xs>
+      </Grid>
+      <Grid item xs style={{ textAlign: 'right' }}>
         <Tooltip title="리포트 다운로드">
           <IconButton onClick={handleClickOpen}>
             <FileDownloadIcon />
