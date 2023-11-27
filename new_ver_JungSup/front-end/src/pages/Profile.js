@@ -22,7 +22,7 @@ const Profile = () => {
   
   useEffect(() => {
     if(!getCookie('u_token')) {
-      navigate('/error/403')
+      navigate('/login')
     }
     isValidate();
     setCookie('prevPage', '/profile', 365);

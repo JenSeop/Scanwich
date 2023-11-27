@@ -26,8 +26,7 @@ import Error from './pages/Error';
 /* User Menu Components */
 import Guide from './pages/Guide';
 import About from './pages/About';
-import Contact from './pages/Contact';
-import Licenses from './pages/Licenses';
+import Information from './pages/Information';
 /* Profile Components */
 import Profile from './pages/Profile';
 import History from './pages/History';
@@ -80,8 +79,7 @@ function App() {
           {/* User Menu Pages */}
           <Route path="/Guide" element={<Guide />} />
           <Route path="/About" element={<About />} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/Licenses" element={<Licenses />} />
+          <Route path="/Information" element={<Information />} />
           {/* Profile Menu Pages */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/history" element={<History />} />

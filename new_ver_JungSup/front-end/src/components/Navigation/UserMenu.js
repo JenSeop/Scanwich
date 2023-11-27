@@ -59,20 +59,12 @@ export default function UserMenu() {
               <ListItemText primary="About" />
             </ListItemButton>
           </ListItem>
-          <ListItem key="4" disablePadding component={Link} to="/contact" style={linkStyle}>
-            <ListItemButton>
-              <ListItemIcon>
-                <CallIcon />
-              </ListItemIcon>
-              <ListItemText primary="Contact" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key="5" disablePadding component={Link} to="/licenses" style={linkStyle}>
+          <ListItem key="4" disablePadding component={Link} to="/information" style={linkStyle}>
             <ListItemButton>
               <ListItemIcon>
                 <InfoIcon />
               </ListItemIcon>
-              <ListItemText primary="Licenses" />
+              <ListItemText primary="Information" />
             </ListItemButton>
           </ListItem>
         </List>
