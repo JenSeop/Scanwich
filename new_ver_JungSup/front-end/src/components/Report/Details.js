@@ -17,7 +17,7 @@ export default function Info({data}) {
   return (
     <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="파일 기본 정보" followCursor>
+        <Tooltip title="File 카테고리에서는 Name, MD5, SHA256, Size를 제공합니다. Name은 APK 파일의 이름을 나타냅니다. MD5와 SHA256은 파일의 해시 값으로, 각각 MD5 알고리즘과 SHA-256 알고리즘을 통해 생성됩니다. Size는 파일의 크기를 나타냅니다." followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -31,7 +31,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="데이터 손상 검사 정보" followCursor>
+        <Tooltip title="CRC32 카테고리에서는 APK 파일 내에 들어있는 파일들의 이름과 각 파일에 해당하는 CRC32 체크섬 값을 제공합니다. 이를 통해 파일의 손상 여부를 확인할 수 있습니다." followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -45,7 +45,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="Android 애플리케이션 기본 정보" followCursor>
+        <Tooltip title="Android 카테고리에서는 Package Name, Min, Max, Target Version을 제공합니다. Package는 APK의 고유 식별자인 패키지 이름을 나타냅니다. Min Version은 APK가 실행되기 위해 필요한 Android 최소 버전, Max  Version은 APK가 호환되는 Android 버전을 나타내며 , Target Version은 애플리케이션이 타켓팅한 Android 버전을 나타냅니다. " followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -59,7 +59,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="Android 서명 정보" followCursor>
+        <Tooltip title=" Signed 카테고리에서는 signed v1, signed v2, signed v3를 제공합니다. 키가 존재할 경우 true를 표시하여 해당 APK가 서명되었음을 알 수 있습니다." followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -73,7 +73,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="Android Activities 정보" followCursor>
+        <Tooltip title="Activities 카테고리에서는 Main Activity와 APK 내의 모든 액티비티 정보를 제공합니다. 이를 통해 APK 화면 구성과 상호작용 방식을 파악할 수 있습니다. " followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -87,7 +87,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="Android 권한 설정 정보" followCursor>
+        <Tooltip title="Permissions 카테고리에서는 APK가 사용자에게 요구하는 권한 목록을 제공합니다. 사용자의 정보를 탈취하는 등의 위험한 권한은 경고 표시를 띄워서 사용자에게 주의를 줍니다. " followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -101,7 +101,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="Android Service 정보" followCursor>
+        <Tooltip title="Service 카테고리에서는 APK의 서비스 목록을 제공합니다. 이를 통해 APK에서 실행되는 주요 기능을 확인할 수 있습니다. " followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -115,7 +115,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="Android Receivers 정보" followCursor>
+        <Tooltip title="Receivers 카테고리에서는 APK의 리시버 목록을 제공합니다. 이를 통해 APK가 외부 이벤트에 따라 어떤 작업을 수행하는지 알 수 있습니다." followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -129,7 +129,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="Android Intent Filters 정보" followCursor>
+        <Tooltip title="Intent Filters 카테고리에서는 APK의 인텐트 필터 목록을 제공합니다. 이를 통해 APK가 내부 이벤트에 따라 어떤 작업을 수행하는지 알 수 있습니다." followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -143,7 +143,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="Android Provider 정보" followCursor>
+        <Tooltip title="Provider 카테고리에서는 APK의 프로바이더 목록을 제공합니다. 이를 통해 APK가 어떤 종류의 데이터를 제공하고 있는지를 확인할 수 있습니다." followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -157,7 +157,7 @@ export default function Info({data}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0} sx={{}}>
-        <Tooltip title="Android Library 정보" followCursor>
+        <Tooltip title="Library 카테고리에서는 APK의 라이브러리 목록을 제공합니다. 이를 통해 APK가 어떤 외부 라이브러리를 활용하고 있는지 확인할 수 있습니다." followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"

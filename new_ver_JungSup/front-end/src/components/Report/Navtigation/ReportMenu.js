@@ -90,40 +90,44 @@ export default function LabTabs({data, isSmall}) {
                 },
               }}
           />
-          <Tab
-            label={
-              <Tooltip title="탐지 정보">
-                <span>Detection</span>
-              </Tooltip>
-            }
-            value="3"
-            sx={{
-                color: '#373531',
-                '&:hover': {
+          {data?.r_data?.vt_data?.vendor &&
+            <Tab
+              label={
+                <Tooltip title="탐지 정보">
+                  <span>Detection</span>
+                </Tooltip>
+              }
+              value="3"
+              sx={{
                   color: '#373531',
-                },
-                '&.Mui-selected': {
+                  '&:hover': {
+                    color: '#373531',
+                  },
+                  '&.Mui-selected': {
+                    color: '#373531',
+                  },
+                }}
+            />
+          }
+          {(data?.r_data?.file_classes?.Classes?.length || data?.r_data?.file_classes?.Associations?.length) &&
+            <Tab
+              label={
+                <Tooltip title="클래스 정보">
+                  <span>Classes</span>
+                </Tooltip>
+              }
+              value="4"
+              sx={{
                   color: '#373531',
-                },
-              }}
-          />
-          <Tab
-            label={
-              <Tooltip title="클래스 정보">
-                <span>Classes</span>
-              </Tooltip>
-            }
-            value="4"
-            sx={{
-                color: '#373531',
-                '&:hover': {
-                  color: '#373531',
-                },
-                '&.Mui-selected': {
-                  color: '#373531',
-                },
-              }}
-          />
+                  '&:hover': {
+                    color: '#373531',
+                  },
+                  '&.Mui-selected': {
+                    color: '#373531',
+                  },
+                }}
+            />
+          }
           <Tab
             label={
               <Tooltip title="파일 구조">

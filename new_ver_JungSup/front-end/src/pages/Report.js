@@ -15,6 +15,7 @@ import ReportMenu from '../components/Report/Navtigation/ReportMenu.js'
 import ScrollTop from '../components/MUI/ScrollTop'
 import { isValidate } from '../utils/getAuth.js';
 import setCookie from '../utils/setCookie';
+import { useNavigate  } from 'react-router-dom';
 
 export default function Report({ display }) {
   const [isSmall, setIsSmall] = useState(display <= 1163);
@@ -22,6 +23,7 @@ export default function Report({ display }) {
   const { r_id } = useParams();
   const [reportData, setReportData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsSmall(display <= 1163);
@@ -42,6 +44,7 @@ export default function Report({ display }) {
       .catch((error) => {
         console.error('리포트 데이터를 가져오는 중 오류 발생:', error);
         setIsLoading(false);
+        navigate('/error')
       });
     setCookie('prevPage', `/analyze/report/${r_id}/`, 365);
   },[r_id])

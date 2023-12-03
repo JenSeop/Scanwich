@@ -8,7 +8,7 @@ export default function Info({data, name}) {
   return (
     <>
       <Accordion elevation={0}>
-        <Tooltip title="Classes" followCursor>
+        <Tooltip title="Class Name, Methods, Properties의 정보를 제공합니다." followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -22,7 +22,7 @@ export default function Info({data, name}) {
         </AccordionDetails>
       </Accordion>
       <Accordion elevation={0}>
-        <Tooltip title="Associations" followCursor>
+        <Tooltip title="Class Association의 From, To, Type의 정보를 제공합니다." followCursor>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"

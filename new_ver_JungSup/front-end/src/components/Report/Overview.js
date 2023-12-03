@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Paper, Grid, Typography, Divider } from '@mui/material';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { Paper, Grid, Typography, Divider, Tooltip } from '@mui/material';
 import Score from './API/Score';
 import Score_Grid from './API/Score_Grid';
 import DexoComp from './Dexofuzzy/DexoComp';
@@ -28,7 +27,9 @@ export default function Info({data, dexo, exFile, isSmall}) {
       <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
         <Grid container>
           <Grid item xs={12}>
-            <Typography variant='body1' fontWeight='bold'>Dexofuzzy</Typography>
+              <Tooltip title='Dexofuzzy는 APK 유사도 정보를 제공합니다.' followCursor>
+              <Typography variant='body1' fontWeight='bold'>Dexofuzzy</Typography>
+            </Tooltip>
             <Divider width='99%' sx={{marginTop: '1vh', marginBottom: '2vh'}}/>
             <DexoComp dexo={dexo}/>
           </Grid>
@@ -37,7 +38,9 @@ export default function Info({data, dexo, exFile, isSmall}) {
       <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
         <Grid container>
           <Grid item xs={12}>
-            <Typography variant='body1' fontWeight='bold'>API Score</Typography>
+            <Tooltip title='API Score는 호출된 API의 유형과 정보를 제공합니다.' followCursor>
+              <Typography variant='body1' fontWeight='bold'>API Score</Typography>
+            </Tooltip>
             <Divider width='99%' sx={{marginTop: '1vh', marginBottom: '1vh'}}/>
           </Grid>
           <Grid item xs={6}>
