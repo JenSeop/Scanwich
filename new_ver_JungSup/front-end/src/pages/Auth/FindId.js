@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, TextField, Typography, Box } from '@mui/material';
 import { useNavigate  } from 'react-router-dom';
 import SnackBar from '../../components/MUI/SnackBar';
-import { Link } from 'react-router-dom';
 import setCookie from '../../utils/setCookie.js';
 import { getCsrf } from '../../utils/getCsrf.js';
 import { getCookie } from '../../utils/getAuth.js';
+import LoadingProgress from '../../components/MUI/loadingProgress.js';
 import axios from 'axios';
 
 const FindId = () => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [status, setStatus] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,16 +33,20 @@ const FindId = () => {
         u_email : email,
         csrfToken : csrfToken,
       };
+      setLoading(true);
       const apiUrl = '/client/user/find_id/';
       const response = await axios.post(apiUrl, userData);
 
       if (response.status === 200 || response.status === 201) {
+        setLoading(false);
         setCookie('prevPage', '/find/id/step1', 365)
         navigate('/find/id/step2');
       } else {
+        setLoading(false);
         navigate('/error/500')
       }
     } catch (error) {
+      setLoading(false);
       openSnackbar();
       setEmail('');
     }
@@ -127,6 +132,7 @@ const FindId = () => {
         </form>
       </Box>
       {status && <SnackBar type={'error'} message={'입력한 이메일을 다시 확인해주세요.'}/>}
+      {loading && <LoadingProgress/>}
     </Container>
   );
 };

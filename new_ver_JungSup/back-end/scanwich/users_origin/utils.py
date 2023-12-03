@@ -26,7 +26,7 @@ def send_verification_email(user, token):
     recipient_list = [user.u_email]         # 수신자 리스트
     
     # 텍스트 형식의 메시지 (일부 HTML을 지원하지 않는 클라이언트를 위함)
-    message = f'이메일 인증을 위해 우측의 링크를 클릭해주세요.: http://localhost.com/verify-email/{token}/'
+    message = f'이메일 인증을 위해 우측의 링크를 클릭해주세요.: https://scanwich.co.kr/verify-email/{token}/'
     
     # 이메일 전송
     send_mail(subject, message, from_email, recipient_list, html_message=html_message)

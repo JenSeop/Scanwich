@@ -12,7 +12,7 @@ const FindIdResult = () => {
     if(getCookie('u_token')) {
       navigate('/error/403')
     }
-    if(getCookie('prevPage')!="/register/step1") {
+    if(getCookie('prevPage')!="/find/id/step1") {
       navigate('/error/403')
     }
     setCookie('prevPage', '/find/id/step2', 365);

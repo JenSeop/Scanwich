@@ -17,10 +17,10 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['scanwich.co.kr', 'www.scanwich.co.kr']
 
 # Front-end Path 세팅
-FRONTEND_ADDRESS = os.environ.get('FRONTEND_ADDRESS', 'https://localhost')
+FRONTEND_ADDRESS = os.environ.get('FRONTEND_ADDRESS', 'scanwich.co.kr')
 
 # 파일 업로드
 # 파일 업로드 크기 제한 설정
@@ -63,13 +63,8 @@ INSTALLED_APPS = [
     'rest_framework',
     # Scanwich APP
     'users_origin',
-    'users_social',
     # KAKAO SOCIAL LOGIN
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.kakao',
 ]
 
 # 기본 유저 모델 설정

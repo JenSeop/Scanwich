@@ -5,12 +5,14 @@ import SnackBar from '../../components/MUI/SnackBar';
 import { getCookie } from '../../utils/getAuth.js';
 import setCookie from '../../utils/setCookie.js';
 import { getCsrf } from '../../utils/getCsrf.js';
+import LoadingProgress from '../../components/MUI/loadingProgress.js';
 import axios from 'axios';
 
 const FindPw = () => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [status, setStatus] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,16 +33,20 @@ const FindPw = () => {
         u_email : email,
         csrfToken : csrfToken,
       };
+      setLoading(true);
       const apiUrl = '/client/user/find_pw/';
       const response = await axios.post(apiUrl, userData);
 
       if (response.status === 200 || response.status === 201) {
+        setLoading(false);
         setCookie('prevPage', '/find/pw/step1', 365)
         navigate('/find/pw/step2');
       } else {
+        setLoading(false);
         navigate('/error/500')
       }
     } catch (error) {
+      setLoading(false);
       openSnackbar();
       setEmail('');
     }
@@ -126,6 +132,7 @@ const FindPw = () => {
         </form>
       </Box>
       {status && <SnackBar type={'error'} message={'입력한 이메일을 다시 확인해주세요.'}/>}
+      {loading && <LoadingProgress/>}
     </Container>
   );
 };
