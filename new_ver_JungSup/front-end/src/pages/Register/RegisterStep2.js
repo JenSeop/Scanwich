@@ -113,7 +113,7 @@ function RegisterStep2() {
           Hello
         </Typography>
         <Typography variant="h6" align="center" gutterBottom>
-          새 계정을 만들고 Bakery의 일원이 되세요.
+          새 계정을 만들고 Scanwich의 일원이 되세요.
         </Typography>
         <form onSubmit={handleSubmit}>
         <Typography variant="h6" align="left" fontWeight="bold" gutterBottom>

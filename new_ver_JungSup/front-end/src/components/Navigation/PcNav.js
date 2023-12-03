@@ -6,6 +6,7 @@ import ProfileMenu from './ProfileMenu';
 import SearchIcon from '@mui/icons-material/Search';
 import Search from '../Search/SearchBox.js';
 import { getTokenFromCookie, getUidFromCookie, getEmailFromCookie } from '../../utils/getAuth.js';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const PcNav = ({isMobile}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -50,26 +51,44 @@ const PcNav = ({isMobile}) => {
   return (
     <AppBar position="fixed" sx={{ backgroundColor: '#373531', zIndex: 1000 }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        <Toolbar sx={{ justifyContent: 'flex-start' }}>
-          <UserMenu />
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <img
-              src="/images/remaster/10.png"
-              alt="Scanwich"
-              width={65}
-              height={65}
-              style={{ marginRight: '10px' }}
-              component={Link}
-              to="/register/step2"
-            />
-          </Link>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#FFF5DC' }} fontWeight="bold">
-              Scanwich
-            </Typography>
-          </Link>
-        </Toolbar>
-        <Toolbar sx={{ justifyContent: 'flex-end', alignItems: 'center' }}>
+        {isMobile &&
+          <Toolbar>
+            <UserMenu />
+          </Toolbar>
+        }
+        {!isMobile &&
+          <Toolbar style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <UserMenu />
+            <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <img
+                src="/images/remaster/10.png"
+                alt="Scanwich"
+                width={65}
+                height={65}
+                style={{ marginRight: '10px' }}
+              />
+              <Typography variant="h6" component="div" sx={{ color: '#FFF5DC', fontWeight: 'bold' }}>
+                Scanwich
+              </Typography>
+            </Link>
+          </Toolbar>
+        }
+        {isMobile &&
+          <Toolbar>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <img
+                src="/images/remaster/10.png"
+                alt="Scanwich"
+                width={65}
+                height={65}
+                style={{ marginRight: '10px' }}
+                component={Link}
+                to="/register/step2"
+              />
+            </Link>
+          </Toolbar>
+        }
+        <Toolbar>
           {!isMobile &&
             <Box
               onClick={handleSearchClick}
@@ -110,13 +129,20 @@ const PcNav = ({isMobile}) => {
             <ProfileMenu onLogout={handleLogout} userName={u_id} userEmail={u_email}/>
           ) : (
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-              <Button variant="outlined" color="1" component={Link} to="/login">
-                로그인
-              </Button>
-              {!isMobile &&
-                <Button variant="outlined" color="1" component={Link} to="/register/step1">
-                  회원가입
+              {isMobile && 
+                <Button variant="outlined" color="1" component={Link} to="/login">
+                  <AccountCircleIcon/>
                 </Button>
+              }
+              {!isMobile &&
+                <>
+                  <Button variant="outlined" color="1" component={Link} to="/login">
+                    로그인
+                  </Button>
+                  <Button variant="outlined" color="1" component={Link} to="/register/step1">
+                    회원가입
+                  </Button>
+                </>
               }
             </Box>
           )}

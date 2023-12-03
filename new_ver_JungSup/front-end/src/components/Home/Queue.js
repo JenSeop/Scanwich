@@ -340,7 +340,6 @@ function Queue({ isMobile }) {
                             <>
                               <img
                                 src={`/files/apk_icon/${queue.r_id}.png`}
-                                alt={queue.r_data.androguard_data.apk.name}
                                 style={{
                                   width: '15px',
                                   height: '15px',

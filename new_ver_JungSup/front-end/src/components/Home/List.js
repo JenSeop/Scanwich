@@ -183,7 +183,6 @@ function List({ data, isMobile }) {
                           <>
                             <img
                               src={`/files/apk_icon/${item.r_id}.png`}
-                              alt={item.r_data.androguard_data.apk.name}
                               style={{
                                 width: '15px',
                                 height: '15px',
