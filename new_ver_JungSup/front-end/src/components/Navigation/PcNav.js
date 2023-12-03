@@ -6,7 +6,6 @@ import ProfileMenu from './ProfileMenu';
 import SearchIcon from '@mui/icons-material/Search';
 import Search from '../Search/SearchBox.js';
 import { getTokenFromCookie, getUidFromCookie, getEmailFromCookie } from '../../utils/getAuth.js';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const PcNav = ({isMobile}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -130,8 +129,8 @@ const PcNav = ({isMobile}) => {
           ) : (
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
               {isMobile && 
-                <Button variant="outlined" color="1" component={Link} to="/login">
-                  <AccountCircleIcon/>
+                <Button variant="text" color="1" component={Link} to="/login">
+                  로그인
                 </Button>
               }
               {!isMobile &&
