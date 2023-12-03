@@ -24,7 +24,6 @@ import ErrorIcon from '@mui/icons-material/Error';
 import AddIcon from '@mui/icons-material/Add';
 import { useDropzone } from 'react-dropzone';
 import { isLoggedIn } from '../../utils/getAuth';
-import { getCsrf } from '../../utils/getCsrf.js';
 import { getUidFromCookie } from '../../utils/getAuth.js';
 import setCookie from '../../utils/setCookie';
 import axios from 'axios';
@@ -98,10 +97,8 @@ function Queue({ isMobile }) {
 
   const handleRetryClick = async(report_id) => {
     const r_id = report_id;
-    const csrfToken = getCsrf();
     const data = {
       r_id: r_id,
-      csrfToken : csrfToken,
     };
 
     try {
@@ -119,10 +116,8 @@ function Queue({ isMobile }) {
 
   const handleDeleteClick = async(report_id) => {
     const r_id = report_id;
-    const csrfToken = getCsrf();
     const data = {
       r_id: r_id,
-      csrfToken : csrfToken,
     };
 
     try {
@@ -157,12 +152,10 @@ function Queue({ isMobile }) {
   });
 
   const uploadFile = async () => {
-    const csrfToken = getCsrf();
     const Uid = getUidFromCookie();
     const formData = new FormData();
     formData.append('u_id', Uid);
     formData.append('file', file);
-    formData.append('csrfToken', csrfToken);
 
     try {
       const response = await axios.post('/analyze/engine/call/', formData, {

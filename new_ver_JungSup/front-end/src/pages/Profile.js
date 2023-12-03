@@ -3,7 +3,6 @@ import { Container, Typography, Box, Avatar, Button, TextField, Grid, Divider } 
 import { getUidFromCookie, getEmailFromCookie } from '../utils/getAuth.js';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getCsrf } from '../utils/getCsrf.js';
 import SnackBar from '../components/MUI/SnackBar';
 import { getTokenFromCookie } from '../utils/getAuth.js';
 import setCookie from '../utils/setCookie';
@@ -64,12 +63,10 @@ const Profile = () => {
       // 로그아웃 API 호출
       const apiUrl = '/client/user/jwtlogout/';
       const u_token = getTokenFromCookie();
-      const csrfToken = getCsrf();
 
       const data = {
         u_id: u_id,
         t_key: u_token,
-        csrfToken: csrfToken,
       };
 
       const response = await axios.post(apiUrl, data);
@@ -98,13 +95,11 @@ const Profile = () => {
   };
 
   const handlePassword = async () => {
-    const csrfToken = getCsrf();
     const userData = {
       u_id: u_id,
       u_email: u_email,
       current_password: currentPassword,
       new_password: newPassword,
-      csrfToken : csrfToken,
     };
     const apiUrl = '/api/user/reset_pw/';
 

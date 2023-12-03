@@ -20,7 +20,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate  } from 'react-router-dom';
 import { getUidFromCookie } from '../../utils/getAuth.js';
-import { getCsrf } from '../../utils/getCsrf.js';
 import { getTokenFromCookie } from '../../utils/getAuth.js';
 import LoadingProgress from '../MUI/loadingProgress.js';
 
@@ -41,12 +40,10 @@ export default function ProfileMenu({userName, userEmail}) {
       const apiUrl = '/client/user/jwtlogout/';
       const u_id = getUidFromCookie();
       const u_token = getTokenFromCookie();
-      const csrfToken = getCsrf();
 
       const data = {
         u_id: u_id,
         t_key: u_token,
-        csrfToken: csrfToken,
       };
       setLoading(true);
 

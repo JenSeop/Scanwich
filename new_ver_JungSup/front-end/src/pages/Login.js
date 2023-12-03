@@ -10,7 +10,6 @@ import {
   Typography,
   Grid,
 } from '@mui/material';
-import { getCsrf } from '../utils/getCsrf.js';
 import { getCookie } from '../utils/getAuth.js';
 import SnackBar from '../components/MUI/SnackBar';
 
@@ -39,11 +38,9 @@ function Login() {
     e.preventDefault();
     
     try {
-      const csrfToken = getCsrf();
       const userData = {
         u_id: username,
         password: password,
-        csrfToken : csrfToken,
       };
 
       const apiUrl = '/client/user/jwtlogin/';

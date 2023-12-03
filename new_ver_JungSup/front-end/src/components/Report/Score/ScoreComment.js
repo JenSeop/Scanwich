@@ -35,7 +35,7 @@ function ScoreComment({score, color, varCode, shadow}) {
       commentText = '매우 높음 (Very High)';
       break;
     case '8':
-      commentText = '위협 (Threat)';
+      commentText = '위험 (Danger)';
       break;
     default:
       commentText = '오류 발생 (Error)';

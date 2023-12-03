@@ -3,7 +3,6 @@ import { Button, Container, TextField, Typography, Box } from '@mui/material';
 import { useNavigate  } from 'react-router-dom';
 import { getCookie } from '../../utils/getAuth.js';
 import setCookie from '../../utils/setCookie.js';
-import { getCsrf } from '../../utils/getCsrf.js';
 import LoadingProgress from '../../components/MUI/loadingProgress.js';
 import axios from 'axios';
 
@@ -76,12 +75,10 @@ function RegisterStep2() {
     e.preventDefault();
     setLoading(true);
     try {
-      const csrfToken = getCsrf();
       const userData = {
         u_id : id,
         u_email : email,
         password : password,
-        csrfToken : csrfToken,
       };
       const apiUrl = '/client/user/register/';
       const response = await axios.post(apiUrl, userData);
