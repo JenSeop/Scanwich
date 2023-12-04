@@ -21,7 +21,7 @@ SESSION_COOKIE_NAME = "scanwich"
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 INSTALLED_APPS = [

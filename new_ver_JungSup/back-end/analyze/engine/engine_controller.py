@@ -1,7 +1,7 @@
 import os
 from .module_fileInformation import file_info_module
 from .module_fileClass import file_class_module
-from .module_androguard import androguard_module
+from .module_androguard_proto import androguard_module_proto
 from .module_virustotal import vt_output_module
 from .module_directory import structure_module
 from .module_Class import class_module
@@ -24,7 +24,7 @@ def analysis_engine(r_id, f_path):
   print(f"- Activated VirusTotal")
   vt_data = vt_output_module(vt_key, f_sha256)
   print(f"- Activated Androguard")
-  androguard_data = androguard_module(r_id, f_path)
+  androguard_data = androguard_module_proto(r_id, f_path)
   
   return {
     "dexo_hash": dexo_hash, # Calculate Dexo Hash

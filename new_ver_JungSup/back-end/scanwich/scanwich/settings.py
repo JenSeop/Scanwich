@@ -17,7 +17,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['scanwich.co.kr', 'www.scanwich.co.kr']
+ALLOWED_HOSTS = ['scanwich.co.kr', 'www.scanwich.co.kr', 'localhost']
 
 # Front-end Path 세팅
 FRONTEND_ADDRESS = os.environ.get('FRONTEND_ADDRESS', 'scanwich.co.kr')
@@ -80,7 +80,6 @@ REST_FRAMEWORK = {
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 MIDDLEWARE = [
