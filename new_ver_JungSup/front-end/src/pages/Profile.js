@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box, Avatar, Button, TextField, Grid, Divider } from '@mui/material';
+import { Container, Typography, Paper, Avatar, Button, TextField, Grid, Divider } from '@mui/material';
 import { getUidFromCookie, getEmailFromCookie } from '../utils/getAuth.js';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -133,16 +133,7 @@ const Profile = () => {
     <>
       {u_id &&
         <Container maxWidth="md" style={{ marginBottom: '14vh' }}>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            marginTop="2vh"
-            padding="1rem"
-            boxShadow="0px 0px 10px rgba(0, 0, 0, 0.1)"
-            borderRadius="8px"
-            bgcolor="#fff"
-          >
+          <Paper elevation={0} style={{ padding: '16px', border: '1px solid #E0E0E0', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2vh' }}>
             <Avatar
               alt={u_id}
               src={u_id}
@@ -154,17 +145,8 @@ const Profile = () => {
             <Typography variant="subtitle1" color="textSecondary">
               {u_email}
             </Typography>
-          </Box>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            marginTop="2vh"
-            padding="1rem"
-            boxShadow="0px 0px 10px rgba(0, 0, 0, 0.1)"
-            borderRadius="8px"
-            bgcolor="#fff"
-          >
+          </Paper>
+          <Paper elevation={0} style={{ padding: '16px', border: '1px solid #E0E0E0', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2vh' }}>
             <Typography variant="h6" fontWeight="bold" marginBottom="2vh">
               정보 수정
             </Typography>
@@ -239,7 +221,7 @@ const Profile = () => {
                 </Button>
               </Grid>
             </Grid>
-          </Box>
+          </Paper>
           {status && <SnackBar type={'error'} message={statusMsg}/>}
         </Container>
       }

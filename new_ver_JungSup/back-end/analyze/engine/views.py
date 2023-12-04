@@ -141,6 +141,23 @@ def get_analyze_reports_re(request):
       'results': serializer.data,
       'next': next_link if next_link else None,
       })
+
+# 나의 리포트를 페이징 처리를 통해 불러오기
+class AnalyzeReportPaginationMine(PageNumberPagination):
+      page_size = 12
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_analyze_reports_mine(request, u_id):
+      paginator = AnalyzeReportPaginationMine()
+      reports = AnalyzeReport.objects.filter(u_id=u_id).filter(r_status="true").order_by('-r_date')
+      page = paginator.paginate_queryset(reports, request)
+      serializer = AnalyzeReportSerializer(page, many=True)
+      return Response({
+      'results': serializer.data,
+      'next': paginator.get_next_link(),
+      })
+
       
 # 특정 리포트를 타입과 키워드를 통해 불러오기
 class AnalyzeReportPagination(PageNumberPagination):
