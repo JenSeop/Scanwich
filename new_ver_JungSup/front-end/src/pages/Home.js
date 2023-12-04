@@ -45,8 +45,7 @@ function Home(props) {
           <List isMobile={isMobile}/>
         </Grid>
       </Grid>
-      {isMobile ? true : <ScrollTop value='20px'/>}
-      {!isMobile ? true : <ScrollTop value='100px'/>}
+      <ScrollTop value='100px'/>
     </>
   );
 }

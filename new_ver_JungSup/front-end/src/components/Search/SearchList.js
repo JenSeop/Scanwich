@@ -90,7 +90,7 @@ function SearchList({ isMobile, type, keyword }) {
 
   return (
     <>
-      <Grid container spacing={-1}>
+      <Grid container spacing={-1} sx={{marginBottom: '20vh'}}>
         {list.map((item, index) => (
           <HtmlTooltip
             title={
@@ -205,11 +205,13 @@ function SearchList({ isMobile, type, keyword }) {
                             {item.u_id}
                           </Typography>
                         </Grid>
-                        <Grid item xs={2}>
-                          <Typography variant="body3" color="white">
-                            {item.r_date.substring(0, 10)}
-                          </Typography>
-                        </Grid>
+                        {isMobile &&
+                          <Grid item xs={2}>
+                            <Typography variant="body3" color="white">
+                              {item.r_date.substring(0, 10)}
+                            </Typography>
+                          </Grid>
+                        }
                         <Grid item xs={0} style={{ color: 'white' }}>
                           {item.r_status === 'false' ? (
                             <Grid style={{ color: 'white' }}>

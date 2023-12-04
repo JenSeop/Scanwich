@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Container, Typography, Paper, List, ListItem, Grid, Divider } from '@mui/material';
-import LabelIcon from '@mui/icons-material/Label';
+import ScrollTop from '../components/MUI/ScrollTop';
 
 const Guide = () => {
   const startRef = useRef(null);
@@ -322,9 +322,8 @@ const Guide = () => {
             </Grid>
           </Grid>
         </Grid>
-        
-
       </Paper>
+      <ScrollTop value='100px'/>
     </Container>
   );
 };

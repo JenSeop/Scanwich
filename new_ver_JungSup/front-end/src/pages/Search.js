@@ -89,7 +89,7 @@ function Search({}) {
           <SearchList isMobile={isMobile} type={type} keyword={keyword}/>
         </Grid>
       </Grid>
-      {isMobile ? true : <ScrollTop value='20px'/>}
+      {isMobile ? true : <ScrollTop value='100px'/>}
       {!isMobile ? true : <ScrollTop value='100px'/>}
     </>
   );

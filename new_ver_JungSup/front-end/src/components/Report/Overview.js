@@ -27,30 +27,32 @@ export default function Info({data, dexo, exFile, isSmall}) {
       <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
         <Grid container>
           <Grid item xs={12}>
-              <Tooltip title='Dexofuzzy는 APK 유사도 정보를 제공합니다.' followCursor>
-              <Typography variant='body1' fontWeight='bold'>Dexofuzzy</Typography>
+              <Tooltip title='Dexofuzzy를 통해 APK 유사도 정보를 제공합니다.' followCursor>
+              <Typography variant='body1' fontWeight='bold'>Similar Apps</Typography>
             </Tooltip>
             <Divider width='99%' sx={{marginTop: '1vh', marginBottom: '2vh'}}/>
             <DexoComp dexo={dexo}/>
           </Grid>
         </Grid>
       </Paper>
-      <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Tooltip title='API Score는 호출된 API의 유형과 정보를 제공합니다.' followCursor>
-              <Typography variant='body1' fontWeight='bold'>API Score</Typography>
-            </Tooltip>
-            <Divider width='99%' sx={{marginTop: '1vh', marginBottom: '1vh'}}/>
+      {data && scores &&
+        <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
+          <Grid container>
+            <Grid item xs={12}>
+              <Tooltip title='Sensitive API는 호출된 API의 유형과 정보를 제공합니다.' followCursor>
+                <Typography variant='body1' fontWeight='bold'>Sensitive API</Typography>
+              </Tooltip>
+              <Divider width='99%' sx={{marginTop: '1vh', marginBottom: '1vh'}}/>
+            </Grid>
+            <Grid item xs={6}>
+              {data && scores && <Score data={scores}/>}
+            </Grid>
+            <Grid item xs={6}>
+              {data && data?.detections && data?.category_scores && <Score_Grid data={data?.detections} scores={data?.category_scores}/>}
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            {data && scores && <Score data={scores}/>}
-          </Grid>
-          <Grid item xs={6}>
-            {data && data?.detections && data?.category_scores && <Score_Grid data={data?.detections} scores={data?.category_scores}/>}
-          </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      }
     </>
   );
 }

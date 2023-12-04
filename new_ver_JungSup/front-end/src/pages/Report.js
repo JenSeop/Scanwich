@@ -221,8 +221,7 @@ export default function Report({ display }) {
             </Grid>
       )}
       {isLoading ? true : <ReportMenu data={reportData} isSmall={isSmall}/>}
-      {isMobile ? true : <ScrollTop value='20px'/>}
-      {!isMobile ? true : <ScrollTop value='100px'/>}
+      <ScrollTop value='100px'/>
     </>
   );
 }
