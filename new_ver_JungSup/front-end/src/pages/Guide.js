@@ -33,7 +33,7 @@ const Guide = () => {
   };
 
   return (
-    <Container maxWidth="md" style={{ marginTop: '2rem' }}>
+    <Container maxWidth="md" style={{ marginTop: '2rem', marginBottom: '20vh' }}>
       <Paper elevation={0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '10vh' }}>
         <div style={{ textAlign: 'center' }}>
           <img
@@ -44,6 +44,9 @@ const Guide = () => {
           />
           <Typography variant="h4" fontWeight='bold' color='primary' gutterBottom>
             Guide (가이드)
+          </Typography>
+          <Typography variant="caption text" color='#E5E5E5' gutterBottom>
+            Last updated at 23.12.05
           </Typography>
         </div>
         <Divider sx={{ marginTop: '2vh', marginBottom: '2vh' }} />

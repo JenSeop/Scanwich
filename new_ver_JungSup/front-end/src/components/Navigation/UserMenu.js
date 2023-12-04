@@ -40,7 +40,7 @@ export default function UserMenu() {
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText primary="홈" />
             </ListItemButton>
           </ListItem>
           <ListItem key="2" disablePadding component={Link} to="/guide" style={linkStyle}>
@@ -48,7 +48,7 @@ export default function UserMenu() {
               <ListItemIcon>
                 <LibraryBooksIcon />
               </ListItemIcon>
-              <ListItemText primary="Guide" />
+              <ListItemText primary="가이드" />
             </ListItemButton>
           </ListItem>
           <ListItem key="3" disablePadding component={Link} to="/about" style={linkStyle}>
@@ -56,7 +56,7 @@ export default function UserMenu() {
               <ListItemIcon>
                 <GroupIcon />
               </ListItemIcon>
-              <ListItemText primary="About" />
+              <ListItemText primary="소개" />
             </ListItemButton>
           </ListItem>
           <ListItem key="4" disablePadding component={Link} to="/information" style={linkStyle}>
@@ -64,7 +64,7 @@ export default function UserMenu() {
               <ListItemIcon>
                 <InfoIcon />
               </ListItemIcon>
-              <ListItemText primary="Information" />
+              <ListItemText primary="정보" />
             </ListItemButton>
           </ListItem>
         </List>

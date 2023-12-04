@@ -3,7 +3,7 @@ import { Container, Typography, Paper, Box, Divider } from '@mui/material';
 
 const Licenses = () => {
   return (
-    <Container maxWidth="md" style={{ marginTop: '2rem' }}>
+    <Container maxWidth="md" style={{ marginTop: '2rem', marginBottom: '20vh' }}>
       <Paper elevation={0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '10vh', textAlign: 'center' }}>
         <img
           src="/images/remaster/11.png"
@@ -48,8 +48,8 @@ const Licenses = () => {
         <Typography variant="body1" paragraph>
           For more detailed information, please refer to the developer documentation and source code.
         </Typography>
-        <Typography variant="body1" paragraph>
-          This web application is distributed under the MIT license.
+        <Typography variant="body1" fontWeight="bold" paragraph>
+          OSI Approved :: Apache Software License
         </Typography>
         <Divider sx={{ marginTop: '1vh', marginBottom: '1vh' }} />
         <Typography variant="body1" fontWeight="bold">
@@ -63,6 +63,13 @@ const Licenses = () => {
             height={30}
           />
         </a>
+        <Divider sx={{ marginTop: '1vh', marginBottom: '1vh' }} />
+        <Typography variant="body1" fontWeight="bold">
+          Contact US
+        </Typography>
+        <Typography variant="body1">
+          scanwich@gmail.com
+        </Typography>
       </Paper>
     </Container>
   );

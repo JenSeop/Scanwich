@@ -16,7 +16,7 @@ import Library from './Details/Library';
 export default function Info({data}) {
   return (
     <Paper elevation = {0} style={{ padding: '16px', margin: '0 auto', border: '1px solid #E0E0E0', marginBottom: '1vh' }}>
-      {data.file_info &&
+      {data?.file_info &&
         <Accordion elevation={0} sx={{}}>
           <Tooltip title="File 카테고리에서는 Name, MD5, SHA256, Size를 제공합니다. Name은 APK 파일의 이름을 나타냅니다. MD5와 SHA256은 파일의 해시 값으로, 각각 MD5 알고리즘과 SHA-256 알고리즘을 통해 생성됩니다. Size는 파일의 크기를 나타냅니다." followCursor>
             <AccordionSummary
@@ -112,7 +112,7 @@ export default function Info({data}) {
           </AccordionDetails>
         </Accordion>
       }
-      {data?.androguard_data?.services &&
+      {(data?.androguard_data?.services?.length != 0) &&
         <Accordion elevation={0} sx={{}}>
           <Tooltip title="Service 카테고리에서는 APK의 서비스 목록을 제공합니다. 이를 통해 APK에서 실행되는 주요 기능을 확인할 수 있습니다. " followCursor>
             <AccordionSummary
@@ -128,7 +128,7 @@ export default function Info({data}) {
           </AccordionDetails>
         </Accordion>
       }
-      {data?.androguard_data?.services?.length &&
+      {(data?.androguard_data?.services?.length != 0) &&
         <Accordion elevation={0} sx={{}}>
           <Tooltip title="Receivers 카테고리에서는 APK의 리시버 목록을 제공합니다. 이를 통해 APK가 외부 이벤트에 따라 어떤 작업을 수행하는지 알 수 있습니다." followCursor>
             <AccordionSummary
@@ -144,7 +144,7 @@ export default function Info({data}) {
           </AccordionDetails>
         </Accordion>
       }
-      {data?.androguard_data?.services?.length &&
+      {(data?.androguard_data?.services?.length != 0) &&
         <Accordion elevation={0} sx={{}}>
           <Tooltip title="Intent Filters 카테고리에서는 APK의 인텐트 필터 목록을 제공합니다. 이를 통해 APK가 내부 이벤트에 따라 어떤 작업을 수행하는지 알 수 있습니다." followCursor>
             <AccordionSummary
@@ -160,7 +160,7 @@ export default function Info({data}) {
           </AccordionDetails>
         </Accordion>
       }
-      {data?.androguard_data?.services?.length!=0 &&
+      {(data?.androguard_data?.services?.length != 0) &&
         <Accordion elevation={0} sx={{}}>
           <Tooltip title="Provider 카테고리에서는 APK의 프로바이더 목록을 제공합니다. 이를 통해 APK가 어떤 종류의 데이터를 제공하고 있는지를 확인할 수 있습니다." followCursor>
             <AccordionSummary
@@ -176,7 +176,7 @@ export default function Info({data}) {
           </AccordionDetails>
         </Accordion>
       }
-      {data?.androguard_data?.libraries?.length!=0 &&
+      {(data?.androguard_data?.libraries?.length != 0) &&
         <Accordion elevation={0} sx={{}}>
           <Tooltip title="Library 카테고리에서는 APK의 라이브러리 목록을 제공합니다. 이를 통해 APK가 어떤 외부 라이브러리를 활용하고 있는지 확인할 수 있습니다." followCursor>
             <AccordionSummary

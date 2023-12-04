@@ -149,7 +149,7 @@ export default function ProfileMenu({userName, userEmail}) {
       <Divider />
       <List>
         {/* 프로필 */}
-        <ListItem key="Profile" component={Link} to="/profile" style={linkStyle} disablePadding >
+        <ListItem key="Profile" component={Link} to="/Profile" style={linkStyle} disablePadding >
           <ListItemButton>
             <ListItemIcon>
               <AccountBoxIcon />
@@ -160,7 +160,7 @@ export default function ProfileMenu({userName, userEmail}) {
         <Divider />
         
         {/* 분석 기록 */}
-        <ListItem key="AnalysisHistory" component={Link} to="/history" style={linkStyle} disablePadding>
+        <ListItem key="AnalysisHistory" component={Link} to="/History" style={linkStyle} disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <RestorePageIcon />
@@ -171,12 +171,12 @@ export default function ProfileMenu({userName, userEmail}) {
         <Divider />
         
         {/* 파일 분석 */}
-        <ListItem key="FileAnalysis" disablePadding>
+        <ListItem key="FileAnalysis" component={Link} to="/Analysis" style={linkStyle} disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <PlagiarismIcon />
             </ListItemIcon>
-            <ListItemText primary="파일 분석" />
+            <ListItemText primary="파일 분석"/>
           </ListItemButton>
         </ListItem>
         <Divider />

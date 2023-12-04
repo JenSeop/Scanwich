@@ -7,6 +7,7 @@ import MobBotNav from './components/Navigation/MobBotNav';
 import Home from './pages/Home';
 /* Mobile Component */
 import Explore from './pages/Explore';
+import Analysis from './pages/Analysis';
 /* Authentication Component */
 import Login from './pages/Login';
 import FindID from './pages/Auth/FindId'
@@ -60,6 +61,7 @@ function App() {
           <Route path="/" element={<Home isMobile={isMobile}/>} />
           {/* Only Mobile Pages */}
           <Route path="/explore" element={<Explore/>} />
+          <Route path="/analysis" element={<Analysis/>} />
           {/* Authentication Pages */}
           <Route path="/login" element={<Login />} />
           <Route path="/find/id/step1" element={<FindID/>} />
@@ -81,8 +83,8 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Information" element={<Information />} />
           {/* Profile Menu Pages */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/history" element={<History />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/History" element={<History />} />
           {/* Exception Handling Pages */}
           <Route path="/error/400" element={<Error errorCode="400" />} />
           <Route path="/error/403" element={<Error errorCode="403" />} />
