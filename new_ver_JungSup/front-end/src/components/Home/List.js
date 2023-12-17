@@ -114,6 +114,7 @@ function List({ data, isMobile }) {
                   <>
                     <img
                       src={`/files/apk_icon/${item.r_id}.png`}
+                      onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/u/95238604?v=4'"
                       alt={item.r_data.androguard_data.apk.name}
                       style={{
                         width: '30px',
@@ -179,10 +180,11 @@ function List({ data, isMobile }) {
                           </Typography>
                         </Grid>
                         <Grid item xs={0} color="white">
-                          {item.r_data.androguard_data &&
+                          {item?.r_data?.androguard_data?.apk &&
                           <>
                             <img
                               src={`/files/apk_icon/${item.r_id}.png`}
+                              onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/u/95238604?v=4'"
                               style={{
                                 width: '15px',
                                 height: '15px',
@@ -193,7 +195,7 @@ function List({ data, isMobile }) {
                             />
                           </>
                           }
-                          {!item.r_data.androguard_data &&
+                          {!item?.r_data?.androguard_data?.apk &&
                             <InsertDriveFileIcon fontSize="small" sx={{marginTop: '0.2vh', marginRight: '0.6vh'}}/>
                           }
                         </Grid>

@@ -125,7 +125,7 @@ const PcNav = ({isMobile}) => {
             </Box>
           }
           {isLoggedIn ? (
-            <ProfileMenu onLogout={handleLogout} userName={u_id} userEmail={u_email}/>
+            <ProfileMenu onLogout={handleLogout} userName={u_id} userEmail={u_email} isMobile={isMobile}/>
           ) : (
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
               {isMobile && 

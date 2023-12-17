@@ -36,6 +36,7 @@ export default function Report({ display }) {
       .get(`/analyze/report/${r_id}/`)
       .then((response) => {
         setReportData(response.data);
+        console.log(response.data)
         if (response.data.r_status == "true")
           setIsLoading(false);
         else
@@ -105,7 +106,7 @@ export default function Report({ display }) {
                     <FileModulePc
                       reportId={r_id}
                       fullName={reportData.r_data.file_info.f_name}
-                      fileName={reportData.r_data.file_info.f_name.substring(0,10)+'...'}
+                      fileName={reportData.r_data.androguard_data?.apk?.name}
                       fileSize={Math.floor(reportData.r_data.file_info.f_size/1024)+" KB"}
                       fileIcon={reportData.r_data.androguard_data.apk.icon}
                       onDownloadClick
